@@ -7,9 +7,8 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import ListItemText from "@material-ui/core/ListItemText";
 import Link from "@material-ui/core/Link";
-// import {Link} from 'react-router-dom'
+
 
 function a11yProps(index) {
   return {
@@ -96,7 +95,7 @@ class SubNav extends React.Component {
 
   handleChange = (event, value) => {
     console.debug(value);
-    alert(0);
+    
 
     this.setState({ value });
   };
