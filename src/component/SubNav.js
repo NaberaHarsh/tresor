@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Link from "@material-ui/core/Link";
+import { Container } from "semantic-ui-react";
 
 
 
@@ -131,6 +132,7 @@ class SubNav extends React.Component {
           position="static"
           color="default"
         >
+          <Container maxWidth="x-lg">
           <Tabs
            className={window.innerWidth > 900 ? "desktopView" : "mobileView"}
             value={this.state.value}
@@ -158,6 +160,7 @@ class SubNav extends React.Component {
                 )
             )}
           </Tabs>
+          </Container>
         </AppBar>
       </div>
     );
