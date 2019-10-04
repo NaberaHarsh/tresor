@@ -75,28 +75,6 @@ export default function Forgot() {
               autoComplete="email"
               autoFocus
             />
-             <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Create New Password"
-              type="password"
-              id="password"
-              autoComplete="reset-password"
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Confirm Password"
-              type="password"
-              id="password"
-              autoComplete="reset-password"
-            />
             
             <Link href="/ResetPassword" variant="body2">
               <Button
