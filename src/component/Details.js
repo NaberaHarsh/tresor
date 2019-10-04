@@ -163,7 +163,7 @@ class Details extends Component {
 
       </Typography>
       <hr/>
-    <h6 style={{fontSize:'24px',fontWeight:'bolder'}} >
+    <h6 style={{fontSize:'20px',color:'black',fontWeight:'bolder'}} >
    {Detail.note}
       </h6>
     </div>

@@ -131,7 +131,7 @@ class CustomizedTreeView extends Component {
           padding: 20,
     }
     return ( 
-      
+      <div>
       <TreeView  
       className={rootClasses}
       defaultExpanded={['1']} 
@@ -157,7 +157,8 @@ class CustomizedTreeView extends Component {
         </React.Fragment>
         </StyledTreeItem>
          ))} 
-    </TreeView> 
+    </TreeView>
+    </div> 
      );
   }
 }
