@@ -109,7 +109,7 @@ class Fotter extends Component {
             </Grid>
           </Container>
           <hr className="footer-hr" />
-          <Typography style={{ padding: "4px" }} variant="subtitle2">
+          <Typography style={{ padding: "4px",marginLeft:'10px' }} variant="subtitle2">
             Copyright 2019 TRESOR JEWEL. All rights reserved.
           </Typography>
         </div>

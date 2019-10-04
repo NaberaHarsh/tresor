@@ -202,7 +202,7 @@ class PrimarySearchAppBar extends React.Component {
         <AppBar position="static">
           <Toolbar>
           <Link href="/">
-            <img style={{ height: "56px",marginLeft:'11px',marginTop: "5px",marginRight:'11px',marginBottom:'4px'}} src="/logo.jpg" alt="" /> </Link>
+            <img style={{ height: "56px",marginLeft:'30px',marginTop: "5px",marginRight:'11px',marginBottom:'4px'}} src="/logo.jpg" alt="" /> </Link>
           
             <div className={classes.grow} />
             <div style={{marginRight:'10px'}} className={classes.sectionDesktop}>

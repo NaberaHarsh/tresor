@@ -58,8 +58,7 @@ const useStyles = makeStyles(theme => ({
 function ResponsiveDrawer(props) {
 
   // const dummyCategories1 = ['Product1', 'Product2', 'Product3', 'Product4']
-  const handleChange = (i) => { 
-  };
+  
   const classes = useStyles();
   const theme = useTheme();
   let [category, setcategory] = React.useState([]);

@@ -95,7 +95,7 @@ class ProductList extends Component {
       <React.Fragment>
         <Container maxWidth="lg">
           
-     {dataGet ?  <h3 className="total-count-product">{dataGet===0 ? "No Product Found" : `No. of Product :${dataGet} `}</h3> : ""}
+     {dataGet ?  <h3 className="total-count-product">{dataGet == 0 ? "No Product Found" : `No. of Product :${dataGet} `}</h3> : ""}
      {/* if u didnt want scroll then u remove below wrap div */}
         <div style={{overflowY:"auto",maxHeight:"490px",marginTop:"20px",overflowX:"hidden"}}>
         <Grid container spacing={2}>

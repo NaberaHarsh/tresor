@@ -10,6 +10,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Link from "@material-ui/core/Link";
 
 
+
 function a11yProps(index) {
   return {
     id: `scrollable-force-tab-${index}`,
@@ -114,10 +115,11 @@ class SubNav extends React.Component {
     let a = 0;
     var { anchorEl, category = [] } = this.state;
     return (
-      <div
+      <div 
         style={{ backgroundColor: "white !important" }}
         className={classes.root}
       >
+
         <AppBar
 
           style={{
@@ -144,8 +146,8 @@ class SubNav extends React.Component {
 
             {category.map(
               (data, index) => (
-                  <div >
-                    <Link href={`/products/${data.catId}/${a}`} data={category}>
+               
+                   <Link href={`/products/${data.catId}/${a}`} data={category}>
                       <Tab 
                         label={data.name}
                         {...a11yProps(index)}
@@ -153,7 +155,6 @@ class SubNav extends React.Component {
                         color="primary"
                       />
                     </Link>
-                  </div>
                 )
             )}
           </Tabs>
