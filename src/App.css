@@ -34,6 +34,11 @@
   left: 50%;
   z-index: 9999;
 }
+.crossIcon{
+  font-size: 15px;
+    font-weight: 700;
+    margin-left: 281px;
+}
 /* .desktopView .MuiTabs-scroller .MuiTabs-flexContainer{
   display: flex;
   justify-content: center;
@@ -257,7 +262,7 @@ h5{
   width:350px !important;
 }
 .padding{
-  padding: 3px 3px 3px 3px!important;
+  padding: 6px 11px 7px 16px!important;
 }
 .productCard{
   margin: 6px !important;
@@ -507,7 +512,7 @@ hr{
   border: none;
 }
 .imgPort{
-  height:570px;
+  height:100%;
   width:100%;
 
 }

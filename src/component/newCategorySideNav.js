@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
-import CloseIcon from '@material-ui/icons/Close';
+// import CloseIcon from '@material-ui/icons/Close';
 import Toolbar from '@material-ui/core/Toolbar';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CustomizedTreeView from './sideCategoryNav';
@@ -88,6 +88,7 @@ return (
             color="action"
             aria-label="Open drawer"
             edge="start"
+            style={{marginLeft:'14px'}}
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           ><FilterListIcon fontSize="large"></FilterListIcon> Filter
@@ -113,7 +114,7 @@ return (
             }}
           >
             <Button onClick={handleDrawerToggle} className={classes.closeMenuButton}>
-              <CloseIcon/>
+              <div className="crossIcon"> X </div>
             </Button>
            <CustomizedTreeView catId={catId} category={category} />
          
