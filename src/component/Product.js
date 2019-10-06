@@ -33,7 +33,7 @@ class Product extends Component {
             
                 <Grid container spacing={3}>
                     <Grid xs={4} sm={4} md={3} lg={3}>
-                       <SideNav  getProductByCatId = {this.getProductByCatId} catId={catId} category = {this.props.data}/>
+                       <SideNav style={{marginTop:"23px"}} getProductByCatId = {this.getProductByCatId} catId={catId} category = {this.props.data}/>
                     </Grid>
                     <Grid xs={12} sm={12} md={9} lg={9}>
                         <Productlist subCatId= {subCatId} catId ={catId}/>
