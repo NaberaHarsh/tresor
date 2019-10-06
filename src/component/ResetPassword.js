@@ -7,8 +7,6 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
@@ -38,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function ResetPassword() {
   const classes = useStyles();
-
+  const {password} = this.state;
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -83,6 +81,7 @@ export default function ResetPassword() {
               fullWidth
               name="password"
               label="Confirm Password"
+              // pattern={password}
               type="password"
               id="password"
               autoComplete="reset-password"

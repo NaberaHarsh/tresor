@@ -67,7 +67,6 @@ class ProductList extends Component {
       if (err) {
         return;
       }
-      console.debug(response);
 
       this.setState({
         ProductList: response.data.product,
@@ -95,7 +94,7 @@ class ProductList extends Component {
       <React.Fragment>
         <Container maxWidth="lg">
           
-     {dataGet ?  <h3 className="total-count-product">{dataGet == 0 ? "No Product Found" : `No. of Product :${dataGet} `}</h3> : ""}
+     {dataGet ?  <h3 className="total-count-product">{dataGet === 0 ? "No Product Found" : `No. of Product :${dataGet} `}</h3> : ""}
   
         <Grid container spacing={2}>
            

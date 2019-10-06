@@ -132,26 +132,10 @@ class Details extends Component {
                     {Detail.name}
                     </h6>
                 </div>
-                <Paper 
-                // className={classes.root}
-                >
-      <Table className="">
-        <TableHead>
-          <TableRow>
+                <Paper>
+             
             <h6 style={{fontSize:'18px !important'}}>Product Details</h6>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {[].map(row => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell>
-              <TableCell align="left">{row.calories}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+        
     </Paper>
     <div style={{marginTop:'15px',marginBottom:'10px'}}>
     <h5 >

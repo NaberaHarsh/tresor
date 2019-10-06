@@ -7,11 +7,7 @@ import Register from '../component/Register';
 import Login from '../component/Login';
 import Forgot from '../component/Forgot';
 import ResetPassword from '../component/ResetPassword';
-
-
-
-
-
+import {PrivateRoute} from '../utils/PrivateRoute';
 
 
 class Routes extends Component {
@@ -37,7 +33,6 @@ class Routes extends Component {
   // }
 
   render() {
-    console.log("routes propps", this.props);
 
     return (
       <BrowserRouter>
@@ -49,11 +44,11 @@ class Routes extends Component {
            <Route path="/Register" exact component={Register} />
           <Route path="/Login" exact component={Login} />
           <Route path="/Forgot" exact component={Forgot} />
-          <Route path="/ResetPassword" exact component={ResetPassword} />
+          <Route path="/ResetPassword/:token" exact={false} component={ResetPassword} />
         </Switch>
         
       </BrowserRouter>
-    );
+    );  
   }
 }
 

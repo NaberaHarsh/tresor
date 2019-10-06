@@ -97,8 +97,8 @@ const {banner,category,shows} = this.state;
 
 
     return (
-    <div className={this.state.loading===true ? "loaderBackground" : "body"}>
-    {this.state.loading===true ?  <div className="loader"></div> : undefined}
+    <div className="body">
+  
      <Header
       category={category}
      /> 

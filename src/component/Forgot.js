@@ -84,7 +84,7 @@ export default function Forgot() {
                 color="secondary"
                 className={classes.submit}
               >
-                Reset Password
+                Send Link Here !
               </Button>
             </Link>
           </form>
