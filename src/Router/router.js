@@ -27,8 +27,8 @@ class Routes extends Component {
       
       <Switch>
           <Route path="/" exact  render={(props) => <Main data={this.props} {...props} />} />
-          <Route path="/products/:catId/:subCatId" exact={false} render={(props) => <Product data={this.props.category} {...props} />} />
-          <Route path='/Details/:id' component={Details} />
+          <PrivateRoute path="/products/:catId/:subCatId" exact={false} render={(props) => <Product data={this.props.category} {...props} />} />
+          <PrivateRoute path='/Details/:id' component={Details} />
            <Route path="/Register" exact component={Register} />
           <Route path="/Login" exact component={Login} />
           <Route path="/Forgot" exact component={Forgot} />

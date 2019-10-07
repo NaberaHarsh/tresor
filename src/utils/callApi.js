@@ -8,7 +8,7 @@ export default function callApi(requestOption,callback) {
     if(!requestOption.headers){
         requestOption.headers = {}
     }    
-    // requestOption.headers.token = getCookie('token')
+    requestOption.headers.token = getCookie('token')
     
      axios(requestOption)
      .then(response => {
