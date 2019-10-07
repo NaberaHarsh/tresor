@@ -3,10 +3,8 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Productlist from './Productlist';
 import SideNav from './newCategorySideNav';
-import SimpleBreadcrumbs from './Breadcrumbs';
+// import SimpleBreadcrumbs from './Breadcrumbs';
 
-import callApi from '../../src/utils/callApi';
-import APIUrl from '../utils/APIUrl'
 
 
 

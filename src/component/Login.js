@@ -1,14 +1,9 @@
 import React, { Component } from "react";
-import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
@@ -49,7 +44,7 @@ class SignIn extends Component {
     this.state = {
       email: "",
       password: "",
-      isLogin: false
+      isLogin: false,
     };
   }
 
@@ -81,8 +76,8 @@ class SignIn extends Component {
         console.log(response.data);
         if (response.data.status === true) {
           this.setState({
-            token: "",
-            isLogin: true
+            token:"",
+            isLogin: true,
           });
         }
       })
@@ -120,7 +115,7 @@ class SignIn extends Component {
                 }}
                 src="/logo.jpg"
                 alt=""
-              />{" "}
+              />
             </Link>
             <h6 style={{ padding: "10px" }} className="features">
               Login
@@ -156,10 +151,6 @@ class SignIn extends Component {
                 id="password"
                 autoComplete="current-password"
               />
-              {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
               <Button
                 type="submit"
                 fullWidth

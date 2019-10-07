@@ -8,7 +8,8 @@ const config = {
    Detailproduct:`${apiEndPoint}/api/product`,
    Login:`${apiEndPoint}/auth/login`,
    Register:`${apiEndPoint}/auth/registration`,
-   Forgot:`${apiEndPoint}/auth/forgot`,
+   Forgot:`${apiEndPoint}/user/forgotpass/gen`,
+   ResetPassword:`${apiEndPoint}/user/updatepass`,
   }
 };
 export default config;

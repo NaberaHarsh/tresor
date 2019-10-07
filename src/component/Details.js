@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { Container, Grid } from '@material-ui/core';
 import Card from "@material-ui/core/Card";
 import callApi from '../utils/callApi';
 import APIUrl from '../utils/APIUrl';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
 
 
 
@@ -110,7 +103,7 @@ class Details extends Component {
                         <img
                           src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
                           
-                          alt="product image"
+                          alt="productimg"
                           style={{ width: "100%" }}
                           onClick={() => this.ChangeImage(data.url)}
                         />

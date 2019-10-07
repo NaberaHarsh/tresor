@@ -155,6 +155,7 @@ class SubNav extends React.Component {
                         {...a11yProps(index)}
                         variant="contained"
                         color="primary"
+                       
                       />
                     </Link>
                 )

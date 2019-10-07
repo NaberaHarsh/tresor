@@ -1,19 +1,17 @@
-import React from "react";
-import Avatar from "@material-ui/core/Avatar";
+import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
+import APIUrl from "../utils/APIUrl";
+import axios from "axios";
+import setCookie from "../utils/setCookie";
+import { Redirect } from "react-router-dom";
 
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
   "@global": {
     body: {
       backgroundColor: theme.palette.common.white
@@ -25,7 +23,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center"
   },
-
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main
+  },
   form: {
     width: "100%",
     marginTop: theme.spacing(0),
@@ -34,49 +35,105 @@ const useStyles = makeStyles(theme => ({
   submit: {
     margin: theme.spacing(3, 0, 2)
   }
-}));
+});
 
-export default function Forgot() {
-  const classes = useStyles();
+class ForgotPassword extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      retrievePage: false,
+    };
+  }
 
-  return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <Paper style={{ backgroundColor: "ghostwhite",marginBottom: "10px" }}>
-        <div className={classes.paper}>
-          {/* <Avatar className={classes.avatar}> */}
-          <Link href="/">
-            <img
-              style={{
-                height: "56px",
-                marginLeft: "11px",
-                marginRight: "11px",
-                marginTop: "5px",
-                marginBottom: "4px"
-              }}
-              src="/logo.jpg"
-              alt=""
-            />{" "}
-          </Link>
-          {/* </Avatar> */}
-          <h6 style={{ padding: "10px" }} className="features">
-            Reset Password here !
-          </h6>
-          <form className={classes.form} noValidate>
-              
-            <TextField
-              variant="outlined"
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
+  handleSubmit = e => {
+    e.preventDefault();
+    const { email } = this.state;
+    const userdata = { email };
+    const data = Object.keys(userdata)
+      .map(key => {
+        return (
+          encodeURIComponent(key) + "=" + encodeURIComponent(userdata[key])
+        );
+      })
+      .join("&");
+    const requestOptions = {
+      method: "Post",
+      url: APIUrl.url.ForgotPassword,
+      data: data,
+    };
+
+    axios(requestOptions)
+      .then(response => {
+        console.log(response.data);
+        if (response.data.status === true) {
+          this.setState({
+            token:'',
+            retrievePage:"",
+          });
+        }
+      })
+      .catch(err => { });
+  };
+
+  render() {
+    const { classes } = this.props;
+    const { email, retrievePage, token } = this.state;
+    console.log(this.state);
+    if (retrievePage) {
+      setCookie("token", token, 30);
+      return (
+        <Redirect
+          to={{
+            pathname: "/"
+          }}
+        />
+      );
+    }
+
+    return (
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Paper style={{ backgroundColor: "ghostwhite", marginBottom: "10px" }}>
+          <div className={classes.paper}>
+
+            <Link href="/">
+              <img
+                style={{
+                  height: "56px",
+                  marginLeft: "11px",
+                  marginRight: "11px",
+                  marginTop: "5px",
+                  marginBottom: "4px"
+                }}
+                src="/logo.jpg"
+                alt=""
+              />{" "}
+            </Link>
             
-            <Link href="/ResetPassword" variant="body2">
+            <h6 style={{ padding: "10px" }} className="features">
+              Please check your email !
+          </h6>
+            <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                value={email}
+                onChange={this.handleChange}
+                autoComplete="email"
+                autoFocus
+              />
               <Button
                 type="submit"
                 fullWidth
@@ -84,12 +141,14 @@ export default function Forgot() {
                 color="secondary"
                 className={classes.submit}
               >
-                Send Link Here !
+                Generate Link Here !
               </Button>
-            </Link>
-          </form>
-        </div>
-      </Paper>
-    </Container>
-  );
+            </form>
+          </div>
+        </Paper>
+      </Container>
+    );
+  }
 }
+
+export default withStyles(styles)(ForgotPassword);

@@ -60,7 +60,7 @@ class ProductList extends Component {
 
     const requestOptions = {
       method: "GET",
-      url: url
+      url: url,
     };
 
     callApi(requestOptions, (err, response) => {

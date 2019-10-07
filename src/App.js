@@ -55,8 +55,8 @@ class App extends Component {
     let categories = [];
     data.category.map((item,index) => {
 
-      if(categoryId != item.cat_id){
-        if(categoryId != 0){
+      if(categoryId !== item.cat_id){
+        if(categoryId !== 0){
 
             categories.push({
               catId: categoryId,
