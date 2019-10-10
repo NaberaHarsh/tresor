@@ -7,8 +7,8 @@ import MultiCarousel from './MultiCarousel';
 import { Grid, Container } from "@material-ui/core";
 import APIUrl from '../utils/APIUrl';
 import callApi from '../utils/callApi';
-
-import $ from 'jquery'
+import Suggestions from './searchSugg';
+import $ from 'jquery';
 
 
 
@@ -103,9 +103,6 @@ class Main extends Component {
               incno = itemsSplit[0];
               itemWidth = sampwidth / incno;
           }
-          console.log('aa gya');
-          console.log('itemWidth: ' + itemWidth);
-          console.log('itemNumbers: ' + itemNumbers);
           $(this).css({ 'transform': 'translateX(0px)', 'width': itemWidth * itemNumbers });
           $(this).find(itemClass).each(function () {
               $(this).outerWidth(itemWidth);
@@ -115,11 +112,6 @@ class Main extends Component {
           $(".rightLst").removeClass("over");
 
       });
-
-
-
-
-
 
     })
   }
@@ -138,6 +130,7 @@ class Main extends Component {
     return (
       
       <React.Fragment>
+        <Suggestions />
         {banner!==[] ?  <Coreusel banner = {banner}/> : undefined}
         <Container maxWidth="lg">
           <Grid item xs={12} sm={12}>

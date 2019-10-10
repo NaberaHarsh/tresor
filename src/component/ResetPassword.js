@@ -53,10 +53,10 @@ class ResetPassword extends Component {
       [name]: value
     });
   };
-  handleSubmit = e => {
+  ResetPasword = e => {
     e.preventDefault();
-    const { newPass, password } = this.state;
-    const userdata = { newPass, password };
+    const { password } = this.state;
+    const userdata = { password };
     const data = Object.keys(userdata)
       .map(key => {
         return (
@@ -86,7 +86,7 @@ class ResetPassword extends Component {
   render() {
     const { classes } = this.props;
     const { newPass, password, isLogin, token } = this.state;
-    console.log(this.state);
+    console.log(this.props);
     if (isLogin) {
       setCookie("token", token, 30);
       return (
@@ -110,7 +110,7 @@ class ResetPassword extends Component {
                   height: "56px",
                   marginLeft: "11px",
                   marginRight: "11px",
-                  marginTop: "5px",
+                  marginTop: "20px",
                   marginBottom: "4px"
                 }}
                 src="/logo.jpg"
@@ -121,7 +121,7 @@ class ResetPassword extends Component {
             <h6 style={{ padding: "10px" }} className="features">
               Reset Password
           </h6>
-            <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
+            <form className={classes.form} noValidate onSubmit={this.ResetPasword}>
 
               <TextField
                 variant="outlined"
@@ -131,7 +131,7 @@ class ResetPassword extends Component {
                 name="password"
                 value={password}
                 onChange={this.handleChange}
-                label="Create New Password"
+                label="new password"
                 type="password"
                 id="password"
                 autoComplete="reset-password"
@@ -143,6 +143,7 @@ class ResetPassword extends Component {
                 fullWidth
                 name="newPass"
                 value={newPass}
+                pattern = {password}
                 label="Confirm Password"
                 onChange={this.handleChange}
                 type="password"
@@ -154,7 +155,7 @@ class ResetPassword extends Component {
                 type="submit"
                 fullWidth
                 variant="contained"
-                color="secondary"
+                style={{backgroundColor:"black",color:'white'}}
                 className={classes.submit}
               >
                 Reset Password

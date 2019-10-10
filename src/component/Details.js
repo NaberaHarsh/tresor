@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import { Container, Grid } from '@material-ui/core';
 import Card from "@material-ui/core/Card";
 import callApi from '../utils/callApi';
@@ -9,22 +8,7 @@ import Paper from '@material-ui/core/Paper';
 
 
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
 
-  return (
-    <Typography
-      component="div"
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      <Box p={3}>{children}</Box>
-    </Typography>
-  );
-}
 
 
 
@@ -136,7 +120,7 @@ class Details extends Component {
       </h5>
     <hr/>
     <Typography variant="subtitle2" >
-   <div dangerouslySetInnerHTML={{ __html: this.htmlDecode(Detail.description) }} />
+   <div style={{overflow:'auto'}} dangerouslySetInnerHTML={{ __html: this.htmlDecode(Detail.description) }} />
 
       </Typography>
       <hr/>

@@ -7,7 +7,7 @@ import Register from '../component/Register';
 import Login from '../component/Login';
 import Forgot from '../component/Forgot';
 import ResetPassword from '../component/ResetPassword';
-import {PrivateRoute} from '../utils/PrivateRoute';
+// import {PrivateRoute} from '../utils/PrivateRoute';
 
 
 class Routes extends Component {
@@ -21,18 +21,20 @@ class Routes extends Component {
 
 
   render() {
+    console.log(this.props);
+    
 
     return (
       <BrowserRouter>
       
       <Switch>
           <Route path="/" exact  render={(props) => <Main data={this.props} {...props} />} />
-          <PrivateRoute path="/products/:catId/:subCatId" exact={false} render={(props) => <Product data={this.props.category} {...props} />} />
-          <PrivateRoute path='/Details/:id' component={Details} />
-           <Route path="/Register" exact component={Register} />
-          <Route path="/Login" exact component={Login} />
-          <Route path="/Forgot" exact component={Forgot} />
-          <Route path="/ResetPassword/:token" exact={false} component={ResetPassword} />
+          <Route path="/products/:catId/:subCatId" exact={false} render={(props) => <Product data={this.props.category} {...props} />} />
+          <Route path='/details/:id' component={Details} />
+           <Route path="/register" exact component={Register} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/forgot" exact component={Forgot} />
+          <Route path="/reset_password/:token" exact={false} component={ResetPassword} />
         </Switch>
         
       </BrowserRouter>

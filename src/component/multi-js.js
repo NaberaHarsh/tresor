@@ -78,7 +78,7 @@ $(document).ready(function () {
         var rightBtn = ('.rightLst');
         var translateXval = '';
         var divStyle = $(el + ' ' + itemsDiv).css('transform');
-        var values = divStyle.match(/-?[\d\.]+/g);
+        var values = divStyle.match(/-?[\d.]+/g);
         var xds = Math.abs(values[4]);
         if (e === 0) {
             translateXval = parseInt(xds) - parseInt(itemWidth * s);

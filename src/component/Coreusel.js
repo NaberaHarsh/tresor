@@ -74,13 +74,13 @@ class Coreusel extends React.Component {
   render() {
     const { classes, theme } = this.props;
     const { activeStep,banner } = this.state;
-    const maxSteps = banner.length;
+    // const maxSteps = banner.length;
     
     
     return (
      
          <Grid className={classes.root} item xs={12} sm={12} md={12} lg={12}>
-        {banner.length >0 &&<AutoPlaySwipeableViews
+        {banner.length > 0 && <AutoPlaySwipeableViews
           axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
           index={this.activeStep}
           onChangeIndex={this.handleStepChange}

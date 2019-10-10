@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import Routes from './Router/router.js';
 import APIUrl from './utils/APIUrl';
 import callApi from './utils/callApi'
-// import ('./component//multi-js')
 
 
 class App extends Component {
@@ -47,15 +46,12 @@ class App extends Component {
   }
 
   generateCategories(data){
-
-
     let categoryId = 0;
     let catName = "";
     let subCat = [];
     let categories = [];
-    data.category.map((item,index) => {
-
-      if(categoryId !== item.cat_id){
+    data.category.map((item) => {
+     if(categoryId !== item.cat_id){
         if(categoryId !== 0){
 
             categories.push({
@@ -73,8 +69,7 @@ class App extends Component {
         subCat.push(item);
       }
     });
-    if(categoryId != 0){
-
+    if(categoryId !== 0){
       categories.push({
         catId: categoryId,
         name: catName,

@@ -56,6 +56,8 @@ class ForgotPassword extends Component {
     e.preventDefault();
     const { email } = this.state;
     const userdata = { email };
+
+    // convert json to form data with '&' seprater
     const data = Object.keys(userdata)
       .map(key => {
         return (
@@ -64,20 +66,16 @@ class ForgotPassword extends Component {
       })
       .join("&");
     const requestOptions = {
-      method: "Post",
+      method: "POST",
       url: APIUrl.url.ForgotPassword,
-      data: data,
+      data: userdata,
+
     };
+    console.log(requestOptions);
+    
 
     axios(requestOptions)
       .then(response => {
-        console.log(response.data);
-        if (response.data.status === true) {
-          this.setState({
-            token:'',
-            retrievePage:"",
-          });
-        }
       })
       .catch(err => { });
   };
@@ -109,7 +107,7 @@ class ForgotPassword extends Component {
                   height: "56px",
                   marginLeft: "11px",
                   marginRight: "11px",
-                  marginTop: "5px",
+                  marginTop: "20px",
                   marginBottom: "4px"
                 }}
                 src="/logo.jpg"
@@ -120,7 +118,7 @@ class ForgotPassword extends Component {
             <h6 style={{ padding: "10px" }} className="features">
               Please check your email !
           </h6>
-            <form className={classes.form} noValidate onSubmit={this.handleSubmit}>
+            <form className={classes.form} onSubmit={this.handleSubmit}>
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -138,7 +136,7 @@ class ForgotPassword extends Component {
                 type="submit"
                 fullWidth
                 variant="contained"
-                color="secondary"
+               style={{backgroundColor:'black',color:'white'}}
                 className={classes.submit}
               >
                 Generate Link Here !

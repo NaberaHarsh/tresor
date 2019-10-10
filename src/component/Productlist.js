@@ -7,6 +7,7 @@ import { ThemeProvider } from "@material-ui/styles";
 import callApi from "../utils/callApi";
 import APIUrl from "../utils/APIUrl";
 import { Redirect } from "react-router-dom";
+import Skeleton from "@material-ui/lab/Skeleton";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -36,7 +37,9 @@ class ProductList extends Component {
     this.state = {
       ProductList: [],
       retrieveId: "",
-      retrievePage: false
+      retrievePage: false,
+      loading: false,
+      skeleton: new Array(6).fill(true)
     };
   }
 
@@ -60,7 +63,7 @@ class ProductList extends Component {
 
     const requestOptions = {
       method: "GET",
-      url: url,
+      url: url
     };
 
     callApi(requestOptions, (err, response) => {
@@ -70,15 +73,22 @@ class ProductList extends Component {
 
       this.setState({
         ProductList: response.data.product,
-        dataGet:response.data.product.length
+        dataGet: response.data.product.length,
+        loading: true
       });
     });
   }
 
   render() {
-    const { retrievePage, retrieveId, ProductList,dataGet } = this.state;
-    console.log(ProductList.length);
-    
+    const {
+      retrievePage,
+      retrieveId,
+      skeleton,
+      loading,
+      ProductList,
+      dataGet
+    } = this.state;
+
     if (retrievePage) {
       return (
         <Redirect
@@ -93,51 +103,98 @@ class ProductList extends Component {
     return (
       <React.Fragment>
         <Container maxWidth="lg">
-          
-     {dataGet ?  <h3 className="total-count-product">{dataGet === 0 ? "No Product Found" : `No. of Product :${dataGet} `}</h3> : ""}
-  
-        <Grid container spacing={2}>
-           
-           {ProductList.map(data => (
-             <Grid
-               style={{ textAlign: "center" }}
-               item
-               xs={12}
-               sm={12}
-               md={4}
-               lg={4}
-             >
-               <Paper className="marginB">
-                 <img
-                   className="img1"
-                   src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
-                   alt=""
-                 />
-                 <div className="Rating">
-                   <Typography
-                     style={{ textAlign: "left", marginBottom: "30px" }}
-                     variant="subtitle1"
-                   >
-                     {data.name}
-                   </Typography>
-                 </div>
+          {dataGet ? (
+            <h3 className="total-count-product">
+              {dataGet === 0
+                ? "No Product Found"
+                : `No. of Product :${dataGet} `}
+            </h3>
+          ) : (
+            ""
+          )}
 
-                 <ThemeProvider>
-                   <Button
-                     onClick={() => this.viewDetails(`${data.product_id}`)}
-                     style={{ width: "100%" }}
-                     variant="contained"
-                     color="teal"
-                     className=""
-                   >
-                     View Details
-                   </Button>
-                 </ThemeProvider>
-               </Paper>
-             </Grid>
-           ))}
-         </Grid>
-     
+          <Grid container spacing={2}>
+            {loading === true && dataGet !== 0 ? (
+              <>
+                {ProductList.map(data => (
+                  <Grid
+                    style={{ textAlign: "center" }}
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    lg={4}
+                  >
+                    <Paper className="marginB">
+                      <img
+                        className="img1"
+                        src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
+                        alt=""
+                      />
+                      <div className="Rating">
+                        <Typography
+                          style={{
+                            textAlign: "left",
+                            height: "70px",
+                            marginBottom: "6px",
+                            color:'black'
+                          }}
+                          variant="subtitle1"
+                        >
+                          {data.name}
+                        </Typography>
+                      </div>
+
+                      <ThemeProvider>
+                        <Button
+                          onClick={() => this.viewDetails(`${data.product_id}`)}
+                          style={{ width: "100%" ,backgroundColor:"black",color:'white'}}
+                          variant="contained"
+                          
+                        >
+                          View Details
+                        </Button>
+                      </ThemeProvider>
+                    </Paper>
+                  </Grid>
+                ))}{" "}
+              </>
+            ) : (
+              <>
+                {" "}
+                {skeleton.map((data, index) => (
+                  <Grid
+                    style={{ textAlign: "center" }}
+                    item
+                    xs={12}
+                    sm={12}
+                    md={4}
+                    lg={4}
+                  >
+                    <Paper className="marginB">
+                      <Skeleton variant="rect" className="skeleton-img1" />
+                      <div className="Rating">
+                        <React.Fragment>
+                          <Skeleton height={6} />
+                          <Skeleton height={6} width="80%" />
+                        </React.Fragment>
+                      </div>
+
+                      <ThemeProvider>
+                        <Button
+                          style={{ width: "100%" }}
+                          variant="contained"
+                          color="teal"
+                        >
+                          
+                        </Button>
+                      </ThemeProvider>
+                    </Paper>
+                  </Grid>
+                ))}
+              </>
+            )}
+          </Grid>
         </Container>
       </React.Fragment>
     );

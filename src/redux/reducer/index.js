@@ -1,19 +1,22 @@
-// import {SUCCESS_LOGIN} from '../../action/generic';
-//import * as generic from '../../action/generic';
-
-
 
 const initialState = {
-categories:[]
+categories:[],
+searchList:[]
   }
   
   function reducer(state={initialState}, action) {
     console.log('action ',action.payload)
+    
     switch(action.type){
        
         case "CATEGORY":{
         
           return state = {caterogy:action.payload.categories}
+        
+        }
+        case "SEARCH_LIST":{
+        
+          return state = {searchList:action.payload.searchList}
         
         }   
     }

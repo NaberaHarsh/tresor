@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import getCookie from './getCookie';
+// import getCookie from './getCookie';
 
 
 export default function callApi(requestOption,callback) {
@@ -8,7 +8,7 @@ export default function callApi(requestOption,callback) {
     if(!requestOption.headers){
         requestOption.headers = {}
     }    
-    requestOption.headers.token = getCookie('token')
+    // requestOption.headers.token = getCookie('token')
     
      axios(requestOption)
      .then(response => {

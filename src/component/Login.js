@@ -11,6 +11,7 @@ import APIUrl from "../utils/APIUrl";
 import axios from "axios";
 import setCookie from "../utils/setCookie";
 import { Redirect } from "react-router-dom";
+import toastr from 'toastr';
 
 const styles = theme => ({
   "@global": {
@@ -31,12 +32,14 @@ const styles = theme => ({
   form: {
     width: "100%",
     marginTop: theme.spacing(0),
-    padding: 20
+    padding: 13
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
   }
 });
+
+
 
 class SignIn extends Component {
   constructor(props) {
@@ -73,20 +76,27 @@ class SignIn extends Component {
 
     axios(requestOptions)
       .then(response => {
-        console.log(response.data);
+        console.log(response);
+        toastr.error(response.data.msg,'ERROR');
+        console.log(JSON.parse(response.data));
         if (response.data.status === true) {
+          console.log(response.data.data.user_id);
           this.setState({
             token:"",
             isLogin: true,
           });
         }
       })
-      .catch(err => {});
+      .catch(err => {
+        console.log(err);
+        
+      });
   };
 
   render() {
     const { classes } = this.props;
     const { email, password, isLogin, token } = this.state;
+    localStorage.setItem('session',JSON.stringify(token));
     console.log(this.state);
     if (isLogin) {
       setCookie("token", token, 30);
@@ -109,7 +119,7 @@ class SignIn extends Component {
                 style={{
                   height: "56px",
                   marginLeft: "11px",
-                  marginTop: "5px",
+                  marginTop: "20px",
                   marginRight: "11px",
                   marginBottom: "4px"
                 }}
@@ -155,7 +165,7 @@ class SignIn extends Component {
                 type="submit"
                 fullWidth
                 variant="contained"
-                color="secondary"
+                style={{backgroundColor:"black",color:'white'}}
                 className={classes.submit}
               >
                 Login

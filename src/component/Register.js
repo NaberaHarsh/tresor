@@ -25,7 +25,7 @@ const styles = theme => ({
   form: {
     width: '100%',
     marginTop: theme.spacing(2),
-    padding: 18,
+    padding: 20,
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
@@ -71,7 +71,6 @@ class Register extends Component {
     axios(requestOptions)
       .then(response => {
 
-
       })
       .catch(err => {
 
@@ -90,7 +89,7 @@ class Register extends Component {
                 style={{
                   height: "56px",
                   marginLeft: "11px",
-                  marginTop: "5px",
+                  marginTop: "20px",
                   marginRight: "11px",
                   marginBottom: "4px"
                 }}
@@ -203,7 +202,7 @@ class Register extends Component {
                 fullWidth
                 variant="contained"
                 onSubmit={this.onSubmit}
-                color="secondary"
+                style={{backgroundColor:"black",color:'white'}}
                 className={classes.submit}
               >
                 Register

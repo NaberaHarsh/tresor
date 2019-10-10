@@ -1,16 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { withStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
+import Hidden from '@material-ui/core/Hidden';
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import Link from "@material-ui/core/Link";
 import { Container } from "semantic-ui-react";
-
-
+import Skeleton from "@material-ui/lab/Skeleton";
 
 function a11yProps(index) {
   return {
@@ -31,43 +29,6 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-const StyledMenu = withStyles({
-  paper: {
-    border: "1px solid #d3d4d5"
-  }
-})(props => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center"
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "center"
-    }}
-    {...props}
-  />
-));
-
-const StyledMenuItem = withStyles(theme => ({
-  root: {
-    "&:focus": {
-      backgroundColor: theme.palette.primary.main,
-      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-        color: theme.palette.common.white
-      }
-    }
-  }
-}))(MenuItem);
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    width: "100%",
-    backgroundColor: theme.palette.background.paper
-  }
-});
 
 class SubNav extends React.Component {
   constructor(props) {
@@ -75,7 +36,9 @@ class SubNav extends React.Component {
     this.state = {
       value: 0,
       anchorEl: false,
-      category: []
+      category: [],
+      skeleton: new Array(5).fill(true),
+      loading: false,
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -87,7 +50,9 @@ class SubNav extends React.Component {
       console.debug(nextProps, "next");
 
       return {
-        category: nextProps.category
+        category: nextProps.category,
+        dataGet:  nextProps.category.length,
+        loading: true,
       };
     }
 
@@ -97,7 +62,6 @@ class SubNav extends React.Component {
 
   handleChange = (event, value) => {
     console.debug(value);
-    
 
     this.setState({ value });
   };
@@ -112,55 +76,83 @@ class SubNav extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    
     let a = 0;
-    var { anchorEl, category = [] } = this.state;
+    var {skeleton,loading,dataGet, category = [] } = this.state;
     return (
-      <div 
+      <div
         style={{ backgroundColor: "white !important" }}
-        className={classes.root}
+        
       >
-
         <AppBar
-
           style={{
             // color: "black",
             fontWeight: "bolder",
             fontFamily: "Novecentowide"
           }}
-        
           position="static"
           color="default"
         >
-          <Container maxWidth="x-lg">
-          <Tabs
+          <Container>
+            <Tabs
            className={window.innerWidth > 900 ? "desktopView" : "mobileView"}
             value={this.state.value}
             onChange={this.handleChange}
-            indicatorColor=""
-            // textColor="black"
             variant="scrollable"
             scrollButtons="auto"
             // style={{textAlign: "center", display: "flow-root"}}
             aria-label="scrollable auto tabs example"
           >
+ {loading === true && dataGet !== 0 ? (
+              <>
            
-
-            {category.map(
-              (data, index) => (
-               
-                   <Link href={`/products/${data.catId}/${a}`} data={category}>
-                      <Tab 
+              {category.map((data, index) => (
+                <Link
+                 
+                  href={`/products/${data.catId}/${a}`}
+                  data={category}
+                >
+                  <Hidden xsDown implementation="css">
+                  <Tab 
+                      
                         label={data.name}
                         {...a11yProps(index)}
                         variant="contained"
                         color="primary"
                        
                       />
-                    </Link>
-                )
+                      </Hidden>
+                      <Hidden smUp implementation="css" className="mobile-view-sub-nav">
+                  {/* <Tab 
+                      
+                        label={data.name}
+                        {...a11yProps(index)}
+                        variant="contained"
+                        color="primary"
+                       
+                      /> */}
+                      <MenuItem>{data.name}</MenuItem>
+                      </Hidden>
+                </Link>
+              ))}
+          {" "}
+              </>
+            ) : (
+              <>
+                {" "}
+                {skeleton.map(() => (
+                  
+                   
+                        <React.Fragment>
+                          <Skeleton height={30} />
+                          <Skeleton height={30} width="80%" />
+                        </React.Fragment>
+                    
+                 
+                ))}
+              </>
             )}
-          </Tabs>
+            </Tabs>
           </Container>
         </AppBar>
       </div>
@@ -168,8 +160,8 @@ class SubNav extends React.Component {
   }
 }
 
-SubNav.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+// SubNav.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
-export default withStyles(styles)(SubNav);
+export default SubNav;

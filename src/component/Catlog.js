@@ -31,9 +31,9 @@ class Catlog extends Component {
     return (
       <React.Fragment>
         <Container maxWidth="lg" className="about_me">
-          <Paper>
+          <Paper style={{ width: "100% ! important", height: "100%",marginBottom:'10px' }}>
             <h5 className="features" style={{ marginTop: "18px", marginLeft: '8px' }}>
-              OUR CATALOG
+              Our Catlog
       </h5>
             <div className="card-body fea features ">
               <Grid container spacing={3} className="row text-center">

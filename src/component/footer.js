@@ -34,7 +34,7 @@ class Fotter extends Component {
                 </Typography>
                 <List component="nav" aria-label="secondary mailbox folders">
                   <ListItem className="list">
-                    <ListItemText primary="- Where i can buy these product/" />
+                    <ListItemText primary="- Where i can buy these product?" />
                   </ListItem>
                   <ListItem className="list">
                     <ListItemText primary="- Why i need login?" />

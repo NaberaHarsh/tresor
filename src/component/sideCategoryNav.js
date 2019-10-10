@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import SvgIcon from '@material-ui/core/SvgIcon';
-import { fade, makeStyles, withStyles } from '@material-ui/core/styles';
+import { fade,  withStyles } from '@material-ui/core/styles';
 import TreeView from '@material-ui/lab/TreeView';
 import TreeItem from '@material-ui/lab/TreeItem';
 import Collapse from '@material-ui/core/Collapse';
 import { useSpring, animated } from 'react-spring';
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import ListItem from '@material-ui/core/ListItem';
 import Link from "@material-ui/core/Link";
 import ListItemText from '@material-ui/core/ListItemText';
@@ -77,7 +77,6 @@ class CustomizedTreeView extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      checked: [0],
      category:[],
       catId:""
      
@@ -94,28 +93,14 @@ class CustomizedTreeView extends Component {
       };
     }
 
-    // Return null if the state hasn't changed
+
     return null;
   }
 
-  handleToggle = value => () => {
-    const { checked } = this.state;
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    this.setState({
-      checked: newChecked,
-    });
-  };
+ 
   render() { 
-    // const {category,state} = this.state
-    const { value,category,catId } = this.state;
+  
+    const { category,catId } = this.state;
    
  
 
@@ -137,16 +122,16 @@ class CustomizedTreeView extends Component {
       defaultExpandIcon={<PlusSquare />}
       defaultEndIcon={<CloseSquare />}
     >
-      {/* <StyledTreeItem nodeId="1" label="Category"> */}
-      {/* {category.map((data,index) => ( */}
+     
+     
 
         {category.map((value,index) => (
-        <StyledTreeItem   nodeId={value.catId} style={value.catId===catId ? {color:"teal"} : {color:"black"}} label={value.name}>
+        <StyledTreeItem nodeId={value.catId} style={value.catId===catId ? {color:"black"} : {color:"darkgray"}} label={value.name}>
         <React.Fragment>
        
       
            {value.subcat.map((data,index) => (
-               <ListItem   key={index} role={data.catId} dense button >
+               <ListItem   key={index}  dense button >
                 
              <Link href={`/products/${data.cat_id}/${data.subcat_id}`} ><ListItemText primary={data.sub_name} /></Link>
               </ListItem>
