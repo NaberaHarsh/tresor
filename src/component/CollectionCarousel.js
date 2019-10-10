@@ -35,7 +35,7 @@ class As extends Component {
     return (
       <React.Fragment>
         <Container maxWidth="lg" className="card1">
-          <Paper style={{ width: "100% ! important", height: "400px" }}>
+          <Paper style={{ width: "100% ! important", height: "420px" }}>
             <h5 style={{ padding: "10px",marginLeft:'20px' }} className="features">
               Discover Our Latest Collection
             </h5>
