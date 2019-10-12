@@ -89,10 +89,10 @@ class Fotter extends Component {
                     style={{ align: "left" }}
                     variant="body2"
                   >
-                    <MailOutlineIcon /> tresorjewelryinc@gmail.com
+                    <MailOutlineIcon /> <span>tresorjewelryinc@gmail.com</span>
                   </Typography>
                   <Typography className="address" variant="body2">
-                    <MobileScreenShareIcon /> (212) 471-0021
+                    <MobileScreenShareIcon /><span> (212) 471-0021 </span>
                   </Typography>
                 </div>
               </Grid>

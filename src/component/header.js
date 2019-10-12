@@ -18,7 +18,12 @@ import Divider from "@material-ui/core/Divider";
 import DehazeIcon from "@material-ui/icons/Dehaze";
 import APIUrl from "../utils/APIUrl";
 import callApi from "../utils/callApi";
-import Suggestions from "./searchSugg";
+
+
+
+
+
+
 const drawerWidth = "100%";
 const styles = theme => ({
   root: {
@@ -258,14 +263,14 @@ class PrimarySearchAppBar extends React.Component {
                 className={classes.sectionDesktop}
               >
                 <div
-                  style={{ backgroundColor: "whitesmoke", outline: "auto" }}
+                  style={{ backgroundColor: "whitesmoke",height:'40px',marginTop:'5px', outline: "auto" }}
                   className={classes.search}
                 >
                   <div className={classes.searchIcon}>
-                    <SearchIcon />
+                    <SearchIcon style={{marginTop:'6px'}}/>
                   </div>
                   <InputBase
-                    style={{ marginTop: "7px" }}
+                    style={{ marginTop: "7px"}}
                     onChange={this.onSearchChange}
                     name="searchText"
                     value={searchText}
@@ -286,8 +291,7 @@ class PrimarySearchAppBar extends React.Component {
                       fontFamily: "Helvetica"
                     }}
                   >
-                    <PersonIcon />
-                    Login
+                    <PersonIcon /><span>Login</span>
                   </p>
                 </Link>
                 <Link href="/Register">

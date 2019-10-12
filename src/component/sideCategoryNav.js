@@ -125,7 +125,7 @@ class CustomizedTreeView extends Component {
        
       
            {value.subcat.map((data,index) => (
-               <ListItem style={{marginLeft:'10px'}}  key={index}  dense button >
+               <ListItem style={{marginLeft:'10px',padding:'18px'}}  key={index}  dense button >
                 
              <Link href={`/products/${data.cat_id}/${data.subcat_id}`} ><ListItemText primary={data.sub_name} /></Link>
               </ListItem>
@@ -134,7 +134,7 @@ class CustomizedTreeView extends Component {
         </div>
         </StyledTreeItem>
          ))} 
-    </TreeView>
+    </TreeView> 
     </div> 
      );
   }

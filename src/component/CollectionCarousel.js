@@ -38,84 +38,90 @@ class CollectionCarousel extends Component {
               Discover Our Latest Collection
             </h5>
             <div>
-              <Container maxWidth="lg">
-                <div className="row">
-                  <div
-
-                    data-items="1,2,4,5"
-                    data-slide="1"
-                    id="MultiCarousel"
-                    data-interval="900"
-                  >
-                    <div >
-                      <Grid container spacing={3}>
-                        {loading === true && lat_product.length !== 0 ? (
-                          <>
-                            {lat_product.map((data, index) => (
-                              <Grid key={`lat_product-${index}`}item xs={3}>
-                                <div className="item" key={`banner-${index}`} style={{ border: "1px solid #aeaeae" }}>
-
-                                  <div className="imgwidth pad15">
-
+            <Container maxWidth="lg">
+              <div className="row">
+                <div
+                 
+                  data-items="1,2,4,5"
+                  data-slide="1"
+                  id="MultiCarousel"
+                  data-interval="900"
+                >
+                  <div >
+                  <Grid container spacing={3}>
+                    {loading === true && lat_product.length !== 0 ? (
+                      <>
+                        {lat_product.map((data, index) => (
+                            <Grid item  key={`like_product-${index}`}  md={3} lg={3} sm={12} xs={12}>
+                          <div className="item"style={{border:"1px solid #aeaeae"}}>
+                            {/* <Paper > */}
+                              <div className="pad15">
+                                <div className="imgwidth">
+                                
                                     <img
-                                    
+                                   
                                       className="img2"
                                       src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
                                       alt=""
                                     />{" "}
-
-                                  </div>
-
-                                  <p className="Rating"
+                                
+                                </div>
+                                <div className="Rating">
+                                  <p
                                     style={{
                                       textAlign: "center",
                                       color: "black !important",
                                       fontSize: "18px !important",
-                                      marginTop: '40px'
+                                      marginTop:'40px'
                                     }}
                                    
                                   ><Link href={`/Details/${data.product_id}`}>
-                                      {data.name} {" "}
-                                    </Link>
-
+                                 {data.name} {" "}
+                                </Link>
+                                    
                                     <br />{" "}
                                   </p>
-
                                 </div>
-                              </Grid>
-                            ))}
-                          </>
-                        ) : (
-                            <>
-                              {" "}
-                              {skeleton.map((item, index) => (
-                                <Grid key={`skel-banner-${index}`} item xs={3}>
-                                  <div className="item" >
-                                    <Paper>
-                                      <div className="pad15">
-                                        <div className="imgwidth">
-                                          <Skeleton
-                                            variant="rect"
-                                            className="skeleton-img"
-                                          />
-                                           
-                                            <Skeleton height={6} width="80%" />
-                                        </div>
-                                       
-                                      </div>
-                                    </Paper>
+                              </div>
+                            {/* </Paper> */}
+                          </div>
+                          </Grid>
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        {" "}
+                        {skeleton.map((index) => (
+                           <Grid  key={`skel-like_products-${index}`} item md={3} lg={3} sm={12} xs={12}>
+                          <div className="item">
+                            <Paper>
+                              <div className="pad15">
+                                <div className="imgwidth">
+                                  <Skeleton
+                                    variant="rect"
+                                    className="skeleton-img"
+                                  />
+                                </div>
+                                <div className="Rating">
+                                  <div>
+                                   
+                                    <Skeleton height={6} width="80%" />
                                   </div>
-                                </Grid>
-                              ))}
-                            </>
-                          )}
-                      </Grid>
-                    </div>
-
+                                </div>
+                              </div>
+                            </Paper>
+                          </div>
+                          </Grid>
+                        ))}
+                      </>
+                    )}
+                    </Grid>
                   </div>
+                 
                 </div>
-              </Container>
-            </div>
+              </div>
+            </Container>
+          </div>
           </Paper>
         </Container>
       </div>

@@ -62,7 +62,7 @@ class Details extends Component {
       }
 
   render() {
-    const { bigImage, ProductDetails, img, Detail } = this.state;
+    const { bigImage,img, Detail } = this.state;
     return (
 
       <div>
