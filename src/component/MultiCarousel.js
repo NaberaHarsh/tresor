@@ -54,7 +54,7 @@ class MultiCarousel extends Component {
                     {loading === true && like_product.length !== 0 ? (
                       <>
                         {like_product.map((data, index) => (
-                            <Grid item  key={`product-${index}`}  md={3} lg={3} sm={12} xs={12}>
+                            <Grid item  key={`like_product-${index}`}  md={3} lg={3} sm={12} xs={12}>
                           <div className="item"style={{border:"1px solid #aeaeae"}}>
                             {/* <Paper > */}
                               <div className="pad15">
@@ -94,7 +94,7 @@ class MultiCarousel extends Component {
                       <>
                         {" "}
                         {skeleton.map((index) => (
-                           <Grid  key={`skel-product-${index}`} item md={3} lg={3} sm={12} xs={12}>
+                           <Grid  key={`skel-like_products-${index}`} item md={3} lg={3} sm={12} xs={12}>
                           <div className="item">
                             <Paper>
                               <div className="pad15">
@@ -106,7 +106,7 @@ class MultiCarousel extends Component {
                                 </div>
                                 <div className="Rating">
                                   <div>
-                                    <Skeleton height={6} />
+                                   
                                     <Skeleton height={6} width="80%" />
                                   </div>
                                 </div>

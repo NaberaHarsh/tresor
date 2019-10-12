@@ -128,8 +128,10 @@
   justify-content: space-around;
 }
 h6 {
-  font-size: 1.5rem !important;
+  font-size: 1rem !important;
   color: #939597;
+  margin-top: 10px !important;
+  margin-bottom: 9px !important;
 }
 .fontSize .MuiGridListTileBar-titleWrap .MuiGridListTileBar-title {
   font-size: 20px !important;

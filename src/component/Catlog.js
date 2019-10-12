@@ -32,16 +32,17 @@ class Catlog extends Component {
       <div>
         <Container maxWidth="lg" className="about_me">
           <Paper style={{ width: "100% ! important", height: "100%",marginBottom:'10px' }}>
-            <h5 className="features" style={{ marginTop: "18px", marginLeft: '8px' }}>
+            <h5 className="features" style={{ marginTop: "18px",padding:'10px', marginLeft: '8px' }}>
               Our Catlog
       </h5>
             <div className="card-body fea features ">
-              <Grid container spacing={3} className="row text-center">
+              <Grid container spacing={4} >
                 {shows.map((data, index) => (
                   <Grid key={index} item xs={12} sm={12} md={4} lg={4} className="homepage__key-point col-lg-4">
                     <Grid container  alignItems="center">
-                      <img className="imgPort" alt="" src={data.url} />
-
+                      <div style={{marginleft:'5px',padding:'5px'}}>
+                        <img className="imgPort" alt="" src={data.url} />
+                      </div>
                     </Grid>
                   </Grid>
                 ))}

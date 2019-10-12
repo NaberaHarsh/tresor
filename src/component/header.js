@@ -18,7 +18,7 @@ import Divider from "@material-ui/core/Divider";
 import DehazeIcon from "@material-ui/icons/Dehaze";
 import APIUrl from "../utils/APIUrl";
 import callApi from "../utils/callApi";
-
+import Suggestions from "./searchSugg";
 const drawerWidth = "100%";
 const styles = theme => ({
   root: {
@@ -148,10 +148,12 @@ class PrimarySearchAppBar extends React.Component {
       if (err) {
         return;
       }
-      this.props.dispatch({
-        type: "SEARCH_LIST",
-        payload: { searchList: response.data.product }
-      });
+      // this.props.dispatch({
+      //   type: "SEARCH_LIST",
+      //   payload: { searchList: response.data.product }
+      // });
+     
+      
       this.setState({
         search: response.data.product,
         loading: true
@@ -187,14 +189,14 @@ class PrimarySearchAppBar extends React.Component {
     this.setState({ mobileMoreAnchorEl: null });
   };
 
+
   render() {
     let a = 0;
-    const { mobileMoreAnchorEl } = this.state;
+    const { mobileMoreAnchorEl,search } = this.state;
     const { classes } = this.props;
     // const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
     const { open, category, searchText } = this.state;
-    console.debug("cat", this.state.category);
 
     const renderMobileMenu = (
       <Drawer
@@ -348,11 +350,13 @@ class PrimarySearchAppBar extends React.Component {
                   root: classes.inputRoot,
                   input: classes.inputInput
                 }}
-              />
+              >
+              
+                </InputBase>
             </div>
 
-         
-            <div style={{ padding: "20px" }}>
+           <div style={{display:"flex"}}>
+           <div  style={{ padding: "20px",width:"50%" }}>
               <Typography varient="subtite-1"> Suggested Categories</Typography>
               {category.map((data,index) => (
                 <Link 
@@ -363,6 +367,18 @@ class PrimarySearchAppBar extends React.Component {
                 </Link>
               ))}
             </div>
+            <div  style={{ padding: "20px",width:"50%" }}>
+              <Typography varient="subtite-1"> Suggestation</Typography>
+             {search.length === 0 ? "No product found" :  search.map((data,index) => (
+                <Link 
+                key={`search-cat-${index}`}
+                href={`/details/${data.product_id}`}
+                 data={category}>
+                  <li key={index} style={{ fontSize: "13px" }}>{data.name}</li>
+                </Link>
+              ))}
+            </div>
+           </div>
           </Drawer>
           {renderMobileMenu}
         </div>
