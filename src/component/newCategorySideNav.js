@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: "18px"
   },
   drawer: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       width: drawerWidth,
       top: drawerTop,
       flexShrink: 0
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       display: "none"
     }
   },
@@ -114,7 +114,7 @@ function ResponsiveDrawer(props) {
             <CustomizedTreeView catId={catId} category={category} />
           </Drawer>
         </Hidden>
-        <Hidden smDown implementation="css">
+        <Hidden mdDown implementation="css">
           <Drawer
             variant="temporary"
             anchor={theme.direction === "rtl" ? "right" : "left"}
@@ -137,7 +137,7 @@ function ResponsiveDrawer(props) {
           </Drawer>
         </Hidden>
 
-        <Hidden xsDown implementation="css">
+        <Hidden mdDown implementation="css">
           <Drawer
             className={classes.drawer}
             variant="permanent"
