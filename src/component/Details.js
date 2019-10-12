@@ -63,49 +63,49 @@ class Details extends Component {
 
   render() {
     const { bigImage, ProductDetails, img, Detail } = this.state;
-    console.debug('detail', Detail);
-    console.debug('img', img);
-    console.debug('ProductDetails', ProductDetails);
-
     return (
-      <React.Fragment>
+
+      <div>
         <Container maxWidth="lg" className="productCard1">
           <Grid item xs={12} sm={12}>
             <Grid container spacing={2}>
 
               <Grid item xs={12} sm={12} md={5} lg={5}>
-                <Card>
-                  <img className="img-fluid"
+                <Paper>
+                <Card  style={{padding: '16px'}} className="img-fluid">
+                  <img className="img-fluid2"
                     src={bigImage} 
-                   
+                  
                     alt="" />
                 </Card>
+                </Paper>
                 <Grid style={{ marginTop: '10px' }} container spacing={2}>
                   {img.map((data, index) => (
-                    <Grid item xs={3} sm={3} md={2} lg={2}>
-                      <Card>
+                    <Grid key={`details-img-${index}`} item xs={3} sm={3} md={2} lg={2}>
+                      
+                      <Card style={{padding:'5px'}}>
                         <img
                           src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
-                          
+                         
                           alt="productimg"
                           style={{ width: "100%" }}
                           onClick={() => this.ChangeImage(data.url)}
                         />
                       </Card>
+                     
                     </Grid>
                   ))}
 
                 </Grid>
               </Grid>
-              <Grid md={1} lg={1}></Grid>
+              <Grid item md={1} lg={1}></Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <div className="section-heading">
-                  <h5
-                    
-                  >
+                  <h5>
                     {Detail.model}
                      </h5>
                      <h6>
+                    
                     {Detail.name}
                     </h6>
                 </div>
@@ -115,7 +115,7 @@ class Details extends Component {
         
     </Paper>
     <div style={{marginTop:'15px',marginBottom:'10px'}}>
-    <h5 >
+    <h5>
     Description
       </h5>
     <hr/>
@@ -134,7 +134,7 @@ class Details extends Component {
 
           </Grid>
         </Container>
-      </React.Fragment>
+      </div>
     );
   }
 }

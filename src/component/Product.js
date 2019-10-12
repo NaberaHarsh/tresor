@@ -30,10 +30,10 @@ class Product extends Component {
             <Container  maxWidth="lg" className="productCard1" style={{minHeight:"300px"}}>
             
                 <Grid container spacing={3}>
-                    <Grid  xs={4} sm={4} md={3} lg={3}>
+                    <Grid item xs={4} sm={4} md={3} lg={3}>
                        <SideNav  getProductByCatId = {this.getProductByCatId} catId={catId} category = {this.props.data}/>
                     </Grid>
-                    <Grid xs={12} sm={12} md={9} lg={9}>
+                    <Grid item xs={12} sm={12} md={9} lg={9}>
                         <Productlist subCatId= {subCatId} catId ={catId}/>
                     </Grid>
                 </Grid>

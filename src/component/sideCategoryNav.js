@@ -106,17 +106,11 @@ class CustomizedTreeView extends Component {
 
   
     
-    const rootClasses = {
-      height: '100%',
-          flexGrow: 1,
-          maxWidth: '100%',
-          fontSize: 12,
-          padding: 20,
-    }
+   
     return ( 
       <div style={{marginTop:"5px"}}>
       <TreeView  
-      className={rootClasses}
+     
       defaultExpanded={['1']} 
       defaultCollapseIcon={<MinusSquare />}
       defaultExpandIcon={<PlusSquare />}
@@ -126,8 +120,8 @@ class CustomizedTreeView extends Component {
      
 
         {category.map((value,index) => (
-        <StyledTreeItem nodeId={value.catId} style={value.catId===catId ? {color:"black"} : {color:"darkgray"}} label={value.name}>
-        <React.Fragment>
+        <StyledTreeItem key={index} nodeId={value.catId} style={value.catId===catId ? {color:"black"} : {color:"darkgray"}} label={value.name}>
+        <div>
        
       
            {value.subcat.map((data,index) => (
@@ -137,7 +131,7 @@ class CustomizedTreeView extends Component {
               </ListItem>
            ))}
            
-        </React.Fragment>
+        </div>
         </StyledTreeItem>
          ))} 
     </TreeView>

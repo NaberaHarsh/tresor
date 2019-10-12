@@ -58,13 +58,13 @@ class ForgotPassword extends Component {
     const userdata = { email };
 
     // convert json to form data with '&' seprater
-    const data = Object.keys(userdata)
-      .map(key => {
-        return (
-          encodeURIComponent(key) + "=" + encodeURIComponent(userdata[key])
-        );
-      })
-      .join("&");
+    // const data = Object.keys(userdata)
+    //   .map(key => {
+    //     return (
+    //       encodeURIComponent(key) + "=" + encodeURIComponent(userdata[key])
+    //     );
+    //   })
+    //   .join("&");
     const requestOptions = {
       method: "POST",
       url: APIUrl.url.ForgotPassword,

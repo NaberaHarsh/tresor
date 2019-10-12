@@ -78,13 +78,13 @@ class App extends Component {
   }
 
 
-
     this.props.dispatch({ type:"CATEGORY" , payload:{categories}})
     this.setState({
       category:categories
     })
   }
 
+  
   render(){
     
 const {banner,category,shows} = this.state;

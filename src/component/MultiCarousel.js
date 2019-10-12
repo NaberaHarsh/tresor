@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Container, Link, Fab, Paper } from "@material-ui/core";
-import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import { Container, Link, Paper } from "@material-ui/core";
+import Grid from '@material-ui/core/Grid';
+
 import Skeleton from "@material-ui/lab/Skeleton";
 
 class MultiCarousel extends Component {
@@ -13,10 +13,7 @@ class MultiCarousel extends Component {
       loading: false
     };
   }
-  componentDidMount() {
-    import("./multi-js");
-  }
-
+ 
   static getDerivedStateFromProps(nextProps, prevState) {
     
     if (prevState !== nextProps) {   
@@ -35,105 +32,101 @@ class MultiCarousel extends Component {
     
       
     return (
-      <React.Fragment>
-        <Container maxWidth="lg" className="card1">
-          <Paper style={{ width: "100% ! important", height: "400px" }}>
-            <h5 style={{ padding: "10px",marginLeft:'20px' }} className="features">
-              Most Liked Products
-            </h5>
-            <React.Fragment>
-              <Container maxWidth="lg">
-                <div className="row">
-                  <div
-                    className="MultiCarousel"
-                    data-items="1,2,4,5"
-                    data-slide="1"
-                    id="MultiCarousel"
-                    data-interval="900"
-                  >
-                    <div className="MultiCarousel-inner">
-                      {loading===true && like_product.length !==0 ? (
-                        <>
-                          {like_product.map((data, index) => (
-                            <div className="item" key={index} style={{border:"1px solid #aeaeae"}}>
-                              {/* <Paper style={{backgroundColor:'grey'}}> */}
-                                <div className="pad15">
-                                  <div className="imgwidth">
-                                    <Link href={`/Details/${data.product_id}`}>
-                                      <img
-                                        className="img2"
-                                        src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
-                                        alt=""
-                                      />{" "}
-                                    </Link>
-                                  </div>
-                                  <div className="Rating">
-                                    <p
-                                      style={{
-                                        textAlign: "center",
-                                        color: "black !important",
-                                        fontSize: "18px !important",
-                                        marginTop:'40px'
-                                      }}
-                                    >
-                                      {data.name}
-                                      <br />{" "}
-                                    </p>
+      
+      <div>
+      <Container maxWidth="lg" className="card1">
+        <Paper style={{ width: "100% ! important" }}>
+          <h5 style={{ padding: "20px",marginLeft:'20px' }} className="features">
+          Most Liked Products
+          </h5>
+          <div>
+            <Container maxWidth="lg">
+              <div className="row">
+                <div
+                 
+                  data-items="1,2,4,5"
+                  data-slide="1"
+                  id="MultiCarousel"
+                  data-interval="900"
+                >
+                  <div >
+                  <Grid container spacing={3}>
+                    {loading === true && like_product.length !== 0 ? (
+                      <>
+                        {like_product.map((data, index) => (
+                            <Grid item  key={`product-${index}`}  md={3} lg={3} sm={12} xs={12}>
+                          <div className="item"style={{border:"1px solid #aeaeae"}}>
+                            {/* <Paper > */}
+                              <div className="pad15">
+                                <div className="imgwidth">
+                                
+                                    <img
+                                   
+                                      className="img2"
+                                      src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
+                                      alt=""
+                                    />{" "}
+                                
+                                </div>
+                                <div className="Rating">
+                                  <p
+                                    style={{
+                                      textAlign: "center",
+                                      color: "black !important",
+                                      fontSize: "18px !important",
+                                      marginTop:'40px'
+                                    }}
+                                   
+                                  ><Link href={`/Details/${data.product_id}`}>
+                                 {data.name} {" "}
+                                </Link>
+                                    
+                                    <br />{" "}
+                                  </p>
+                                </div>
+                              </div>
+                            {/* </Paper> */}
+                          </div>
+                          </Grid>
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        {" "}
+                        {skeleton.map((index) => (
+                           <Grid  key={`skel-product-${index}`} item md={3} lg={3} sm={12} xs={12}>
+                          <div className="item">
+                            <Paper>
+                              <div className="pad15">
+                                <div className="imgwidth">
+                                  <Skeleton
+                                    variant="rect"
+                                    className="skeleton-img"
+                                  />
+                                </div>
+                                <div className="Rating">
+                                  <div>
+                                    <Skeleton height={6} />
+                                    <Skeleton height={6} width="80%" />
                                   </div>
                                 </div>
-                              {/* </Paper> */}
-                            </div>
-                          ))}
-                        </>
-                      ) : (
-                        <>
-                          {" "}
-                          {skeleton.map((data, index) => (
-                            <div className="item" key={index}>
-                              <Paper>
-                                <div className="pad15">
-                                  <div className="imgwidth">
-                                    <Skeleton
-                                      variant="rect"
-                                      className="skeleton-img"
-                                    />
-                                  </div>
-                                  <div className="Rating">
-                                    <React.Fragment>
-                                      <Skeleton height={6} />
-                                      <Skeleton height={6} width="80%" />
-                                    </React.Fragment>
-                                  </div>
-                                </div>
-                              </Paper>
-                            </div>
-                          ))}
-                        </>
-                      )}
-                    </div>
-                    <Fab
-                      size="medium"
-                      className="btn btn-primary leftLst"
-                      color="secondary"
-                      aria-label="add"
-                    >
-                      <ArrowBackIosIcon />
-                    </Fab>
-                    <Fab
-                      size="medium"
-                      className="btn btn-primary rightLst"
-                      color="secondary"
-                      aria-label="add"
-                    >
-                      <ArrowForwardIosIcon />
-                    </Fab>
+                              </div>
+                            </Paper>
+                          </div>
+                          </Grid>
+                        ))}
+                      </>
+                    )}
+                    </Grid>
                   </div>
+                 
                 </div>
-              </Container>
-            </React.Fragment>
-          </Paper>
-        </Container>
-      </React.Fragment>
+              </div>
+            </Container>
+          </div>
+        </Paper>
+      </Container>
+    </div>
     );
   }
 }

@@ -128,7 +128,7 @@
   justify-content: space-around;
 }
 h6 {
-  font-size: 2rem !important;
+  font-size: 1.5rem !important;
   color: #939597;
 }
 .fontSize .MuiGridListTileBar-titleWrap .MuiGridListTileBar-title {
@@ -274,6 +274,12 @@ h5 {
   /* margin-bottom: 200px; */
   margin-top: 10px !important;
 }
+.img-fluid2{
+    width: 100%;
+    max-width: 100%;
+    height: 450px;
+
+}
 .prouctMarginTop {
   margin-top: 10px !important;
   margin-left: 0px !important;
@@ -325,7 +331,7 @@ h5 {
 .img-fluid {
   width: 100%;
   max-width: 100%;
-  height: 450px;
+  height: 500px;
 }
 .MuiTableCell-body {
   color: rgba(0, 0, 0, 0.87);
@@ -503,7 +509,7 @@ h5 {
 .card1 {
   margin: 20px auto;
   width: 100% !important;
-  height: 100%;
+
 }
 .MuiTypography-colorPrimary {
   color: grey !important;
@@ -711,10 +717,10 @@ hr {
 .col-half-offset {
   margin-left: 4.166666667%;
 }
-.PrivateTabIndicator-colorSecondary-361{
+.PrivateTabIndicator-colorPrimary-303{
   background-color:#f5f5f5 !important;
 }
-.PrivateTabIndicator-colorSecondary-321 {
+.PrivateTabIndicator-colorSecondary-360 {
   background-color: #f5f5f5 !important;
 }
 .PrivateTabIndicator-colorSecondary-310 {
@@ -740,6 +746,7 @@ hr {
 .img2 {
   width: 100% !important;
   height: 100% !important;
+  margin-top:12px;
 }
 .pad15 {
   background-color: #fff !important;
@@ -751,59 +758,6 @@ hr {
     position: relative;
     left: 64%;
     top: -52px;
-}
-
-/* .subnavProducts{
-  opacity: 1;
-  transform: none;
-  transition: opacity 264ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 176ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  top: 2px ;
-  left: 0px !important;
-  transform-origin: 63.5px 32px;
-} */
-
-/* multicoursel */
-
-.MultiCarousel {
-  float: left;
-  overflow: hidden;
-  padding: 1px;
-  height: 330px;
-  width: 100%;
-  position: relative;
-}
-.MultiCarousel .MultiCarousel-inner {
-  transition: 1s ease all;
-  height: 330px;
-  float: left;
-}
-.MultiCarousel .MultiCarousel-inner .item {
-  float: left;
-}
-.MultiCarousel .MultiCarousel-inner .item > div {
-  text-align: center;
-  padding: 3px;
-  margin: 10px;
-  background: #f1f1f1;
-  color: #666;
-}
-.MultiCarousel .leftLst,
-.MultiCarousel .rightLst {
-  position: absolute;
-  border-radius: 50%;
-  top: calc(50% - 20px);
-}
-.MultiCarousel .leftLst {
-  left: 0;
-}
-.MultiCarousel .rightLst {
-  right: 0;
-}
-
-.MultiCarousel .leftLst.over,
-.MultiCarousel .rightLst.over {
-  pointer-events: none;
-  background: #ccc;
 }
 
 .login-register-drawer .MuiDrawer-paperAnchorLeft {

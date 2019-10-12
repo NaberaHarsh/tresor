@@ -18,7 +18,7 @@ class Fotter extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div>
         <div
           style={{
             backgroundImage: "url(" + footerbg + ")",
@@ -77,7 +77,13 @@ class Fotter extends Component {
                     NY-10036
                   </Typography>
                 </div>
-                <div className="footer-div">
+                
+              </Grid>
+              <Grid item xs={12} sm={12} md={3} lg={3}>
+              <div className="footer-div">
+              <Typography style={{ marginTop: "20px" }} variant="subtitle2">
+                  <span></span>
+                </Typography>
                   <Typography
                     className="address"
                     style={{ align: "left" }}
@@ -90,22 +96,6 @@ class Fotter extends Component {
                   </Typography>
                 </div>
               </Grid>
-              {/* <Grid item xs={12} sm={12} md={3} lg={3}>
-                                <Typography style={{ marginTop: "20px" }} variant="subtitle2" >JOIN OUR NEWSLETTER</Typography>
-                                <div className="address">
-                                    <Typography variant="body2" >
-                                    Subscribe to our newsletter and get updated about our upcoming events
-                                 </Typography>
-                                </div>
-                                <div style={{backgroundColor:'white',color:'black'}}>
-                                <AddIcon/>
-                                    <InputBase style={{ height: '30px', padding: '3px', marginBottom: '5px' }}
-                                        placeholder="Your email address..."
-                                        inputProps={{ 'aria-label': 'search' }}
-                                    >
-                                    </InputBase>
-                                </div>
-                            </Grid> */}
             </Grid>
           </Container>
           <hr className="footer-hr" />
@@ -113,7 +103,7 @@ class Fotter extends Component {
             Copyright 2019 TRESOR JEWEL. All rights reserved.
           </Typography>
         </div>
-      </React.Fragment>
+      </div>
     );
   }
 }

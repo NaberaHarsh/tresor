@@ -1,14 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
-import Hidden from '@material-ui/core/Hidden';
 import Tabs from "@material-ui/core/Tabs";
+import Link from "@material-ui/core/Link";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
-import MenuItem from "@material-ui/core/MenuItem";
-import Link from "@material-ui/core/Link";
 import { Container } from "semantic-ui-react";
-import Skeleton from "@material-ui/lab/Skeleton";
 
 function a11yProps(index) {
   return {
@@ -30,6 +27,9 @@ TabContainer.propTypes = {
 };
 
 
+
+
+
 class SubNav extends React.Component {
   constructor(props) {
     super(props);
@@ -41,7 +41,6 @@ class SubNav extends React.Component {
       loading: false,
     };
 
-    this.handleClick = this.handleClick.bind(this);
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
@@ -51,7 +50,7 @@ class SubNav extends React.Component {
 
       return {
         category: nextProps.category,
-        dataGet:  nextProps.category.length,
+        dataGet: nextProps.category.length,
         loading: true,
       };
     }
@@ -60,29 +59,26 @@ class SubNav extends React.Component {
     return null;
   }
 
-  handleChange = (event, value) => {
+  handleChange = (value) => {
     console.debug(value);
+
+    console.log(this.state.category[value]);
 
     this.setState({ value });
   };
-  handleClick = (event, index) => {
-    if (event === undefined) return;
-    console.debug(event.currentTarget);
-    this.setState({ anchorEl: event.currentTarget, value: index });
-  };
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
+
+
 
   render() {
-    
     let a = 0;
-    var {skeleton,loading,dataGet, category = [] } = this.state;
+
+
+    var { category = [] } = this.state;
     return (
       <div
         style={{ backgroundColor: "white !important" }}
-        
+
       >
         <AppBar
           style={{
@@ -94,68 +90,45 @@ class SubNav extends React.Component {
           color="default"
         >
           <Container>
+
             <Tabs
-           className={window.innerWidth > 900 ? "desktopView" : "mobileView"}
-            value={this.state.value}
-            onChange={this.handleChange}
-            variant="scrollable"
-            scrollButtons="auto"
-            // style={{textAlign: "center", display: "flow-root"}}
-            aria-label="scrollable auto tabs example"
-          >
- {loading === true && dataGet !== 0 ? (
-              <>
-           
-              {category.map((data, index) => (
-                <Link
-                 
-                  href={`/products/${data.catId}/${a}`}
-                  data={category}
-                >
-                  <Hidden xsDown implementation="css">
-                  <Tab 
-                      
-                        label={data.name}
-                        {...a11yProps(index)}
-                        variant="contained"
-                        color="primary"
-                       
-                      />
-                      </Hidden>
-                      <Hidden smUp implementation="css" className="mobile-view-sub-nav">
-                  {/* <Tab 
-                      
-                        label={data.name}
-                        {...a11yProps(index)}
-                        variant="contained"
-                        color="primary"
-                       
-                      /> */}
-                      <MenuItem>{data.name}</MenuItem>
-                      </Hidden>
-                </Link>
-              ))}
-          {" "}
-              </>
-            ) : (
-              <>
-                {" "}
-                {skeleton.map(() => (
-                  
-                   
-                        <React.Fragment>
-                          <Skeleton height={30} />
-                          <Skeleton height={30} width="80%" />
-                        </React.Fragment>
-                    
-                 
-                ))}
-              </>
-            )}
+              value={this.state.value}
+              onChange={this.handleChange}
+              indicatorColor="primary"
+              textColor="primary"
+              centered
+              scrollButtons="auto"
+              aria-label="scrollable auto tabs example"
+              variant={window.innerWidth > 600 ? "fullWidth" : "scrollable"}
+              TabIndicatorProps={{ style: { background: 'golden' } }}
+            >
+              {(category.map((data, index) => (
+                <Link key={`products-${index}`}
+                 href={`/products/${data.catId}/${a}`}
+                  data={category}>
+                    <Tab
+
+                      label={data.name}
+                      {...a11yProps(index)}
+                      variant="contained"
+                      key={`tab-${index}`}
+                    />
+
+                  </Link>
+
+                ))
+
+
+
+              )
+              }
+
             </Tabs>
+
           </Container>
         </AppBar>
       </div>
+
     );
   }
 }

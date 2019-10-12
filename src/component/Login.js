@@ -97,7 +97,6 @@ class SignIn extends Component {
     const { classes } = this.props;
     const { email, password, isLogin, token } = this.state;
     localStorage.setItem('session',JSON.stringify(token));
-    console.log(this.state);
     if (isLogin) {
       setCookie("token", token, 30);
       return (

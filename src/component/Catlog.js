@@ -29,7 +29,7 @@ class Catlog extends Component {
   render() {
     const { shows } = this.state;
     return (
-      <React.Fragment>
+      <div>
         <Container maxWidth="lg" className="about_me">
           <Paper style={{ width: "100% ! important", height: "100%",marginBottom:'10px' }}>
             <h5 className="features" style={{ marginTop: "18px", marginLeft: '8px' }}>
@@ -52,7 +52,7 @@ class Catlog extends Component {
 
           </Paper>
         </Container>
-      </React.Fragment>
+      </div>
 
     );
   }

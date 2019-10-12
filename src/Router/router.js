@@ -21,7 +21,6 @@ class Routes extends Component {
 
 
   render() {
-    console.log(this.props);
     
 
     return (

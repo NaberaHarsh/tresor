@@ -30,7 +30,7 @@ class AboutOurStore extends Component {
 
     
     return (
-      <React.Fragment>
+      <div>
         
           <Container maxWidth="lg" style={{ textAlign: "center" ,marginTop:'50px'}}>
           <Paper  style={{border:"1px solid #aeaeae"}} className='background'>
@@ -57,7 +57,7 @@ class AboutOurStore extends Component {
            </Paper>
         </Container>
         
-      </React.Fragment>
+      </div>
     );
   }
 }

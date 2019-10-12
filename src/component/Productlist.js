@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { Paper, Button, Container, Grid } from "@material-ui/core";
-import { ThemeProvider } from "@material-ui/styles";
 import callApi from "../utils/callApi";
 import APIUrl from "../utils/APIUrl";
 import { Redirect } from "react-router-dom";
@@ -101,7 +100,7 @@ class ProductList extends Component {
     }
 
     return (
-      <React.Fragment>
+      <div>
         <Container maxWidth="lg">
           {dataGet ? (
             <h3 className="total-count-product">
@@ -110,23 +109,24 @@ class ProductList extends Component {
                 : `No. of Product :${dataGet} `}
             </h3>
           ) : (
-            ""
-          )}
+              ""
+            )}
 
           <Grid container spacing={2}>
             {loading === true && dataGet !== 0 ? (
               <>
-                {ProductList.map(data => (
-                  <Grid
+                {ProductList.map((data,index)  => (
+                  <Grid 
                     style={{ textAlign: "center" }}
                     item
                     xs={12}
                     sm={12}
                     md={4}
                     lg={4}
+                    key={`product-list-${index}`}
                   >
                     <Paper className="marginB">
-                      <img
+                      <img 
                         className="img1"
                         src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
                         alt=""
@@ -137,7 +137,7 @@ class ProductList extends Component {
                             textAlign: "left",
                             height: "70px",
                             marginBottom: "6px",
-                            color:'black'
+                            color: 'black'
                           }}
                           variant="subtitle1"
                         >
@@ -145,58 +145,59 @@ class ProductList extends Component {
                         </Typography>
                       </div>
 
-                      <ThemeProvider>
-                        <Button
-                          onClick={() => this.viewDetails(`${data.product_id}`)}
-                          style={{ width: "100%" ,backgroundColor:"black",color:'white'}}
-                          variant="contained"
-                          
-                        >
-                          View Details
+
+                      <Button
+                        onClick={() => this.viewDetails(`${data.product_id}`)}
+                        style={{ width: "100%", backgroundColor: "black", color: 'white' }}
+                        variant="contained"
+
+                      >
+                        View Details
                         </Button>
-                      </ThemeProvider>
+
                     </Paper>
                   </Grid>
                 ))}{" "}
               </>
             ) : (
-              <>
-                {" "}
-                {skeleton.map((data, index) => (
-                  <Grid
-                    style={{ textAlign: "center" }}
-                    item
-                    xs={12}
-                    sm={12}
-                    md={4}
-                    lg={4}
-                  >
-                    <Paper className="marginB">
-                      <Skeleton variant="rect" className="skeleton-img1" />
-                      <div className="Rating">
-                        <React.Fragment>
-                          <Skeleton height={6} />
-                          <Skeleton height={6} width="80%" />
-                        </React.Fragment>
-                      </div>
+                <>
+                  {" "}
+                  {skeleton.map((index) => (
+                    <Grid  key={`skele-pro-${index}`}
+                      style={{ textAlign: "center" }}
+                      item
+                      xs={12}
+                      sm={12}
+                      md={4}
+                      lg={4}
+                      
+                    >
+                      <Paper className="marginB">
+                        <Skeleton   variant="rect" className="skeleton-img1" />
+                        <div className="Rating">
+                          <div>
+                            <Skeleton height={6} />
+                            <Skeleton height={6} width="80%" />
+                          </div>
+                        </div>
 
-                      <ThemeProvider>
+
                         <Button
                           style={{ width: "100%" }}
                           variant="contained"
-                          color="teal"
+
                         >
-                          
+
                         </Button>
-                      </ThemeProvider>
-                    </Paper>
-                  </Grid>
-                ))}
-              </>
-            )}
+
+                      </Paper>
+                    </Grid>
+                  ))}
+                </>
+              )}
           </Grid>
         </Container>
-      </React.Fragment>
+      </div>
     );
   }
 }
