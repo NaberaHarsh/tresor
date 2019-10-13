@@ -5,6 +5,8 @@ import Tabs from "@material-ui/core/Tabs";
 import Link from "@material-ui/core/Link";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
+import Hidden from "@material-ui/core/Hidden";
+import MenuItem from "@material-ui/core/MenuItem";
 import { Container } from "semantic-ui-react";
 
 function a11yProps(index) {
@@ -26,10 +28,6 @@ TabContainer.propTypes = {
   children: PropTypes.node.isRequired
 };
 
-
-
-
-
 class SubNav extends React.Component {
   constructor(props) {
     super(props);
@@ -38,9 +36,8 @@ class SubNav extends React.Component {
       anchorEl: false,
       category: [],
       skeleton: new Array(5).fill(true),
-      loading: false,
+      loading: false
     };
-
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
@@ -51,7 +48,7 @@ class SubNav extends React.Component {
       return {
         category: nextProps.category,
         dataGet: nextProps.category.length,
-        loading: true,
+        loading: true
       };
     }
 
@@ -59,7 +56,7 @@ class SubNav extends React.Component {
     return null;
   }
 
-  handleChange = (value) => {
+  handleChange = value => {
     console.debug(value);
 
     console.log(this.state.category[value]);
@@ -67,19 +64,12 @@ class SubNav extends React.Component {
     this.setState({ value });
   };
 
-
-
-
   render() {
     let a = 0;
 
-
     var { category = [] } = this.state;
     return (
-      <div
-        style={{ backgroundColor: "white !important" }}
-
-      >
+      <div style={{ backgroundColor: "white !important" }}>
         <AppBar
           style={{
             // color: "black",
@@ -90,45 +80,60 @@ class SubNav extends React.Component {
           color="default"
         >
           <Container>
-
-            <Tabs
-              value={this.state.value}
-              onChange={this.handleChange}
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-              scrollButtons="auto"
-              aria-label="scrollable auto tabs example"
-              variant={window.innerWidth > 600 ? "fullWidth" : "scrollable"}
-              TabIndicatorProps={{ style: { background: 'golden' } }}
-            >
-              {(category.map((data, index) => (
-                <Link key={`products-${index}`}
-                 href={`/products/${data.catId}/${a}`}
-                  data={category}>
+            <Hidden mdDown implementation="css">
+              <Tabs
+                value={this.state.value}
+                onChange={this.handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                centered
+                scrollButtons="auto"
+                aria-label="scrollable auto tabs example"
+                variant="fullWidth"
+                TabIndicatorProps={{ style: { background: "golden" } }}
+              >
+                {category.map((data, index) => (
+                  <Link
+                    key={`products-${index}`}
+                    href={`/products/${data.catId}/${a}`}
+                    data={category}
+                  >
                     <Tab
-
                       label={data.name}
                       {...a11yProps(index)}
                       variant="contained"
                       key={`tab-${index}`}
                     />
-
                   </Link>
-
-                ))
-
-
-
-              )
-              }
-
-            </Tabs>
-
+                ))}
+              </Tabs>
+            </Hidden>
+            <Hidden mdUp implementation="css">
+              <Tabs
+                value={this.state.value}
+                onChange={this.handleChange}
+                indicatorColor="primary"
+                textColor="primary"
+                centered
+                scrollButtons="auto"
+                aria-label="scrollable auto tabs example"
+                variant="scrollable"
+                TabIndicatorProps={{ style: { background: "golden" } }}
+              >
+                {category.map((data, index) => (
+                  <Link
+                    key={`products-${index}`}
+                    href={`/products/${data.catId}/${a}`}
+                    data={category}
+                  >
+                    <MenuItem>{data.name}</MenuItem>
+                  </Link>
+                ))}
+              </Tabs>
+            </Hidden>
           </Container>
         </AppBar>
       </div>
-
     );
   }
 }

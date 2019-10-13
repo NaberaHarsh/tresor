@@ -263,11 +263,11 @@ class PrimarySearchAppBar extends React.Component {
                 className={classes.sectionDesktop}
               >
                 <div
-                  style={{ backgroundColor: "whitesmoke",height:'40px',marginTop:'5px', outline: "auto" }}
+                  style={{ backgroundColor: "whitesmoke",height:'40px',marginTop:'12px', outline: "auto" }}
                   className={classes.search}
                 >
                   <div className={classes.searchIcon}>
-                    <SearchIcon style={{marginTop:'6px'}}/>
+                    <SearchIcon style={{marginTop:'6x'}}/>
                   </div>
                   <InputBase
                     style={{ marginTop: "7px"}}
