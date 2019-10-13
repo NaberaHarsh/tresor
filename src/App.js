@@ -50,7 +50,7 @@ class App extends Component {
     let catName = "";
     let subCat = [];
     let categories = [];
-    data.category.map((item) => {
+   { data.category.map((item) => {
      if(categoryId !== item.cat_id){
         if(categoryId !== 0){
 
@@ -68,7 +68,7 @@ class App extends Component {
       }else{
         subCat.push(item);
       }
-    });
+    })};
     if(categoryId !== 0){
       categories.push({
         catId: categoryId,

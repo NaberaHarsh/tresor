@@ -52,7 +52,7 @@ class CollectionCarousel extends Component {
                     {loading === true && lat_product.length !== 0 ? (
                       <>
                         {lat_product.map((data, index) => (
-                            <Grid item  key={`like_product-${index}`}  md={3} lg={3} sm={12} xs={12}>
+                            <Grid item  key={`lat-${index}`}  md={3} lg={3} sm={12} xs={12}>
                           <div className="item"style={{border:"1px solid #aeaeae"}}>
                             {/* <Paper > */}
                               <div className="pad15">
@@ -92,7 +92,7 @@ class CollectionCarousel extends Component {
                       <>
                         {" "}
                         {skeleton.map((index) => (
-                           <Grid  key={`skel-like_products-${index}`} item md={3} lg={3} sm={12} xs={12}>
+                           <Grid  key={`skel-${index}`} item md={3} lg={3} sm={12} xs={12}>
                           <div className="item">
                             <Paper>
                               <div className="pad15">

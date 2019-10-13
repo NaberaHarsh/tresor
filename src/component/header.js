@@ -215,14 +215,14 @@ class PrimarySearchAppBar extends React.Component {
         <MenuItem>
           <Link href="/Login">
             <PersonIcon />
-            Login{" "}
+            <span>Login</span>
           </Link>
         </MenuItem>
         <br />
         <MenuItem>
           <Link href="/Register">
             <PersonAddIcon />
-            Register{" "}
+            <span>Register</span>
           </Link>
         </MenuItem>
       </Drawer>
@@ -286,26 +286,25 @@ class PrimarySearchAppBar extends React.Component {
                 <Link href="/Login">
                   <p
                     style={{
-                      marginTop: "10px",
-                      fontSize: "16px",
+                      // marginTop: "10px",
+                      // fontSize: "16px",
                       fontFamily: "Helvetica"
                     }}
                   >
-                    <PersonIcon /><span>Login</span>
+                    <PersonIcon></PersonIcon>
+                    <span className="vertical-align-super">Login</span>
                   </p>
                 </Link>
                 <Link href="/Register">
                   <p
                     style={{
-                      marginTop: "10px",
-                      marginLeft: "20px",
-                      marginRight: "20px",
-                      fontFamily: "Helvetica",
-                      fontSize: "16px"
+                      // marginTop: "10px",
+                      // fontSize: "16px",
+                      fontFamily: "Helvetica"
                     }}
                   >
-                    <PersonAddIcon />
-                    Register
+                     <PersonAddIcon />
+                    <span className="vertical-align-super">Register</span>
                   </p>
                 </Link>
               </div>
