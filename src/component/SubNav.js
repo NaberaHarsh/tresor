@@ -133,8 +133,4 @@ class SubNav extends React.Component {
   }
 }
 
-// SubNav.propTypes = {
-//   classes: PropTypes.object.isRequired
-// };
-
 export default SubNav;
