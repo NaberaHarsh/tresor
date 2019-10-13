@@ -68,11 +68,11 @@ class Details extends Component {
       <div>
         <Container maxWidth="lg" className="productCard1">
           <Grid item xs={12} sm={12}>
-            <Grid container spacing={2}>
+            <Grid container  style={{width:"100%"}}>
 
               <Grid item xs={12} sm={12} md={5} lg={5}>
                 <Paper>
-                <Card  style={{padding: '16px'}} className="img-fluid">
+                <Card  className="img-fluid">
                   <img className="img-fluid2"
                     src={bigImage} 
                   
@@ -109,11 +109,7 @@ class Details extends Component {
                     {Detail.name}
                     </h6>
                 </div>
-                <Paper>
-             
-            <h6 style={{fontSize:'18px !important'}}>Product Details</h6>
-        
-    </Paper>
+                
     <div style={{marginTop:'15px',marginBottom:'10px'}}>
     <h5>
     Description

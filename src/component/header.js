@@ -358,19 +358,8 @@ class PrimarySearchAppBar extends React.Component {
                 </InputBase>
             </div>
 
-           <div style={{display:"flex"}}>
-           <div  style={{ padding: "20px",width:"50%" }}>
-              <Typography varient="subtite-1"> Suggested Categories</Typography>
-              {category.map((data,index) => (
-                <Link 
-                key={`search-cat-${index}`}
-                href={`/products/${data.catId}/${a}`}
-                 data={category}>
-                  <li key={index} style={{ fontSize: "13px" }}>{data.name}</li>
-                </Link>
-              ))}
-            </div>
-            <div  style={{ padding: "20px",width:"50%" }}>
+           <div >
+           <div  style={{ padding: "20px" }}>
               <Typography varient="subtite-1"> Suggestation</Typography>
              {search.length === 0 ? "No product found" :  search.map((data,index) => (
                 <Link 
@@ -381,6 +370,18 @@ class PrimarySearchAppBar extends React.Component {
                 </Link>
               ))}
             </div>
+           <div  style={{ padding: "20px" }}>
+              <Typography varient="subtite-1"> Suggested Categories</Typography>
+              {category.map((data,index) => (
+                <Link 
+                key={`search-cat-${index}`}
+                href={`/products/${data.catId}/${a}`}
+                 data={category}>
+                  <li key={index} style={{ fontSize: "13px" }}>{data.name}</li>
+                </Link>
+              ))}
+            </div>
+            
            </div>
           </Drawer>
           {renderMobileMenu}
