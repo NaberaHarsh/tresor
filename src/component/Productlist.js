@@ -123,9 +123,9 @@ class ProductList extends Component {
                     sm={12}
                     md={4}
                     lg={4}
-                    key={`product-list-${index}`}
+                    key={index}
                   >
-                    <Paper className="marginB">
+                    <Paper key={`product-list-${index}`} className="marginB">
                       <img 
                         className="img1"
                         src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
@@ -163,7 +163,7 @@ class ProductList extends Component {
                 <>
                   {" "}
                   {skeleton.map((index) => (
-                    <Grid  key={`skele-pro-${index}`}
+                    <Grid  
                       style={{ textAlign: "center" }}
                       item
                       xs={12}
@@ -172,7 +172,7 @@ class ProductList extends Component {
                       lg={4}
                       
                     >
-                      <Paper className="marginB">
+                      <Paper key={`skele-pro-${index}`} className="marginB">
                         <Skeleton   variant="rect" className="skeleton-img1" />
                         <div className="Rating">
                           <div>

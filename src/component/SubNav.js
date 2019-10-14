@@ -85,7 +85,6 @@ class SubNav extends React.Component {
                 value={this.state.value}
                 onChange={this.handleChange}
                 indicatorColor="primary"
-                textColor="primary"
                 centered
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
@@ -113,7 +112,6 @@ class SubNav extends React.Component {
                 value={this.state.value}
                 onChange={this.handleChange}
                 indicatorColor="primary"
-                textColor="primary"
                 centered
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
