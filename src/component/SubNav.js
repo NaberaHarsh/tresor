@@ -93,6 +93,7 @@ class SubNav extends React.Component {
                     <Tab
                       label={data.name}
                       {...a11yProps(index)}
+                      variant="contained"
                       key={`tab-${index}`}
                     />
                   </Link>
@@ -105,6 +106,7 @@ class SubNav extends React.Component {
                 onChange={this.handleChange}
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
+                variant="scrollable"
               >
                 {category.map((data, index) => (
                   <Link
