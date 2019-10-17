@@ -71,11 +71,6 @@ class SubNav extends React.Component {
     return (
       <div style={{ backgroundColor: "white !important" }}>
         <AppBar
-          style={{
-            // color: "black",
-            fontWeight: "bolder",
-            fontFamily: "Novecentowide"
-          }}
           position="static"
           color="default"
         >
@@ -84,12 +79,10 @@ class SubNav extends React.Component {
               <Tabs
                 value={this.state.value}
                 onChange={this.handleChange}
-                indicatorColor="primary"
                 centered
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
                 variant="fullWidth"
-                TabIndicatorProps={{ style: { background: "golden" } }}
               >
                 {category.map((data, index) => (
                   <Link
@@ -100,7 +93,6 @@ class SubNav extends React.Component {
                     <Tab
                       label={data.name}
                       {...a11yProps(index)}
-                      variant="contained"
                       key={`tab-${index}`}
                     />
                   </Link>
@@ -108,15 +100,11 @@ class SubNav extends React.Component {
               </Tabs>
             </Hidden>
             <Hidden mdUp implementation="css">
-              <Tabs
+              <Tabs style={{textAlign:"center !important"}}
                 value={this.state.value}
                 onChange={this.handleChange}
-                indicatorColor="primary"
-                centered
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
-                variant="scrollable"
-                TabIndicatorProps={{ style: { background: "golden" } }}
               >
                 {category.map((data, index) => (
                   <Link

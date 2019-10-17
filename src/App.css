@@ -721,15 +721,19 @@ hr {
 .col-half-offset {
   margin-left: 4.166666667%;
 }
-.PrivateTabIndicator-colorPrimary-303{
+.PrivateTabIndicator-colorSecondary-319{
   background-color:#f5f5f5 !important;
 }
-.PrivateTabIndicator-colorSecondary-360 {
+.PrivateTabIndicator-colorSecondary-326 {
   background-color: #f5f5f5 !important;
 }
-.PrivateTabIndicator-colorSecondary-310 {
+.PrivateTabIndicator-colorSecondary-361 {
   background-color: #f5f5f5 !important;
-}.PrivateTabIndicator-colorSecondary-382 {
+}
+.PrivateTabIndicator-colorSecondary-391 {
+  background-color: #f5f5f5 !important;
+}
+.PrivateTabIndicator-colorSecondary-390 {
   background-color: #f5f5f5 !important;
 }
 .MuiSvgIcon-root {
