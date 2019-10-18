@@ -81,9 +81,9 @@ class Details extends Component {
                 </Paper>
                 <Grid style={{ marginTop: '10px' }} container spacing={2}>
                   {img.map((data, index) => (
-                    <Grid  key={index} item xs={3} sm={3} md={2} lg={2}>
+                    <Grid  key={`details-img-${index}`} item xs={3} sm={3} md={2} lg={2}>
                       
-                      <Card key={`details-img-${index}`} style={{padding:'5px'}}>
+                      <Card style={{padding:'5px'}}>
                         <img
                           src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
                          

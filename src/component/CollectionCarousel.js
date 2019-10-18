@@ -15,6 +15,12 @@ class CollectionCarousel extends Component {
   }
 
 
+  randomKey = (e) => {
+     let randomKey = Math.floor(1000 + Math.random() * 9000)
+    return randomKey
+  }
+
+
   static getDerivedStateFromProps(nextProps, prevState) {
 
     if (prevState !== nextProps) {
@@ -52,8 +58,8 @@ class CollectionCarousel extends Component {
                     {loading === true && lat_product.length !== 0 ? (
                       <>
                         {lat_product.map((data, index) => (
-                            <Grid  key={index} item  md={3} lg={3} sm={12} xs={12}>
-                          <div key={`lat-${index}`} className="item"style={{border:"1px solid #aeaeae"}}>
+                            <Grid  key={`lat-product-${index}`} item  md={3} lg={3} sm={12} xs={12}>
+                          <div className="item"style={{border:"1px solid #aeaeae"}}>
                             {/* <Paper > */}
                               <div className="pad15">
                                 <div className="imgwidth">
@@ -92,8 +98,8 @@ class CollectionCarousel extends Component {
                       <>
                         {" "}
                         {skeleton.map((index) => (
-                           <Grid   item md={3} lg={3} sm={12} xs={12}>
-                          <div key={`skel-lat-${index}`} className="item">
+                           <Grid key={this.randomKey()} item md={3} lg={3} sm={12} xs={12}>
+                          <div className="item">
                             <Paper>
                               <div className="pad15">
                                 <div className="imgwidth">

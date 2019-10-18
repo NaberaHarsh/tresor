@@ -163,7 +163,7 @@ class ProductList extends Component {
                 <>
                   {" "}
                   {skeleton.map((index) => (
-                    <Grid  
+                    <Grid   key={`skele-pro-${index}`}
                       style={{ textAlign: "center" }}
                       item
                       xs={12}
@@ -172,7 +172,7 @@ class ProductList extends Component {
                       lg={4}
                       
                     >
-                      <Paper key={`skele-pro-${index}`} className="marginB">
+                      <Paper className="marginB">
                         <Skeleton   variant="rect" className="skeleton-img1" />
                         <div className="Rating">
                           <div>

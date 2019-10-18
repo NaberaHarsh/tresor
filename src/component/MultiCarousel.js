@@ -13,6 +13,11 @@ class MultiCarousel extends Component {
       loading: false
     };
   }
+
+  randomKey = (e) => {
+    let randomKey = Math.floor(1000 + Math.random() * 9000)
+   return randomKey
+ }
  
   static getDerivedStateFromProps(nextProps, prevState) {
     
@@ -49,13 +54,13 @@ class MultiCarousel extends Component {
                   id="MultiCarousel"
                   data-interval="900"
                 >
-                  <div >
+                  
                   <Grid container spacing={3}>
                     {loading === true && like_product.length !== 0 ? (
                       <>
                         {like_product.map((data, index) => (
-                            <Grid key={index}item md={3} lg={3} sm={12} xs={12}>
-                          <div key={`like_product-${index}`} className="item"style={{border:"1px solid #aeaeae"}}>
+                            <Grid key={`like_product-${index}`} item md={3} lg={3} sm={12} xs={12}>
+                          <div  className="item"style={{border:"1px solid #aeaeae"}}>
                             {/* <Paper > */}
                               <div className="pad15">
                                 <div className="imgwidth">
@@ -90,12 +95,10 @@ class MultiCarousel extends Component {
                           </Grid>
                         ))}
                       </>
-                    ) : (
-                      <>
-                        {" "}
-                        {skeleton.map((index) => (
-                           <Grid item md={3} lg={3} sm={12} xs={12}>
-                          <div key={`skel-like_products-${index}`} className="item">
+                    ) : 
+                        skeleton.map((index) => (
+                           <Grid key={this.randomKey()} item md={3} lg={3} sm={12} xs={12}>
+                          <div  className="item">
                             <Paper>
                               <div className="pad15">
                                 <div className="imgwidth">
@@ -115,10 +118,10 @@ class MultiCarousel extends Component {
                           </div>
                           </Grid>
                         ))}
-                      </>
-                    )}
+                      
+                    
                     </Grid>
-                  </div>
+                  
                  
                 </div>
               </div>

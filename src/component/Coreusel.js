@@ -87,7 +87,7 @@ class Coreusel extends React.Component {
           enableMouseEvents
         >
           {banner.map((data, index) => (
-            <div key={index}>
+            <div key={`banner-${index}`}>
               {Math.abs(activeStep - index) <= 2 ? (
                 <img className={classes.img} src={data.url} alt={data.title} />
               ) : null}
