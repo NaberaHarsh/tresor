@@ -8,6 +8,9 @@ import Typography from "@material-ui/core/Typography";
 import Hidden from "@material-ui/core/Hidden";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Container } from "semantic-ui-react";
+import toastr from 'toastr'
+console.log(toastr);
+
 
 function a11yProps(index) {
   return {
@@ -39,6 +42,7 @@ class SubNav extends React.Component {
       loading: false
     };
   }
+  
 
   static getDerivedStateFromProps(nextProps, prevProps) {
     console.debug(nextProps, prevProps, "next");
@@ -57,7 +61,6 @@ class SubNav extends React.Component {
   }
 
   handleChange = value => {
-    console.debug(value);
 
     console.log(this.state.category[value]);
 
@@ -66,13 +69,12 @@ class SubNav extends React.Component {
 
   render() {
     let a = 0;
-
+toastr.success("welcome")
     var { category = [] } = this.state;
     return (
       <div style={{ backgroundColor: "white !important" }}>
         <AppBar
           position="static"
-          color="default"
         >
           <Container>
             <Hidden mdDown implementation="css">
@@ -94,6 +96,7 @@ class SubNav extends React.Component {
                       label={data.name}
                       {...a11yProps(index)}
                       variant="contained"
+                      style={{backgroundColor:"white"}}
                       key={`tab-${index}`}
                     />
                   </Link>
@@ -104,7 +107,7 @@ class SubNav extends React.Component {
               <Tabs style={{textAlign:"center !important"}}
                 value={this.state.value}
                 onChange={this.handleChange}
-                scrollButtons="auto"
+                scrollButtons="auto" 
                 aria-label="scrollable auto tabs example"
                 variant="scrollable"
               >
