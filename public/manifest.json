@@ -3,9 +3,9 @@
   "name": "tresor jewelry inc",
   "icons": [
     {
-      "src": "tresorlogo.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "tresorlogo.png",
+      "sizes": "310x310",
+      "type": "image/png"
     }
   ],
   "start_url": ".",

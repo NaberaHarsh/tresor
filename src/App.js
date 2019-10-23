@@ -23,6 +23,23 @@ class App extends Component {
 
 
   componentDidMount() {
+    const banner = localStorage.getItem("banner");
+    const category = localStorage.getItem("category");
+    const shows = localStorage.getItem("shows");
+    console.log(banner, category)
+    if (banner && category && shows &&  !navigator.onLine) {
+      this.setState({
+        banner: JSON.parse(banner),
+        shows: JSON.parse(shows),
+        category:JSON.parse(category)
+      }, ()=> {
+        console.log(this.state)
+      });
+      return;
+    } else if (!navigator.onLine) {
+      alert("you are offline");
+      return;
+    }
     const requestOptions = {
       method: "GET",
       url: APIUrl.url.GetHead,
@@ -35,9 +52,10 @@ class App extends Component {
       }
       console.debug(response.data ,"app");
      this.generateCategories(response.data);
+     localStorage.setItem("banner", JSON.stringify(response.data.banner));
+     localStorage.setItem("shows", JSON.stringify(response.data.shows));
       this.setState({
         banner: response.data.banner,
-        // category:response.data.category,
         shows:response.data.shows,
         loading:false
       });
@@ -79,6 +97,7 @@ class App extends Component {
 
 
     this.props.dispatch({ type:"CATEGORY" , payload:{categories}})
+    localStorage.setItem("category", JSON.stringify(categories));
     this.setState({
       category:categories
     })

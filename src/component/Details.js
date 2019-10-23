@@ -36,10 +36,7 @@ class Details extends Component {
 
         return;
       }
-      console.debug(response.data ,"app");
-
-
-      this.setState({
+       this.setState({
               ProductDetails: response.data,
               Detail: response.data.detail,
               img: response.data.img,

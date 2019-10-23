@@ -6,6 +6,7 @@
     "@material-ui/core": "^4.3.2",
     "@material-ui/icons": "^4.2.1",
     "@material-ui/lab": "^4.0.0-alpha.23",
+    "@redux-offline/redux-offline": "^2.5.2",
     "axios": "^0.19.0",
     "bootstrap": "^4.3.1",
     "express": "^4.17.1",
@@ -25,13 +26,16 @@
     "react-swipeable-views": "^0.13.3",
     "reactstrap": "^8.0.1",
     "redux": "^4.0.4",
+    "redux-persist": "^6.0.0",
     "semantic-ui-react": "^0.88.1",
     "toastr": "^2.1.4",
     "update": "^0.7.4",
-    "webpack-manifest-plugin": "^2.2.0"
+    "webpack-manifest-plugin": "^2.2.0",
+    "workbox-webpack-plugin": "^4.3.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "node server.js",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

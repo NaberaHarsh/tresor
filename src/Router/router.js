@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter,Switch } from 'react-router-dom';
-import Main from '../component/Main';
+import Deshboard from '../component/Deshboard';
 import Product from '../component/Product';
 import Details from '../component/Details';
 import Register from '../component/Register';
@@ -27,7 +27,7 @@ class Routes extends Component {
       <BrowserRouter>
       
       <Switch>
-          <Route path="/" exact  render={(props) => <Main data={this.props} {...props} />} />
+          <Route path="/" exact  render={(props) => <Deshboard data={this.props} {...props} />} />
           <Route path="/products/:catId/:subCatId" exact={false} render={(props) => <Product data={this.props.category} {...props} />} />
           <Route path='/details/:id' component={Details} />
            <Route path="/register" exact component={Register} />

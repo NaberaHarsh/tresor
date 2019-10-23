@@ -50,7 +50,20 @@ class ProductList extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props.subCatId);
+    const ProductList = localStorage.getItem("ProductList");
+    const dataGet = localStorage.getItem("dataGet");
+    if (ProductList && dataGet &&  !navigator.onLine) {
+      this.setState({
+        lat_product: JSON.parse(ProductList),
+        like_product:JSON.parse(dataGet)
+      }, ()=> {
+        console.log(this.state)
+      });
+      return;
+    } else if (!navigator.onLine) {
+      alert("you are offline");
+      return;
+    }
 
     let url = "";
 
@@ -59,7 +72,6 @@ class ProductList extends Component {
     } else {
       url = `${APIUrl.url.Products}/${this.props.catId}`;
     }
-
     const requestOptions = {
       method: "GET",
       url: url
@@ -69,7 +81,8 @@ class ProductList extends Component {
       if (err) {
         return;
       }
-
+      localStorage.setItem("ProductList", JSON.stringify(response.data.product));
+      localStorage.setItem("dataGet", JSON.stringify(response.data.product.length));
       this.setState({
         ProductList: response.data.product,
         dataGet: response.data.product.length,
