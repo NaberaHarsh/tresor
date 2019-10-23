@@ -1,0 +1,15 @@
+{
+  "short_name": "tresor jewelry",
+  "name": "tresor jewelry inc",
+  "icons": [
+    {
+      "src": "tresorlogo.png",
+      "sizes": "310x310",
+      "type": "image/png"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

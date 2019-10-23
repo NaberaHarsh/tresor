@@ -66,7 +66,7 @@ class SubNav extends React.Component {
 
   render() {
     let a = 0;
-    toastr.success("welcome");
+    // toastr.success("welcome");
     var { category = [] } = this.state;
     return (
       <div style={{ backgroundColor: "white !important" }}>
