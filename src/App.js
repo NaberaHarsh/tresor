@@ -26,7 +26,6 @@ class App extends Component {
     const banner = localStorage.getItem("banner");
     const category = localStorage.getItem("category");
     const shows = localStorage.getItem("shows");
-    console.log(banner, category)
     if (banner && category && shows &&  !navigator.onLine) {
       this.setState({
         banner: JSON.parse(banner),

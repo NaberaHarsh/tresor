@@ -4,11 +4,21 @@
   "icons": [
     {
       "src": "tresorlogo.png",
-      "sizes": "310x310",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "tresorlogo.ico",
+      "sizes": "51x51",
+      "type": "image/png"
+    },
+    {
+      "src": "tresorlogo.ico",
+      "sizes": "34x34",
       "type": "image/png"
     }
   ],
-  "start_url": "/?install=true",
+  "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
