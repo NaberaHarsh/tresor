@@ -1,5 +1,5 @@
-// const apiEndPoint = "http://tresorjewelryinc.com";
-const apiEndPoint = "http://45.77.147.212";
+const apiEndPoint = "http://admin.tresorjewelryinc.com/index.php";
+// const apiEndPoint = "http://45.77.147.212";
 
 const config = {
   url: {
@@ -10,7 +10,7 @@ const config = {
    Login:`${apiEndPoint}/auth/login`,
    Register:`${apiEndPoint}/auth/registration`,
    ForgotPassword:`${apiEndPoint}/user/forgotpass/gen`,
-   ResetPassword:`${apiEndPoint}/user/updatepass`,
+   ResetPassword:`${apiEndPoint}/user/updatepass`,   
    Search:`${apiEndPoint}/api/search`,
   }
 };
