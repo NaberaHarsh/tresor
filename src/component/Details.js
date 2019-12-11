@@ -40,14 +40,14 @@ class Details extends Component {
               ProductDetails: response.data,
               Detail: response.data.detail,
               img: response.data.img,
-              bigImage: `http://tresorjewelryinc.com/tresor-admin/${response.data.img[0].url}`
+              bigImage: `http://admin.tresorjewelryinc.com/tresor-admin/${response.data.img[0].url}`
       })
     })
   }
 
   ChangeImage = (e) => {
         this.setState({
-          bigImage:`http://tresorjewelryinc.com/tresor-admin/${e}`
+          bigImage:`http://admin.tresorjewelryinc.com/tresor-admin/${e}`
         })
       }
 
@@ -82,7 +82,7 @@ class Details extends Component {
                       
                       <Card style={{padding:'5px'}}>
                         <img
-                          src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
+                          src={`http://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
                          
                           alt="productimg"
                           style={{ width: "100%" }}

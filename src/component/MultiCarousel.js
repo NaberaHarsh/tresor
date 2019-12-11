@@ -68,7 +68,7 @@ class MultiCarousel extends Component {
                                     <img
                                    
                                       className="img2"
-                                      src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
+                                      src={`http://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
                                       alt=""
                                     />{" "}
                                 

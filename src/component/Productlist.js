@@ -141,7 +141,7 @@ class ProductList extends Component {
                     <Paper key={`product-list-${index}`} className="marginB">
                       <img 
                         className="img1"
-                        src={`http://tresorjewelryinc.com/tresor-admin/${data.url}`}
+                        src={`http://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
                         alt=""
                       />
                       <div className="Rating">
