@@ -7,7 +7,7 @@ import Register from '../component/Register';
 import Login from '../component/Login';
 import Forgot from '../component/Forgot';
 import ResetPassword from '../component/ResetPassword';
-// import {PrivateRoute} from '../utils/PrivateRoute';
+import {PrivateRoute} from '../utils/PrivateRoute';
 
 
 class Routes extends Component {
@@ -28,8 +28,8 @@ class Routes extends Component {
       
       <Switch>
           <Route path="/" exact  render={(props) => <Deshboard data={this.props} {...props} />} />
-          <Route path="/products/:catId/:subCatId" exact={false} render={(props) => <Product data={this.props.category} {...props} />} />
-          <Route path='/details/:id' component={Details} />
+          <PrivateRoute path="/products/:catId/:subCatId" exact={false} render={(props) => <Product data={this.props.category} {...props} />} />
+          <PrivateRoute path='/details/:id' component={Details} />
            <Route path="/register" exact component={Register} />
           <Route path="/login" exact component={Login} />
           <Route path="/forgot" exact component={Forgot} />

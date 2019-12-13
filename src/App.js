@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import './App.css';
 import Header from './component/header';
-import Footer from './component/footer'
+import Footer from './component/footer';
 import { connect } from "react-redux";
 import Routes from './Router/router.js';
 import APIUrl from './utils/APIUrl';
@@ -67,7 +67,7 @@ class App extends Component {
     let catName = "";
     let subCat = [];
     let categories = [];
-   { data.category.map((item) => {
+   {data.category.map((item) => {
      if(categoryId !== item.cat_id){
         if(categoryId !== 0){
 

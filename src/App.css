@@ -546,6 +546,10 @@ h5 {
 .productCard1 {
   margin: 36px auto;
 }
+.about_me{
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
 .aboutOurStore {
   margin: 36px auto;
   background-repeat: no-repeat;
