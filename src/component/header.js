@@ -220,10 +220,7 @@ class PrimarySearchAppBar extends React.Component {
           isLogin() ? 
 
           <MenuItem>
-          <Link href="/Login">
-            <PersonIcon />
-            <span>Logout</span>
-          </Link>
+           Welcome! {getLoginData().name}
         </MenuItem> 
         :
 
@@ -240,12 +237,14 @@ class PrimarySearchAppBar extends React.Component {
        {
           isLogin() ? 
 
-          <MenuItem>
-          <Link href="/Login">
+          <MenuItem  onClick={() => {
+            logout();
+              this.setState({logout:true});
+           
+          }}> 
             <PersonIcon />
             <span>Logout</span>
-          </Link>
-        </MenuItem> 
+         </MenuItem> 
         :
         
         <MenuItem>
