@@ -13,6 +13,7 @@ import setCookie from "../utils/setCookie";
 import { Redirect, withRouter } from "react-router-dom";
 import toastr from 'toastr';
 import { login, isLogin ,logout} from '../utils/session';
+import CustomizedSnackbars from './SnackBars';
 
 
 
@@ -44,6 +45,11 @@ const styles = theme => ({
 
 
 
+
+
+
+
+
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -51,6 +57,9 @@ class SignIn extends Component {
       email: "",
       password: "",
       isLogin: false,
+      message : "",
+      isToastOpen : false,
+      type : "success"
     };
   }
 
@@ -80,8 +89,10 @@ class SignIn extends Component {
     axios(requestOptions)
       .then(response => {
         console.log(response);
-        toastr.error(response.data.msg,'ERROR');
+
+
         console.log(response.data);
+
         if (response.data.status) {
           login(response.data.data);
           this.props.handleRefresh(true);
@@ -93,13 +104,18 @@ class SignIn extends Component {
               isLogin: true,
             });
           }, 300);
+          // this.setState({isToastOpen:true,message:response.data.msg,type:"success"});
 
         
-        }
+         }else{
+          this.setState({isToastOpen:true,message:response.data.msg,type:"error"});
+
+         }
       })
       .catch(err => {
         console.log(err);
-        
+        this.setState({isToastOpen:true,message:"Something went wrong",type:"error"});
+
       });
   };
 
@@ -193,6 +209,14 @@ class SignIn extends Component {
             </Grid>
           </div>
         </Paper>
+
+
+                <CustomizedSnackbars
+                isOpen ={this.state.isToastOpen}
+                message = {this.state.message}
+                type = {this.state.type}
+                handleClose={() => this.setState({isToastOpen : false})}
+                />
       </Container>
     );
   }
