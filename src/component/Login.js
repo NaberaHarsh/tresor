@@ -10,8 +10,11 @@ import Paper from "@material-ui/core/Paper";
 import APIUrl from "../utils/APIUrl";
 import axios from "axios";
 import setCookie from "../utils/setCookie";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 import toastr from 'toastr';
+import { login, isLogin ,logout} from '../utils/session';
+
+
 
 const styles = theme => ({
   "@global": {
@@ -78,13 +81,20 @@ class SignIn extends Component {
       .then(response => {
         console.log(response);
         toastr.error(response.data.msg,'ERROR');
-        console.log(JSON.parse(response.data));
-        if (response.data.status === true) {
-          console.log(response.data.data.user_id);
-          this.setState({
-            token:"",
-            isLogin: true,
-          });
+        console.log(response.data);
+        if (response.data.status) {
+          login(response.data.data);
+          this.props.handleRefresh(true);
+
+
+          setInterval(() => {
+            this.setState({
+              token:"",
+              isLogin: true,
+            });
+          }, 300);
+
+        
         }
       })
       .catch(err => {
@@ -95,10 +105,9 @@ class SignIn extends Component {
 
   render() {
     const { classes } = this.props;
-    const { email, password, isLogin, token } = this.state;
-    localStorage.setItem('session',JSON.stringify(token));
-    if (isLogin) {
-      setCookie("token", token, 30);
+    const { email, password, token } = this.state;
+
+    if (isLogin()) {
       return (
         <Redirect
           to={{

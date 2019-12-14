@@ -38,13 +38,11 @@ class Deshboard extends Component {
   componentDidMount() {
     const products = localStorage.getItem("lat_product");
     const likeproduct = localStorage.getItem("like_product");
-    console.log(products, likeproduct)
     if (products && likeproduct &&  !navigator.onLine) {
       this.setState({
         lat_product: JSON.parse(products),
         like_product:JSON.parse(likeproduct)
       }, ()=> {
-        console.log(this.state)
       });
       return;
     } else if (!navigator.onLine) {
@@ -77,6 +75,7 @@ class Deshboard extends Component {
 
   render() {
     const { banner, shows, lat_product, like_product } = this.state;
+
     return (
       <div>
         {banner !== [] ? <Coreusel banner={banner} /> : undefined}

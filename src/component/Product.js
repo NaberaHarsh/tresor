@@ -21,8 +21,11 @@ class Product extends Component {
 
    
     render() { 
+
+
+
         const {catId,subCatId} = this.props.match.params
-        console.log(this.props,'product');
+        console.log(this.props);
         
         return ( 
             <React.Fragment>
@@ -31,7 +34,7 @@ class Product extends Component {
             
                 <Grid container spacing={3}>
                     <Grid item xs={4} sm={4} md={3} lg={3}>
-                       <SideNav  getProductByCatId = {this.getProductByCatId} catId={catId} category = {this.props.data}/>
+                       <SideNav  getProductByCatId = {this.getProductByCatId} catId={catId} category = {this.props.data.category}/>
                     </Grid>
                     <Grid item xs={12} sm={12} md={9} lg={9}>
                         <Productlist subCatId= {subCatId} catId ={catId}/>

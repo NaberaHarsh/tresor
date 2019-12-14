@@ -107,14 +107,13 @@ class App extends Component {
     
 const {banner,category,shows} = this.state;
 
-
+console.log(this.state);
 
     return (
+
     <div className="body">
   
-     <Header
-      category={category}
-     /> 
+     
    <Routes banner={banner} category = {category} shows = {shows} />
      <Footer/>
     </div>

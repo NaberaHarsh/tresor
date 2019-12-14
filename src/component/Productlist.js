@@ -115,7 +115,7 @@ class ProductList extends Component {
     return (
       <div>
         <Container maxWidth="lg">
-          {dataGet ? (
+          {dataGet!=null ? (
             <h3 className="total-count-product">
               {dataGet === 0
                 ? "No Product Found"
@@ -175,7 +175,7 @@ class ProductList extends Component {
             ) : (
                 <>
                   {" "}
-                  {skeleton.map((index) => (
+                  {skeleton.map((item,index) => (
                     <Grid   key={`skele-pro-${index}`}
                       style={{ textAlign: "center" }}
                       item

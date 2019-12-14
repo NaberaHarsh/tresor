@@ -9,7 +9,6 @@ import Hidden from "@material-ui/core/Hidden";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Container } from "semantic-ui-react";
 import toastr from "toastr";
-console.log(toastr);
 
 function a11yProps(index) {
   return {
@@ -37,15 +36,13 @@ class SubNav extends React.Component {
       value: 0,
       anchorEl: false,
       category: [],
-      skeleton: new Array(5).fill(true),
+      skeleton: new Array(4).fill(true),
       loading: false
     };
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
-    console.debug(nextProps, prevProps, "next");
     if (prevProps !== nextProps) {
-      console.debug(nextProps, "next");
 
       return {
         category: nextProps.category,
@@ -59,7 +56,6 @@ class SubNav extends React.Component {
   }
 
   handleChange = value => {
-    console.log(this.state.category[value]);
 
     this.setState({ value });
   };
@@ -79,7 +75,7 @@ class SubNav extends React.Component {
                 centered
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
-                variant="fullWidth"
+                indicator="false"
               >
                 {category.map((data, index) => (
                   <Link
@@ -106,6 +102,8 @@ class SubNav extends React.Component {
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
                 variant="scrollable"
+                indicator="false"
+
               >
                 {category.map((data, index) => (
                   <Link

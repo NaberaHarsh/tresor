@@ -18,6 +18,8 @@ import Divider from "@material-ui/core/Divider";
 import DehazeIcon from "@material-ui/icons/Dehaze";
 import APIUrl from "../utils/APIUrl";
 import callApi from "../utils/callApi";
+import { login, isLogin, logout, getLoginData } from '../utils/session';
+import { Redirect, withRouter } from "react-router-dom";
 
 
 
@@ -119,13 +121,13 @@ class PrimarySearchAppBar extends React.Component {
       subCategoryList: [],
       search: [],
       loading: true,
-      searchText: ""
+      searchText: "",
+      logout: false
     };
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
     if (prevProps.category.length !== nextProps.category.length) {
-      console.debug(nextProps, "next");
 
       return {
         category: nextProps.category
@@ -203,6 +205,8 @@ class PrimarySearchAppBar extends React.Component {
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
     const { open, category, searchText } = this.state;
 
+
+
     const renderMobileMenu = (
       <Drawer
         className="login-register-drawer"
@@ -212,21 +216,63 @@ class PrimarySearchAppBar extends React.Component {
         open={isMobileMenuOpen}
         onClose={this.handleMenuClose}
       >
+        {
+          isLogin() ? 
+
+          <MenuItem>
+          <Link href="/Login">
+            <PersonIcon />
+            <span>Logout</span>
+          </Link>
+        </MenuItem> 
+        :
+
         <MenuItem>
           <Link href="/Login">
             <PersonIcon />
             <span>Login</span>
           </Link>
-        </MenuItem>
-        <br />
-        <MenuItem>
-          <Link href="/Register">
-            <PersonAddIcon />
-            <span>Register</span>
+        </MenuItem> 
+
+       } 
+       <br />
+
+       {
+          isLogin() ? 
+
+          <MenuItem>
+          <Link href="/Login">
+            <PersonIcon />
+            <span>Logout</span>
           </Link>
-        </MenuItem>
+        </MenuItem> 
+        :
+        
+        <MenuItem>
+        <Link href="/Register">
+          <PersonAddIcon />
+          <span>Register</span>
+        </Link>
+      </MenuItem>
+
+       } 
+
+
+ 
+
+        
+
+      
       </Drawer>
     );
+
+    if (this.state.logout === true) {
+
+      this.setState({logout : false});
+      return <Redirect to='/' />
+    }
+
+
 
     return (
       <div>
@@ -283,30 +329,74 @@ class PrimarySearchAppBar extends React.Component {
                   />
                 </div>
 
-                <Link href="/Login">
-                  <p
-                    style={{
-                      // marginTop: "10px",
-                      // fontSize: "16px",
-                      fontFamily: "Helvetica"
-                    }}
-                  >
-                    <PersonIcon></PersonIcon>
-                    <span className="vertical-align-super">Login</span>
-                  </p>
-                </Link>
-                <Link href="/Register">
-                  <p
-                    style={{
-                      // marginTop: "10px",
-                      // fontSize: "16px",
-                      fontFamily: "Helvetica"
-                    }}
-                  >
-                     <PersonAddIcon />
-                    <span className="vertical-align-super">Register</span>
-                  </p>
-                </Link>
+             
+                {
+          isLogin() ? 
+
+          <p
+          style={{
+          
+            fontFamily: "Helvetica"
+          }}
+        >
+        <span className="vertical-align-super">Welcome! {getLoginData().name}</span>
+        </p>
+        :
+
+        <Link href="/Login">
+        <p
+          style={{
+          
+            fontFamily: "Helvetica"
+          }}
+        >
+          <PersonIcon></PersonIcon>
+          <span className="vertical-align-super">Login</span>
+        </p>
+      </Link>
+
+
+       } 
+
+{
+          isLogin() ? 
+
+          <p
+          style={{
+          
+            fontFamily: "Helvetica"
+          }}
+
+          onClick={() => {
+            logout();
+              this.setState({logout:true});
+           
+          }}
+        >
+          <PersonIcon></PersonIcon>
+          <span className="vertical-align-super">Logout</span>
+        </p>
+        :
+
+        <Link href="/Register">
+        <p
+          style={{
+            // marginTop: "10px",
+            // fontSize: "16px",
+            fontFamily: "Helvetica"
+          }}
+        >
+           <PersonAddIcon />
+          <span className="vertical-align-super">Register</span>
+        </p>
+      </Link>
+
+
+       } 
+
+
+
+              
               </div>
 
               <div className={classes.sectionMobile}>
