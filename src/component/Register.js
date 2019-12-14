@@ -9,6 +9,8 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import axios from 'axios';
 import APIUrl from '../utils/APIUrl';
+import CustomizedSnackbars from './SnackBars';
+
 
 const styles = theme => ({
   '@global': {
@@ -43,6 +45,7 @@ class Register extends Component {
       tax: '',
       password: '',
       address: '',
+      errors: { name: '',company: '', email: '', mobile:'',tax:'',password:'', address:'' }
     }
   }
   handleChange = e => {
@@ -55,6 +58,29 @@ class Register extends Component {
     e.preventDefault()
     const { name, company, email, tax, mobile, address, password } = this.state;
     const userdata = { email, password, name, mobile, tax, address, company };
+    let errors = { name: '',company: '', email: '', mobile:'',tax:'',password:'', address:''};
+    if (!name) {
+      errors.name = 'Name is required';
+     }
+     if (!company) {
+      errors.company = 'Company Name is required';
+     }
+     if (!email) {
+      errors.email = 'Email Address is required';
+     }
+     if (!mobile) {
+      errors.mobile = 'Telephone Number is required';
+     }
+     if (!tax) {
+      errors.tax = 'Tax Id is required';
+     }
+     if (!password) {
+      errors.password = 'Password is required';
+     }
+     if (!address) {
+      errors.address = 'Address is required';
+     }
+     
     const data = Object.keys(userdata)
       .map(key => {
         return (
@@ -70,13 +96,28 @@ class Register extends Component {
 
     axios(requestOptions)
       .then(response => {
+        console.log(response);
+
+
+        console.log(response.data);
+{
+          this.setState({isToastOpen:true,message:response.data.msg,type:"error"});
+
+         }
 
       })
       .catch(err => {
+        console.log(err);
+        this.setState({isToastOpen:true,message:"Something went wrong",type:"error"});
+
 
       });
+
+      this.setState({errors});
   }
+  
   render() {
+    const { errors } = this.state;
     const { classes } = this.props;
     const { name, company, email, mobile, tax, password, address } = this.state;
     return (
@@ -115,6 +156,7 @@ class Register extends Component {
                     onChange={this.handleChange}
                     autoComplete="name"
                   />
+                  {errors.name != '' && <span style={{color: "red"}}>{this.state.errors.name}</span>}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -128,6 +170,7 @@ class Register extends Component {
                     onChange={this.handleChange}
                     autoComplete="company name"
                   />
+                  {errors.company != '' && <span style={{color: "red"}}>{this.state.errors.company}</span>}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -141,6 +184,7 @@ class Register extends Component {
                     onChange={this.handleChange}
                     autoComplete="email"
                   />
+                  {errors.email != '' && <span style={{color: "red"}}>{this.state.errors.email}</span>}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -154,6 +198,7 @@ class Register extends Component {
                     onChange={this.handleChange}
                     autoComplete="telephone number"
                   />
+                  {errors.mobile != '' && <span style={{color: "red"}}>{this.state.errors.mobile}</span>}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -167,6 +212,7 @@ class Register extends Component {
                     onChange={this.handleChange}
                     autoComplete="tax id"
                   />
+                  {errors.tax != '' && <span style={{color: "red"}}>{this.state.errors.tax}</span>}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -181,6 +227,7 @@ class Register extends Component {
                     id="password"
                     autoComplete="current-password"
                   />
+                  {errors.password != '' && <span style={{color: "red"}}>{this.state.errors.password}</span>}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -194,6 +241,7 @@ class Register extends Component {
                     onChange={this.handleChange}
                     autoComplete="address"
                   />
+                  {errors.address != '' && <span style={{color: "red"}}>{this.state.errors.address}</span>}
                 </Grid>
               </Grid>
 
@@ -201,7 +249,7 @@ class Register extends Component {
                 type="submit"
                 fullWidth
                 variant="contained"
-                onSubmit={this.onSubmit}
+                onSubmit= {this.onSubmit}
                 style={{backgroundColor:"black",color:'white'}}
                 className={classes.submit}
               >
@@ -218,6 +266,13 @@ class Register extends Component {
 
           </div>
         </Paper>
+        <CustomizedSnackbars
+                isOpen ={this.state.isToastOpen}
+                message = {this.state.message}
+                type = {this.state.type}
+                handleClose={() => this.setState({isToastOpen : false})}
+                />
+      
       </Container>
     );
   }
