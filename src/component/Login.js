@@ -82,6 +82,10 @@ class SignIn extends Component {
      if (!password) {
       errors.password = 'Password is required';
      }
+     this.setState({errors});
+
+if(email)
+if(password){
     const data = Object.keys(userdata)
       .map(key => {
         return (
@@ -126,7 +130,7 @@ class SignIn extends Component {
         this.setState({isToastOpen:true,message:"Something went wrong",type:"error"});
 
       });
-      this.setState({errors});
+    }
 
   };
 

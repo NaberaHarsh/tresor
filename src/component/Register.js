@@ -80,7 +80,16 @@ class Register extends Component {
      if (!address) {
       errors.address = 'Address is required';
      }
+     this.setState({errors});
+
      
+     if(name)
+     if(company)
+     if(email)
+     if(mobile)
+     if(tax)
+     if(password)
+     if(address){
     const data = Object.keys(userdata)
       .map(key => {
         return (
@@ -112,8 +121,8 @@ class Register extends Component {
 
 
       });
-
-      this.setState({errors});
+    }
+      
   }
   
   render() {
