@@ -72,7 +72,6 @@ class ResetPassword extends Component {
 
     axios(requestOptions)
       .then(response => {
-        console.log(response.data);
         if (response.data.status === true) {
           this.setState({
             token: "",
@@ -86,7 +85,6 @@ class ResetPassword extends Component {
   render() {
     const { classes } = this.props;
     const { newPass, password, isLogin, token } = this.state;
-    console.log(this.props);
     if (isLogin) {
       setCookie("token", token, 30);
       return (

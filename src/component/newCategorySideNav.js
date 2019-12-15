@@ -69,7 +69,6 @@ function ResponsiveDrawer(props) {
     setCatId(props.catId);
   }
 
-  console.log(category);
 
   return (
     <div className={classes.root}>

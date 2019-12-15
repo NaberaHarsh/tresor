@@ -32,7 +32,6 @@ class App extends Component {
         shows: JSON.parse(shows),
         category:JSON.parse(category)
       }, ()=> {
-        console.log(this.state)
       });
       return;
     } else if (!navigator.onLine) {
@@ -107,7 +106,6 @@ class App extends Component {
     
 const {banner,category,shows} = this.state;
 
-console.log(this.state);
 
     return (
 

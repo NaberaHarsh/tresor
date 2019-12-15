@@ -105,10 +105,8 @@ class Register extends Component {
 
     axios(requestOptions)
       .then(response => {
-        console.log(response);
 
 
-        console.log(response.data);
 {
           this.setState({isToastOpen:true,message:response.data.msg,type:"error"});
 
@@ -116,7 +114,6 @@ class Register extends Component {
 
       })
       .catch(err => {
-        console.log(err);
         this.setState({isToastOpen:true,message:"Something went wrong",type:"error"});
 
 

@@ -57,7 +57,6 @@ class ProductList extends Component {
         lat_product: JSON.parse(ProductList),
         like_product:JSON.parse(dataGet)
       }, ()=> {
-        console.log(this.state)
       });
       return;
     } else if (!navigator.onLine) {

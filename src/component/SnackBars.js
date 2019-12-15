@@ -87,7 +87,6 @@ const useStyles2 = makeStyles(theme => ({
 export default function CustomizedSnackbars({isOpen,message,type,handleClose}) {
 
 
-    console.log(isOpen,message,type);
   const classes = useStyles2();
   const [open, setOpen] = React.useState(false);
 

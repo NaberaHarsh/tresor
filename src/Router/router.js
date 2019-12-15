@@ -27,7 +27,6 @@ class Routes extends Component {
 
   render() {
     
-    console.log(this.props);
 
     return (
       <BrowserRouter>
@@ -64,7 +63,6 @@ class Routes extends Component {
               
               refreshHead = {this.state.refreshHead}
               handleRefresh={(isRefresh) => {
-                console.log("handle refresh called");
                 this.setState({refreshHead : isRefresh});
                 }}            
                 {...props} 

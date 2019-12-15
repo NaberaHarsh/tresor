@@ -25,7 +25,6 @@ class Product extends Component {
 
 
         const {catId,subCatId} = this.props.match.params
-        console.log(this.props);
         
         return ( 
             <React.Fragment>

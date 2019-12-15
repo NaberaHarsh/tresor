@@ -71,7 +71,6 @@ class ForgotPassword extends Component {
       data: userdata,
 
     };
-    console.log(requestOptions);
     
 
     axios(requestOptions)
@@ -83,7 +82,6 @@ class ForgotPassword extends Component {
   render() {
     const { classes } = this.props;
     const { email, retrievePage, token } = this.state;
-    console.log(this.state);
     if (retrievePage) {
       setCookie("token", token, 30);
       return (

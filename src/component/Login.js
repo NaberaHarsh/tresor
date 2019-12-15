@@ -101,10 +101,8 @@ if(password){
 
     axios(requestOptions)
       .then(response => {
-        console.log(response);
 
 
-        console.log(response.data);
 
         if (response.data.status) {
           login(response.data.data);
@@ -126,7 +124,6 @@ if(password){
          }
       })
       .catch(err => {
-        console.log(err);
         this.setState({isToastOpen:true,message:"Something went wrong",type:"error"});
 
       });

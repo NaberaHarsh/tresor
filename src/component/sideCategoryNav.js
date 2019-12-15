@@ -100,7 +100,6 @@ class CustomizedTreeView extends Component {
  
   render() { 
 
-    console.log(this.state);
   
     const { category,catId } = this.state;
    

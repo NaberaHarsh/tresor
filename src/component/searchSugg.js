@@ -3,7 +3,6 @@ import { Paper } from "@material-ui/core";
 import {connect} from 'react-redux';
 import Link from "@material-ui/core/Link";
 const Suggestions = (props) => {
-    console.log(props.searchList);
 
     let searchList = props.searchList !== undefined ? props.searchList : []
     
