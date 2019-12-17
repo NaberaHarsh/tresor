@@ -42,7 +42,7 @@ class MultiCarousel extends Component {
       <Container maxWidth="lg" className="card1">
         <Paper style={{ width: "100% ! important" }}>
           <h5 style={{ padding: "20px",marginLeft:'20px' }} className="features">
-          Most Liked Products
+         <center> Most Liked Products</center>
           </h5>
           <div>
             <Container maxWidth="lg">

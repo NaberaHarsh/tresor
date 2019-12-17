@@ -12,6 +12,8 @@ import { withStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
 import SubNav from "./SubNav";
 import PersonIcon from "@material-ui/icons/Person";
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import Drawer from "@material-ui/core/Drawer";
 import Divider from "@material-ui/core/Divider";
@@ -216,6 +218,22 @@ class PrimarySearchAppBar extends React.Component {
         open={isMobileMenuOpen}
         onClose={this.handleMenuClose}
       >
+        <br />
+
+<MenuItem>
+        <Link href="/Cart">
+          <ShoppingCartIcon />
+          <span>My Cart</span>
+        </Link>
+      </MenuItem>
+      
+<MenuItem>
+        <Link href="/Orders">
+          <ShoppingBasketIcon />
+          <span>Orders</span>
+        </Link>
+      </MenuItem>
+
         {
           isLogin() ? 
 
@@ -232,7 +250,7 @@ class PrimarySearchAppBar extends React.Component {
         </MenuItem> 
 
        } 
-       <br />
+       
 
        {
           isLogin() ? 
@@ -255,12 +273,6 @@ class PrimarySearchAppBar extends React.Component {
       </MenuItem>
 
        } 
-
-
- 
-
-        
-
       
       </Drawer>
     );
@@ -312,10 +324,12 @@ class PrimarySearchAppBar extends React.Component {
                   className={classes.search}
                 >
                   <div className={classes.searchIcon}>
+                    <center>
                     <SearchIcon style={{marginTop:'6x'}}/>
+                    </center> 
                   </div>
                   <InputBase
-                    style={{ marginTop: "7px"}}
+                    style={{ marginTop: "7px", width:'400px'}}
                     onChange={this.onSearchChange}
                     name="searchText"
                     value={searchText}
@@ -328,6 +342,32 @@ class PrimarySearchAppBar extends React.Component {
                   />
                 </div>
 
+                
+
+                <Link href="/Cart">
+        <p
+          style={{
+          
+            fontFamily: "Helvetica"
+          }}
+        >
+          <ShoppingCartIcon></ShoppingCartIcon>
+          <span className="vertical-align-super">My Cart</span>
+        </p>
+      </Link>
+
+                
+                <Link href="/Orders">
+        <p
+          style={{
+          
+            fontFamily: "Helvetica"
+          }}
+        >
+          <ShoppingBasketIcon></ShoppingBasketIcon>
+          <span className="vertical-align-super">Orders</span>
+        </p>
+        </Link>
              
                 {
           isLogin() ? 
@@ -341,6 +381,7 @@ class PrimarySearchAppBar extends React.Component {
         <span className="vertical-align-super">Welcome! {getLoginData().name}</span>
         </p>
         :
+
 
         <Link href="/Login">
         <p
@@ -382,7 +423,8 @@ class PrimarySearchAppBar extends React.Component {
           style={{
             // marginTop: "10px",
             // fontSize: "16px",
-            fontFamily: "Helvetica"
+            fontFamily: "Helvetica",
+            fontSize: '16px'
           }}
         >
            <PersonAddIcon />

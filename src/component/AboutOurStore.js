@@ -49,7 +49,7 @@ class AboutOurStore extends Component {
               Tresor Jewelry is a leading manufacturers, wholesalers, exporters
               and suppliers of Pave diamond jewelry, chains & findings in 925
               sterling silver with and without gemstones. We make customer
-              design with minimum order quantity. We deals also in semi-precious
+              design with minimum order quantity. We also deal in semi-precious
               & precious gemstones.
             </Typography>
            </div>
