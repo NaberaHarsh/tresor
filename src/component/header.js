@@ -320,7 +320,7 @@ class PrimarySearchAppBar extends React.Component {
                 className={classes.sectionDesktop}
               >
                 <div
-                  style={{ backgroundColor: "whitesmoke",height:'40px',marginTop:'12px', outline: "auto" }}
+                  style={{ backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto" }}
                   className={classes.search}
                 >
                   <div className={classes.searchIcon}>
@@ -348,7 +348,8 @@ class PrimarySearchAppBar extends React.Component {
         <p
           style={{
           
-            fontFamily: "Helvetica"
+            fontFamily: "Helvetica",
+            fontSize: '12px '
           }}
         >
           <ShoppingCartIcon></ShoppingCartIcon>
@@ -361,7 +362,8 @@ class PrimarySearchAppBar extends React.Component {
         <p
           style={{
           
-            fontFamily: "Helvetica"
+            fontFamily: "Helvetica",
+            fontSize: '12px'
           }}
         >
           <ShoppingBasketIcon></ShoppingBasketIcon>
@@ -375,7 +377,8 @@ class PrimarySearchAppBar extends React.Component {
           <p
           style={{
           
-            fontFamily: "Helvetica"
+            fontFamily: "Helvetica",
+            fontSize: '12px'
           }}
         >
         <span className="vertical-align-super">Welcome! {getLoginData().name}</span>
@@ -387,7 +390,8 @@ class PrimarySearchAppBar extends React.Component {
         <p
           style={{
           
-            fontFamily: "Helvetica"
+            fontFamily: "Helvetica",
+            fontSize: '12px'
           }}
         >
           <PersonIcon></PersonIcon>
@@ -404,7 +408,8 @@ class PrimarySearchAppBar extends React.Component {
           <p
           style={{
           
-            fontFamily: "Helvetica"
+            fontFamily: "Helvetica",
+            fontSize: '12px'
           }}
 
           onClick={() => {
@@ -424,7 +429,7 @@ class PrimarySearchAppBar extends React.Component {
             // marginTop: "10px",
             // fontSize: "16px",
             fontFamily: "Helvetica",
-            fontSize: '16px'
+            fontSize: '12px'
           }}
         >
            <PersonAddIcon />

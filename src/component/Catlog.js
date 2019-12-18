@@ -41,7 +41,7 @@ class Catlog extends Component {
                   <Grid key={`show-${index}`} item xs={12} sm={12} md={4} lg={4} className="homepage__key-point col-lg-4">
                     <Grid container  alignItems="center">
                       <div style={{marginleft:'5px',padding:'5px'}}>
-                        <img className="imgPort" alt="" src={data.url} />
+                        <img className="imgPort" alt="" src={data.url} style={{height:400}} />
                       </div>
                     </Grid>
                   </Grid>
