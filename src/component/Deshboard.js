@@ -7,8 +7,6 @@ import MultiCarousel from "./MultiCarousel";
 import { Grid, Container } from "@material-ui/core";
 import APIUrl from "../utils/APIUrl";
 import callApi from "../utils/callApi";
-import Scheme from "./scheme"
-import Sample_Drawer from './sampledrawer'
 import Top from './topProducts'
 
 class Deshboard extends Component {
@@ -89,7 +87,7 @@ class Deshboard extends Component {
             <MultiCarousel like_product={like_product} />
             {shows !== [] ? <Catlog shows={shows} /> : undefined}
             <AboutOurStore />
-            {/* <Sample_Drawer /> */}
+            
             <br></br>
           </Grid>
         </Container>
