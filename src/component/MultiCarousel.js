@@ -9,7 +9,7 @@ class MultiCarousel extends Component {
     super(props);
     this.state = {
       like_product: [],
-      skeleton: new Array(10).fill(true),
+      skeleton: new Array(8).fill(true),
       loading: false
     };
   }
@@ -41,9 +41,9 @@ class MultiCarousel extends Component {
       <div>
       <Container maxWidth="lg" className="card1">
         <Paper style={{ width: "100% ! important" }}>
-          <h5 style={{ padding: "20px",marginLeft:'20px' }} className="features">
-          Most Liked Products
-          </h5>
+        <p style={{ padding: "20px",  color : "#515151" , fontWeight : '800', fontSize: '22px'}} >
+          {"          Most Liked Products".toUpperCase()}
+          </p>
           <div>
             <Container maxWidth="lg">
               <div className="row">
@@ -60,6 +60,8 @@ class MultiCarousel extends Component {
                       <>
                         {like_product.map((data, index) => (
                             <Grid key={`like_product-${index}`} item md={3} lg={3} sm={12} xs={12}>
+                                                                  <Link href={`/Details/${data.product_id}`}>
+
                           <div  className="item"style={{border:"1px solid #aeaeae"}}>
                             {/* <Paper > */}
                               <div className="pad15">
@@ -75,23 +77,23 @@ class MultiCarousel extends Component {
                                 </div>
                                 <div className="Rating">
                                   <p
-                                    style={{
+                                     style={{
                                       textAlign: "center",
-                                      color: "black !important",
-                                      fontSize: "18px !important",
-                                      marginTop:'40px'
+                                      color: "#515151",
+                                      fontSize: "16px",
+                                      marginTop:'40px',
+                                      padding : '6px'
                                     }}
                                    
-                                  ><Link href={`/Details/${data.product_id}`}>
-                                 {data.name} {" "}
-                                </Link>
-                                    
-                                    <br />{" "}
+                                  >
+                                 {data.name} 
                                   </p>
                                 </div>
                               </div>
                             {/* </Paper> */}
                           </div>
+                          </Link>
+
                           </Grid>
                         ))}
                       </>

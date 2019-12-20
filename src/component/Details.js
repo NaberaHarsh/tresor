@@ -98,29 +98,45 @@ class Details extends Component {
               <Grid item md={1} lg={1}></Grid>
               <Grid item xs={12} sm={12} md={6} lg={6}>
                 <div className="section-heading">
-                  <h5>
+                  <p style={{
+                    color : "#515151",
+                    fontWeight: '800',
+                    fontSize : '32px'
+                  }}>
                     {Detail.model}
-                     </h5>
-                     <h6>
+                     </p>
+                     <p>
                     
                     {Detail.name}
-                    </h6>
+                    </p>
                 </div>
                 
-    <div style={{marginTop:'15px',marginBottom:'10px'}}>
-    <h5>
+                {Detail.description && 
+
+    <div style={{marginTop:'12px',marginBottom:'10px'}}>
+
+
+
+
+    <h5 style={{
+                    color : "#515151",
+                    fontWeight: '800',
+                    fontSize : '32px'
+                  }}>
     Description
       </h5>
     <hr/>
-    <Typography variant="subtitle2" >
-   <div style={{overflow:'auto'}} dangerouslySetInnerHTML={{ __html: this.htmlDecode(Detail.description) }} />
-
+    <Typography variant="subtitle2" style={{color: '#515151'}}>
+                  { Detail.description &&  <div style={{overflow:'auto'}} dangerouslySetInnerHTML={{ __html: this.htmlDecode(Detail.description) }} />
+}
       </Typography>
       <hr/>
-    <h6 style={{fontSize:'20px',color:'black',fontWeight:'bolder'}} >
-   {Detail.note}
-      </h6>
+    <p style={{fontSize:'20px',color:'black',fontWeight:'bolder'}} >
+   {Detail.note && Detail.note.split("\n").map(item => <li style={{fontSize:'14px',color:'#515151'}}>{item}</li>)}
+      </p>
+      
     </div>
+  }
               </Grid>
             </Grid>
 

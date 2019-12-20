@@ -35,8 +35,8 @@ class AboutOurStore extends Component {
           <Container maxWidth="lg" style={{ textAlign: "center" ,marginTop:'50px'}}>
           <Paper  style={{border:"1px solid #aeaeae"}} className='background'>
            <div style={{padding:'20px'}} >
-           <h5 style={{marginTop:'10px',color:'black'}}>
-              About Our Store
+           <h5 style={{marginTop:'10px',color:'#515151'}}>
+                ABOUT OUR STORE
             </h5>
            
             <Typography variant="subtitle1">

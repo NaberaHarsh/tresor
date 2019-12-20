@@ -32,16 +32,16 @@ class Catlog extends Component {
       <div>
         <Container maxWidth="lg" className="about_me">
           <Paper style={{ width: "100% ! important", height: "100%",marginBottom:'10px' }}>
-            <h5 className="features" style={{ marginTop: "18px",padding:'10px', marginLeft: '8px' }}>
-              Our Catlog
-      </h5>
+          <p style={{ padding: "20px",  color : "#515151" , fontWeight : '800', fontSize: '22px'}} >
+            {"              Our Catalog".toUpperCase()}
+      </p>
             <div className="card-body fea features ">
               <Grid container spacing={4} >
                 {shows.map((data, index) => (
                   <Grid key={`show-${index}`} item xs={12} sm={12} md={4} lg={4} className="homepage__key-point col-lg-4">
                     <Grid container  alignItems="center">
                       <div style={{marginleft:'5px',padding:'5px'}}>
-                        <img className="imgPort" alt="" src={data.url} />
+                        <img className="imgPort" alt="" style={{height: '400px'}} src={data.url} />
                       </div>
                     </Grid>
                   </Grid>

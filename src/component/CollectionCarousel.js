@@ -10,7 +10,7 @@ class CollectionCarousel extends Component {
     this.state = {
       lat_product: [],
       loading: false,
-      skeleton: new Array(10).fill(true)
+      skeleton: new Array(8).fill(true)
     };
   }
 
@@ -40,9 +40,9 @@ class CollectionCarousel extends Component {
       <div>
         <Container maxWidth="lg" className="card1">
           <Paper style={{ width: "100% ! important" }}>
-            <h5 style={{ padding: "20px", marginLeft: '20px' }} className="features">
-              Discover Our Latest Collection
-            </h5>
+            <p style={{ padding: "20px",  color : "#515151" , fontWeight : '800', fontSize: '22px'}} >
+              {"Discover Our Latest Collection".toUpperCase()}
+            </p>
             <div>
             <Container maxWidth="lg">
               <div className="row">
@@ -59,6 +59,8 @@ class CollectionCarousel extends Component {
                       <>
                         {lat_product.map((data, index) => (
                             <Grid  key={`lat-product-${index}`} item  md={3} lg={3} sm={12} xs={12}>
+                                                                  <Link href={`/Details/${data.product_id}`}>
+
                           <div className="item"style={{border:"1px solid #aeaeae"}}>
                             {/* <Paper > */}
                               <div className="pad15">
@@ -72,25 +74,24 @@ class CollectionCarousel extends Component {
                                     />{" "}
                                 
                                 </div>
-                                <div className="Rating">
+                                <div >
                                   <p
                                     style={{
                                       textAlign: "center",
-                                      color: "black !important",
-                                      fontSize: "18px !important",
-                                      marginTop:'40px'
+                                      color: "#515151",
+                                      fontSize: "16px",
+                                      marginTop:'40px',
+                                      padding : '6px'
                                     }}
                                    
-                                  ><Link href={`/Details/${data.product_id}`}>
-                                 {data.name} {" "}
-                                </Link>
-                                    
-                                    <br />{" "}
+                                  >
+                                 {data.name} 
                                   </p>
                                 </div>
                               </div>
                             {/* </Paper> */}
                           </div>
+                          </Link>
                           </Grid>
                         ))}
                       </>

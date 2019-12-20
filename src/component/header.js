@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Link from "@material-ui/core/Link";
+import Paper from "@material-ui/core/Paper";
+
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
@@ -220,7 +222,7 @@ class PrimarySearchAppBar extends React.Component {
           isLogin() ? 
 
           <MenuItem>
-           Welcome! {getLoginData().name}
+               Welcome! {getLoginData().name}
         </MenuItem> 
         :
 
@@ -315,7 +317,7 @@ class PrimarySearchAppBar extends React.Component {
                     <SearchIcon style={{marginTop:'6x'}}/>
                   </div>
                   <InputBase
-                    style={{ marginTop: "7px"}}
+                    style={{ marginTop: "4px"}}
                     onChange={this.onSearchChange}
                     name="searchText"
                     value={searchText}
@@ -334,8 +336,9 @@ class PrimarySearchAppBar extends React.Component {
 
           <p
           style={{
-          
-            fontFamily: "Helvetica"
+            color : 'color',
+            fontFamily: "Helvetica",
+            marginRight : '12px'
           }}
         >
         <span className="vertical-align-super">Welcome! {getLoginData().name}</span>
@@ -345,12 +348,13 @@ class PrimarySearchAppBar extends React.Component {
         <Link href="/Login">
         <p
           style={{
-          
-            fontFamily: "Helvetica"
+            color : '#515151',
+            fontFamily: "Helvetica",
+            marginRight : '12px'
+
           }}
         >
-          <PersonIcon></PersonIcon>
-          <span className="vertical-align-super">Login</span>
+          <span className="vertical-align-super">LOGIN</span>
         </p>
       </Link>
 
@@ -362,7 +366,7 @@ class PrimarySearchAppBar extends React.Component {
 
           <p
           style={{
-          
+            color : '#515151',
             fontFamily: "Helvetica"
           }}
 
@@ -372,21 +376,18 @@ class PrimarySearchAppBar extends React.Component {
            
           }}
         >
-          <PersonIcon></PersonIcon>
-          <span className="vertical-align-super">Logout</span>
+          <span className="vertical-align-super">LOGOUT</span>
         </p>
         :
 
         <Link href="/Register">
         <p
           style={{
-            // marginTop: "10px",
-            // fontSize: "16px",
+            color : '#515151',
             fontFamily: "Helvetica"
           }}
         >
-           <PersonAddIcon />
-          <span className="vertical-align-super">Register</span>
+          <span className="vertical-align-super">REGISTER</span>
         </p>
       </Link>
 
@@ -417,23 +418,34 @@ class PrimarySearchAppBar extends React.Component {
               paper: classes.drawerPaper
             }}
           >
-            <div className={classes.drawerHeader}>
-              <IconButton style={{ fontSize: '30px', color: 'black' }} onClick={this.handleDrawerClose}>x</IconButton>
-            </div>
+          
             <Divider />
+
+            <div
+            
+            style={{
+              backgroundColor: "whitesmoke",
+              outline: "auto",
+              padding: "10px",
+            }}
+            
+            >
             <div
               style={{
                 backgroundColor: "whitesmoke",
                 outline: "auto",
-                marginTop: "10px"
+                marginTop: "0px",
+                display : 'flex'
               }}
               className={classes.search}
             >
+
+              
               <div className={classes.searchIcon}>
                 <SearchIcon />
               </div>
               <InputBase
-                style={{ marginTop: "7px" }}
+                style={{ marginTop: "4px" }}
                 onChange={this.onSearchChange}
                 name="searchText"
                 value={searchText}
@@ -445,17 +457,23 @@ class PrimarySearchAppBar extends React.Component {
               >
               
                 </InputBase>
+
+                <div className={classes.drawerHeader}>
+              <IconButton style={{ fontSize: '30px', color: 'black' }} onClick={this.handleDrawerClose}>x</IconButton>
+            </div>
             </div>
 
            <div >
            <div  style={{ padding: "20px" }}>
-              <Typography varient="subtite-1"> Suggestation</Typography>
+              <Typography varient="subtite-1"> SUGGESTIONS</Typography>
              {search.length === 0 ? "No product found" :  search.map((data,index) => (
                 <Link 
                 key={`search-cat-${index}`}
                 href={`/details/${data.product_id}`}
                  data={category}>
-                  <li key={index} style={{ fontSize: "13px" }}>{data.name}</li>
+                   <Paper style={{padding: '12px', marginBottom: '4px'}}>
+                  <li key={index} style={{ fontSize: "16px", color: '#515151' }}>{data.name}</li>
+                  </Paper>
                 </Link>
               ))}
             </div>
@@ -471,6 +489,8 @@ class PrimarySearchAppBar extends React.Component {
               ))}
             </div>
             
+           </div>
+
            </div>
           </Drawer>
           {renderMobileMenu}

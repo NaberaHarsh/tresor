@@ -121,12 +121,12 @@ class CustomizedTreeView extends Component {
      
 
         {category.map((value,index) => (
-        <StyledTreeItem key={value.catId} nodeId={value.catId} style={value.catId===catId ? {color:"black",padding:" 6px 0px"} : {color:"darkgray",padding:" 6px 0px"}} label={value.name}>
+        <StyledTreeItem key={value.catId} nodeId={value.catId} style={value.catId===catId ? {color:"black",padding:" 6px 0px"} : {color:"#515151",padding:" 6px 0px"}} label={value.name}>
         <div>
        
       
            {value.subcat.map((data,index) => (
-               <ListItem style={{marginRight:'10px',padding:'18px'}}  key={data.subcat_id}  dense button >
+               <ListItem style={{marginRight:'10px',padding:'18px', color : '#515151'}}  key={data.subcat_id}  dense button >
                 
              <Link href={`/products/${data.cat_id}/${data.subcat_id}`} ><ListItemText primary={data.sub_name} /></Link>
               </ListItem>

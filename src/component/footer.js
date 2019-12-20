@@ -8,6 +8,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import footerbg from "./footerbg.jpg";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 import MobileScreenShareIcon from "@material-ui/icons/MobileScreenShare";
+import CallIcon from '@material-ui/icons/Call';
 // import InputBase from "@material-ui/core/InputBase";
 // import AddIcon from '@material-ui/icons/Add';
 class Fotter extends Component {
@@ -92,7 +93,7 @@ class Fotter extends Component {
                     <MailOutlineIcon /> <span>tresorjewelryinc@gmail.com</span>
                   </Typography>
                   <Typography className="address" variant="body2">
-                    <MobileScreenShareIcon /><span> (212) 471-0021 </span>
+                    <CallIcon /><span> (212) 471-0021 </span>
                   </Typography>
                 </div>
               </Grid>

@@ -117,8 +117,8 @@ class ProductList extends Component {
           {dataGet!=null ? (
             <h3 className="total-count-product">
               {dataGet === 0
-                ? "No Product Found"
-                : `No. of Product :${dataGet} `}
+                ? "No Product Found".toUpperCase()
+                : ``.toUpperCase()}
             </h3>
           ) : (
               ""
