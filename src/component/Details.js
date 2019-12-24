@@ -5,6 +5,8 @@ import Card from "@material-ui/core/Card";
 import callApi from '../utils/callApi';
 import APIUrl from '../utils/APIUrl';
 import Paper from '@material-ui/core/Paper';
+import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
 
 
 
@@ -121,12 +123,16 @@ class Details extends Component {
    {Detail.note}
       </h6>
     </div>
+    <br />
+    <center><Link href="/cart"><Button variant="contained"  style={{textAlign:"center"}}>Add to Cart</Button></Link></center>
+
               </Grid>
             </Grid>
 
 
           </Grid>
         </Container>
+
       </div>
     );
   }

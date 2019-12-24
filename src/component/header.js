@@ -221,7 +221,7 @@ class PrimarySearchAppBar extends React.Component {
         <br />
 
 <MenuItem>
-        <Link href="/Cart">
+        <Link href="/cart">
           <ShoppingCartIcon />
           <span>My Cart</span>
         </Link>
@@ -319,17 +319,18 @@ class PrimarySearchAppBar extends React.Component {
                 style={{ marginRight: "10px" }}
                 className={classes.sectionDesktop}
               >
+<center>
                 <div
-                  style={{ backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto" }}
+                  style={{ backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto", textAlign:"center" }}
                   className={classes.search}
                 >
-                  <div className={classes.searchIcon}>
-                    <center>
+                  <div style={{marginTop:"4px"}} className={classes.searchIcon}>
+                    
                     <SearchIcon style={{marginTop:'6x'}}/>
-                    </center> 
+                     
                   </div>
                   <InputBase
-                    style={{ marginTop: "7px", width:'400px'}}
+                    style={{ marginTop: "4px", width:'400px'}}
                     onChange={this.onSearchChange}
                     name="searchText"
                     value={searchText}
@@ -341,10 +342,10 @@ class PrimarySearchAppBar extends React.Component {
                     }}
                   />
                 </div>
-
+                </center>
                 
 
-                <Link href="/Cart">
+                <Link href="/cart">
         <p
           style={{
           
