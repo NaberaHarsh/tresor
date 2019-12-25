@@ -22,7 +22,18 @@ import APIUrl from "../utils/APIUrl";
 import callApi from "../utils/callApi";
 import { login, isLogin, logout, getLoginData } from '../utils/session';
 import { Redirect, withRouter } from "react-router-dom";
+import Badge from '@material-ui/core/Badge';
 
+
+
+const StyledBadge = withStyles(theme => ({
+  badge: {
+    right:-5,
+    top:4,
+    border: `2px solid ${theme.palette.background.paper}`,
+    marginRight:'15px'
+  },
+}))(Badge);
 
 
 
@@ -220,19 +231,20 @@ class PrimarySearchAppBar extends React.Component {
       >
         <br />
 
-<MenuItem>
+<MenuItem style={{paddingLeft:'4px'}}>
         <Link href="/cart">
-          <ShoppingCartIcon />
-          <span>My Cart</span>
+          
+        <IconButton aria-label="cart">
+      <StyledBadge badgeContent={4} color="primary">
+        <ShoppingCartIcon style={{
+          color:'#5151151', paddingLeft:'4px'
+        }} />
+      </StyledBadge>
+    </IconButton>
+          
         </Link>
       </MenuItem>
       
-<MenuItem>
-        <Link href="/Orders">
-          <ShoppingBasketIcon />
-          <span>Orders</span>
-        </Link>
-      </MenuItem>
 
         {
           isLogin() ? 
@@ -321,12 +333,12 @@ class PrimarySearchAppBar extends React.Component {
               >
 <center>
                 <div
-                  style={{ backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto", textAlign:"center" }}
+                  style={{ backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto", textAlign:"center", marginRight:'150px' }}
                   className={classes.search}
                 >
                   <div style={{marginTop:"4px"}} className={classes.searchIcon}>
                     
-                    <SearchIcon style={{marginTop:'6x'}}/>
+                    <SearchIcon style={{marginTop:'5x'}}/>
                      
                   </div>
                   <InputBase
@@ -347,30 +359,20 @@ class PrimarySearchAppBar extends React.Component {
 
                 <Link href="/cart">
         <p
-          style={{
-          
-            fontFamily: "Helvetica",
-            fontSize: '12px '
-          }}
+        style={{marginTop:'4px'}}
         >
-          <ShoppingCartIcon></ShoppingCartIcon>
-          <span className="vertical-align-super">My Cart</span>
+              <IconButton aria-label="cart">
+
+      <StyledBadge badgeContent={4} color="primary">
+        <ShoppingCartIcon style={{ color:'#515151'}}/>
+      </StyledBadge>
+    </IconButton>
+          
         </p>
       </Link>
 
                 
-                <Link href="/Orders">
-        <p
-          style={{
-          
-            fontFamily: "Helvetica",
-            fontSize: '12px'
-          }}
-        >
-          <ShoppingBasketIcon></ShoppingBasketIcon>
-          <span className="vertical-align-super">Orders</span>
-        </p>
-        </Link>
+                
              
                 {
           isLogin() ? 
@@ -379,6 +381,7 @@ class PrimarySearchAppBar extends React.Component {
           style={{
           
             fontFamily: "Helvetica",
+            color:'#515151',
             fontSize: '12px'
           }}
         >
@@ -392,6 +395,7 @@ class PrimarySearchAppBar extends React.Component {
           style={{
           
             fontFamily: "Helvetica",
+            color:'#515151',
             fontSize: '12px'
           }}
         >
@@ -410,7 +414,8 @@ class PrimarySearchAppBar extends React.Component {
           style={{
           
             fontFamily: "Helvetica",
-            fontSize: '12px'
+            fontSize: '12px',
+            color:'#515151'
           }}
 
           onClick={() => {
@@ -430,6 +435,7 @@ class PrimarySearchAppBar extends React.Component {
             // marginTop: "10px",
             // fontSize: "16px",
             fontFamily: "Helvetica",
+            color:'#515151',
             fontSize: '12px'
           }}
         >
