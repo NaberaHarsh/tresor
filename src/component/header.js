@@ -359,7 +359,7 @@ class PrimarySearchAppBar extends React.Component {
 
                 <Link href="/cart">
         <p
-        style={{marginTop:'4px'}}
+        style={{marginTop:'2px'}}
         >
               <IconButton aria-label="cart">
 
@@ -382,7 +382,8 @@ class PrimarySearchAppBar extends React.Component {
           
             fontFamily: "Helvetica",
             color:'#515151',
-            fontSize: '12px'
+            fontSize: '12px',
+            marginTop:'18px'
           }}
         >
         <span className="vertical-align-super">Welcome! {getLoginData().name}</span>

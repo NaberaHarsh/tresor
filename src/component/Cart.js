@@ -56,7 +56,7 @@ class Cart extends Component{
 
 <Grid md={6} lg={6} sm={6} xs={6} >
 
-<center><img class="img-fluid" src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ9W-NPX6OPelnr9ezxXuPeTWzrbuZtj_xxf_Wg9AGcFbLgZRSa' style={{maxHeight:280, maxWidth:280, padding:'30px', height:'auto', width:'100%'}}  /></center>
+<center><img class="img-fluid" src='https://cdn.shopify.com/s/files/1/0789/0141/products/D7302TZ_1024x1024.png?v=1541094254' style={{maxHeight:280, maxWidth:280, padding:'30px', height:'auto', width:'100%'}}  /></center>
 
 </Grid>
 <Grid  md={6} lg={6} sm={6} xs={6} container space={2} >
