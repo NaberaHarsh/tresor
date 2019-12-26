@@ -383,7 +383,7 @@ class PrimarySearchAppBar extends React.Component {
             fontFamily: "Helvetica",
             color:'#515151',
             fontSize: '12px',
-            marginTop:'18px'
+            marginTop:'16px'
           }}
         >
         <span className="vertical-align-super">Welcome! {getLoginData().name}</span>
