@@ -9,6 +9,7 @@ import Forgot from '../component/Forgot';
 import ResetPassword from '../component/ResetPassword';
 import {PrivateRoute} from '../utils/PrivateRoute';
 import Header from '../component/header';
+import Cart from '../component/Cart'
 
 
 class Routes extends Component {
@@ -52,6 +53,8 @@ class Routes extends Component {
           />} />
           <PrivateRoute path='/details/:id' component={Details} />
            <Route path="/register" exact component={Register} />
+                      <Route path="/cart" exact component={Cart} />
+
           <Route 
           path="/login" 
            exact 

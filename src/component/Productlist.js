@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import { Paper, Button, Container, Grid } from "@material-ui/core";
+import { Paper, Button, Container, Grid,Link } from "@material-ui/core";
 import callApi from "../utils/callApi";
 import APIUrl from "../utils/APIUrl";
 import { Redirect } from "react-router-dom";
@@ -157,8 +157,15 @@ class ProductList extends Component {
                         </Typography>
                       </div>
 
-
-                      <Button
+<Grid container spacing={24}> 
+<Grid 
+                   
+                    xs={12}
+                    sm={12}
+                    md={6}
+                    lg={6}
+       > 
+               <Button
                         onClick={() => this.viewDetails(`${data.product_id}`)}
                         style={{ width: "100%", backgroundColor: "black", color: 'white' }}
                         variant="contained"
@@ -166,7 +173,30 @@ class ProductList extends Component {
                       >
                         View Details
                         </Button>
+                        </Grid>
+                        
+                        <Grid 
+                     xs={12}
+                    sm={12}
+                    md={6}
+                    lg={6}
+       > 
+       <Link href='/cart'> <div>
+                  <Button
 
+                        style={{ width: "100%", backgroundColor: "black", color: 'white' }}
+                        variant="contained"
+
+                      >
+                         
+                         Add To Cart                    
+                          
+
+                        </Button>
+                        </div>
+                        </Link>
+                        </Grid>  
+                        </Grid>
                     </Paper>
                   </Grid>
                 ))}{" "}

@@ -1,0 +1,59 @@
+<div style={{textAlign:"center"}}>
+                <br /><br />
+            <Table responsive="xs" style={{paddingLeft:90}}>
+                <thead>
+                  <tr>
+                    <th style={{paddingLeft:65, paddingRight:65}}>Item</th>
+                    <th style={{paddingLeft:65, paddingRight:65}}>Name</th>
+                    <th style={{paddingLeft:65, paddingRight:65}}>Price</th>
+                    <th style={{paddingLeft:65, paddingRight:65}}>Quantity</th>
+                    <th></th>
+                     </tr>
+                    </thead>
+    
+                    {/* {this.props.db.cart.map((item,i)=> */}
+          
+    
+                      <tr>
+                  
+                  <td>
+                    {/* <Link to='/item1/'><img src={`/${item.image}`} id="hh" onClick={()=> this.props.itemDetail(item)}></img></Link> */}
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ9W-NPX6OPelnr9ezxXuPeTWzrbuZtj_xxf_Wg9AGcFbLgZRSa" style={{height:150, width:150}} />
+                    </td>
+                  <td>
+                      {/* {item.name} */}
+                      <h6 style={{paddingLeft:65, paddingRight:65}}>Pendant</h6>
+                      
+                      <p style={{paddingLeft:65, paddingRight:65, textAlign:"center"}}>Sample information about this pendant</p>
+                      </td>
+                  <td style={{color:"darkred"}}>
+                      {/* {item.price} */}
+                      <h6 style={{paddingLeft:65, paddingRight:65}}>sample price</h6>
+                      </td>
+                  <td>
+                      <form style={{paddingLeft:65, paddingRight:65}}>
+                    <select >
+                      
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option></select>
+                    </form>
+                    </td>
+                    
+                    <td style={{paddingLeft:65, paddingRight:65}}><Link to="/cart"><DeleteIcon /></Link></td>
+                  
+                </tr>
+                      
+                 
+                 </Table> 
+                 <h2 >Total : "price"</h2>
+    <br></br>
+     
+     <Button variant="contained"> 
+    Proceed To Checkout
+     </Button>
+     <br />
+     <br />
+                 </div>

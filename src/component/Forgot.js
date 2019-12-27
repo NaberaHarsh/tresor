@@ -55,23 +55,24 @@ class ForgotPassword extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const { email } = this.state;
-    const userdata = { email };
+    const userdata = { email:email };
+    console.log(userdata);
+    console.log(email);
 
     // convert json to form data with '&' seprater
-    // const data = Object.keys(userdata)
-    //   .map(key => {
-    //     return (
-    //       encodeURIComponent(key) + "=" + encodeURIComponent(userdata[key])
-    //     );
-    //   })
-    //   .join("&");
+    const data = Object.keys(userdata)
+      .map(key => {
+        return (
+          encodeURIComponent(key) + "=" + encodeURIComponent(userdata[key])
+        );
+      })
+      .join("&");
     const requestOptions = {
-      method: "POST",
+      method: 'POST',
       url: APIUrl.url.ForgotPassword,
-      data: userdata,
+      data: data,
 
     };
-    
 
     axios(requestOptions)
       .then(response => {
