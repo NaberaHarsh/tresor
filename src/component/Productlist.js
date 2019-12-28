@@ -167,11 +167,11 @@ class ProductList extends Component {
        > 
                <Button
                         onClick={() => this.viewDetails(`${data.product_id}`)}
-                        style={{ width: "100%", backgroundColor: "black", color: 'white' }}
+                        style={{ width: "98%", backgroundColor: "black", color: 'white' ,border:"solid white 0.5px" }}
                         variant="contained"
 
                       >
-                        View Details
+                        View Detail
                         </Button>
                         </Grid>
                         
@@ -184,7 +184,7 @@ class ProductList extends Component {
        <Link href='/cart'> <div>
                   <Button
 
-                        style={{ width: "100%", backgroundColor: "black", color: 'white' }}
+                        style={{ width: "98%", backgroundColor: "black", color: 'white', border:'solid white 0.5px' }}
                         variant="contained"
 
                       >
