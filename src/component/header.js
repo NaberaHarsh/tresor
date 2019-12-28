@@ -41,6 +41,8 @@ const StyledBadge = withStyles(theme => ({
 
 
 
+
+
 const drawerWidth = "100%";
 const styles = theme => ({
   root: {
@@ -233,20 +235,6 @@ class PrimarySearchAppBar extends React.Component {
       >
         <br />
 
-<MenuItem style={{paddingLeft:'4px'}}>
-        <Link href="/cart">
-          
-        <IconButton aria-label="cart">
-      <StyledBadge badgeContent={4} color="primary">
-        <ShoppingCartIcon style={{
-          color:'#5151151', paddingLeft:'4px'
-        }} />
-      </StyledBadge>
-    </IconButton>
-          
-        </Link>
-      </MenuItem>
-      
 
         {
           isLogin() ? 
@@ -313,6 +301,7 @@ class PrimarySearchAppBar extends React.Component {
                 >
                   <DehazeIcon />
                 </IconButton>
+                
               </div>
               <Link href="/">
                 <img
@@ -328,12 +317,13 @@ class PrimarySearchAppBar extends React.Component {
                 />{" "}
               </Link>
 
+              
+
               <div className={classes.grow} />
               <div
                 style={{ marginRight: "10px" }}
                 className={classes.sectionDesktop}
               >
-<center>
                 <div
                   style={{ backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto", textAlign:"center", marginRight:'150px' }}
                   className={classes.search}
@@ -356,7 +346,7 @@ class PrimarySearchAppBar extends React.Component {
                     }}
                   />
                 </div>
-                </center>
+                
                 
 
                 <Link href="/cart">
@@ -452,13 +442,21 @@ class PrimarySearchAppBar extends React.Component {
               
               </div>
 
-              <div className={classes.sectionMobile}>
-                <SearchIcon
-                  style={{ marginBottom: "5px", marginRight: "35px" }}
+              <div className={classes.sectionMobile} style={{ display:'inline'}}>
+                <SearchIcon  
+
+                  style={{ display:'inline' }}
                   color="inherit"
                   aria-label="Open drawer"
                   onClick={this.handleDrawerOpen}
-                />
+                />                
+<div className={classes.sectionMobile} style={{display:'inline'}}>
+
+<StyledBadge badgeContent={4} color="primary">
+  <ShoppingCartIcon style={{ color:'#515151',display:'inline'}}     
+/>
+</StyledBadge>
+      </div>
               </div>
             </Toolbar>
           </AppBar>
