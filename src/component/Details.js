@@ -124,7 +124,7 @@ class Details extends Component {
       </h6>
     </div>
     <br />
-    <center><Link href="/cart"><Button variant="contained"  style={{textAlign:"center"}}>Add to Cart</Button></Link></center>
+    <center><Link href="/cart"><Button variant="contained"  style={{textAlign:"center", backgroundColor:'black', color:'white'}}>Add to Cart</Button></Link></center>
 
               </Grid>
             </Grid>

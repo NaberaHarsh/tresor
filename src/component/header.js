@@ -443,21 +443,17 @@ class PrimarySearchAppBar extends React.Component {
               
               </div>
 
-              <div className={classes.sectionMobile} style={{ display:'inline'}}>
+              <div className={classes.sectionMobile}>
                 <SearchIcon  
 
-                  style={{ display:'inline' }}
+                  style={{ display:'inline',paddingLeft:'0px', paddingRight:'0px', marginRight:'0px' }}
                   color="inherit"
                   aria-label="Open drawer"
                   onClick={this.handleDrawerOpen}
-                />                
-<div className={classes.sectionMobile} style={{display:'inline'}}>
-
-<StyledBadge badgeContent={4} color="primary">
-  <ShoppingCartIcon style={{ color:'#515151',display:'inline'}}     
-/>
-</StyledBadge>
-      </div>
+                />    
+      {/* <StyledBadge badgeContent={4} color="primary">
+        <ShoppingCartIcon style={{ color:'#515151', paddingLeft:'0px',marginRight:'0px'}}/>
+      </StyledBadge> */}
               </div>
             </Toolbar>
           </AppBar>
