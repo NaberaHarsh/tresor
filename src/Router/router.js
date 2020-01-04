@@ -69,7 +69,7 @@ class Routes extends Component {
       <BrowserRouter>
       <Header
       category={this.props.category}
-      
+      db={this.state.db}
      /> 
       <Switch>
           <Route 

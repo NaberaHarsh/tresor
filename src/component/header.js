@@ -305,9 +305,9 @@ class PrimarySearchAppBar extends React.Component {
                 <img
                   style={{
                     height: "56px",
-                    marginLeft: "30px",
+                    marginLeft: "20px",
                     marginTop: "5px",
-                    marginRight: "11px",
+                    marginRight: "24px",
                     marginBottom: "4px"
                   }}
                   src="/logo.jpg"
@@ -353,7 +353,7 @@ class PrimarySearchAppBar extends React.Component {
         >
               <IconButton aria-label="cart">
 
-      <StyledBadge badgeContent={4} color="primary">
+      <StyledBadge badgeContent={this.props.db.Cart.length} color="primary">
         <ShoppingCartIcon style={{ color:'#515151'}}/>
       </StyledBadge>
     </IconButton>
@@ -445,15 +445,16 @@ class PrimarySearchAppBar extends React.Component {
 
               <div className={classes.sectionMobile}>
                 <SearchIcon  
-
-                  style={{ display:'inline',paddingLeft:'0px', paddingRight:'0px', marginRight:'0px' }}
+                  style={{ position:'relative',display:'inline',marginLeft:'0px',paddingLeft:'0px', paddingRight:'0px', height:'40px', width:'40px' }}
                   color="inherit"
                   aria-label="Open drawer"
                   onClick={this.handleDrawerOpen}
-                />    
-      {/* <StyledBadge badgeContent={4} color="primary">
-        <ShoppingCartIcon style={{ color:'#515151', paddingLeft:'0px',marginRight:'0px'}}/>
-      </StyledBadge> */}
+                /> 
+                   
+      <StyledBadge badgeContent={this.props.db.Cart.length} color="primary" style={{display:'inline'}}>
+      <Link href='/cart'><ShoppingCartIcon style={{ display:'inline',color:'black', paddingRight:'8px',marginLeft:"0px",marginRight:'0px',  height:'40px', width:'40px'}}/></Link>
+      </StyledBadge>
+      
               </div>
             </Toolbar>
           </AppBar>

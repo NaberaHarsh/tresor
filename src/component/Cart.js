@@ -34,9 +34,24 @@ const styles = theme => ({
 class Cart extends Component{
   constructor(props){
       super(props)
-
+      this.state={
+        count:0
+      }
   }
 
+  componentDidMount() {
+    var counter1 = JSON.parse(localStorage.getItem("Cart"))
+    if (counter1 != this.state.count) {
+        this.setState({ count: counter1 })
+    }
+}
+
+componentDidUpdate() {
+    var counter1 = JSON.parse(localStorage.getItem("Cart"))
+    if (counter1 != this.state.count) {
+        this.setState({ count: counter1 })
+    }
+}
 
   change(action){
     let quantity=0;
@@ -56,40 +71,27 @@ class Cart extends Component{
 <hr />
   <p>Shopping Cart</p>
   <Grid container space={3}>
+    <Grid md={8} lg={8} container space={3}>
+    <hr />
   {this.props.db.Cart.map(p=>
 
-<Grid md={8} lg={8} sm={12} xs={12} container space={3} >
-  <hr />
+<Grid md={12} lg={12} sm={12} xs={12} container space={3} >
+  
 
 <Grid md={6} lg={6} sm={6} xs={6} >
 
-<center><img class="img-fluid" src={p.image} style={{maxHeight:280, maxWidth:280, height:'auto', width:'100%', border:"solid #515151 1px"}}  /></center>
+<center><img class="img-fluid" src={p.image} style={{maxHeight:120, maxWidth:120, height:'auto', width:'100%', border:"solid #515151 1px"}}  /></center>
 
 </Grid>
 <Grid  md={6} lg={6} sm={6} xs={6} container space={2} >
   <Grid md={6} lg={6} sm={12} xs={12} container space={2} style={{paddingLeft:'10px'}}>
       
-<div style={{fontWeight:'bold', textAlign:'center', color:'black', display:'inline' }}>{p.name} </div>
-  <div style={{display:'inline'}}>{p.desc}</div>
+  <div style={{fontWeight:'bold', textAlign:'center', color:'black'}}>{p.name}</div>
+  <div></div>
 <Grid md={6} lg={6} sm={8} xs={8}>
-{/* <div class="input-group plus-minus-input" style={{display:'inline'}}>
+
 <form>
-<div class="input-group-button" style={{display:'inline'}}>
-  <button type="button" class="button hollow circle" data-action="minus" data-field="quantity" style={{display:'inline'}} onClick={this.change(data-action)}>
-    
-    <i class="fa fa-minus" aria-hidden="true"></i>
-  </button>
-</div>
-<input class="input-group-field" type="text" name="quantity" value="0" size="1" style={{display:'inline', textAlign:'center'}} onChange={(e)=>{this.props.changeQuantity(p,e)}}  >{this.props.change}</input>
-<div class="input-group-button" style={{display:'inline'}}>
- <button type="button" class="button hollow circle" data-action="plus" data-field="quantity" style={{display:'inline'}} onClick={this.change(data-action)}>
- <i class="fa fa-plus" aria-hidden="true"></i>
- </button> 
-</div>
-</form>
-</div> */}
-<form>
-                <select onChange={(e)=>{this.props.changeQuantity(p,e)}}>
+                <select style={{ width:'40px'}} onChange={(e)=>{this.props.changeQuantity(p,e)}}>
                   
                 <option>1</option>
                 <option>2</option>
@@ -104,24 +106,24 @@ class Cart extends Component{
 </Grid>
 </Grid>
 <Grid md={6} lg={6} sm={12} xs={12}>
-  <h6 style={{ textAlign:'center', color:'black'}}>{p.price}/- Rs. </h6>
+  <div style={{ fontWeight:'bold', textAlign:'center', color:'black'}}>{p.price}/- Rs. </div>
   </Grid>
 </Grid>
 
 <hr />
 
 
-
 </Grid>)}
+</Grid>
 
 <Grid md={4} lg={4} sm={12} xs={12} >
   
   <div style={{ padding:'20px', paddingTop:'8px'}}>
 <div style={{border:'solid goldenrod 1px', textAlign:'center'}}>
             
-  <h2 style={{ paddingTop:'15px', textAlign:'center'}}>Checkout</h2>
+  <h2 style={{paddingTop:'4px', textAlign:'center'}}>Checkout</h2>
   <h6 style={{color:'black'}}>SubTotal: {this.props.db.Cart.reduce((sum,p)=>sum+p.price*p.quantity,0)}</h6>
-  <br />
+  
   <Button variant="contained" style={{backgroundColor:'black', color:'white'}}>Proceed To Buy</Button> 
    <br /><br />
    </div>
@@ -131,8 +133,7 @@ class Cart extends Component{
 </Grid>
 
   </Grid>
-
-
+{console.log(this.props.db.Cart.length)}
 </div>
 
       )
