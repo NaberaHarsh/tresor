@@ -15,16 +15,59 @@ import Cart from '../component/Cart'
 class Routes extends Component {
   constructor(props) {
     super(props);
+
+
     this.state = {
       banner:[],
       shows:[],
-      refreshHead : true
+      refreshHead : true,
+      cart : []
     }
 
+    
 
     
   }
 
+  changeQuantity(p,e){
+    let db = this.state.db;
+    let i = db.Cart.indexOf(p)
+     db.Cart[i].quantity = parseInt(e.target.value); 
+    this.setState(
+      {db:db}
+    )
+    console.log(db);
+  }
+
+
+  addToCart(productDetail){
+
+    console.log("add to cart" , productDetail);
+   
+    this.state.cart.map(item => {
+
+    });
+
+
+    let isAvail = this.state.cart.filter(item => item.productId === productDetail.detail.product_id);
+
+    if(isAvail.length > 0){
+
+    }else{
+      let updateCart = this.state.cart;
+
+      updateCart.push({
+        productId: productDetail.detail.product_id,
+        quantity: 1,
+        detail : productDetail,
+        name : productDetail.detail.name,
+        price : productDetail.detail.price,
+
+      })
+      
+      this.setState({cart: updateCart});
+    }
+  }
 
   render() {
     
@@ -33,7 +76,7 @@ class Routes extends Component {
       <BrowserRouter>
       <Header
       category={this.props.category}
-      
+      cartItemCount={this.state.cart.length}
      /> 
       <Switch>
           <Route 
@@ -51,9 +94,16 @@ class Routes extends Component {
           component={Product}
           data = {this.props}
           />} />
-          <PrivateRoute path='/details/:id' component={Details} />
+          <PrivateRoute path='/details/:id' 
+          component={Details}
+          addToCart={this.addToCart.bind(this)}
+          />
            <Route path="/register" exact component={Register} />
-                      <Route path="/cart" exact component={Cart} />
+                      <Route path="/cart" exact 
+                      render={()=> 
+                      <Cart cart={this.state.cart} 
+                      changeQuantity={this.changeQuantity.bind(this)}  
+                      /> } />
 
           <Route 
           path="/login" 

@@ -19,6 +19,8 @@ class App extends Component {
       payload: {},
       loading:true
     };
+
+    
   }
 
 

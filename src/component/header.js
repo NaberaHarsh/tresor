@@ -307,9 +307,9 @@ class PrimarySearchAppBar extends React.Component {
                 <img
                   style={{
                     height: "56px",
-                    marginLeft: "30px",
+                    marginLeft: "20px",
                     marginTop: "5px",
-                    marginRight: "11px",
+                    marginRight: "24px",
                     marginBottom: "4px"
                   }}
                   src="/logo.jpg"
@@ -355,7 +355,7 @@ class PrimarySearchAppBar extends React.Component {
         >
               <IconButton aria-label="cart">
 
-      <StyledBadge badgeContent={4} color="primary">
+      <StyledBadge badgeContent={this.props.cartItemCount} color="primary">
         <ShoppingCartIcon style={{ color:'#515151'}}/>
       </StyledBadge>
     </IconButton>
@@ -442,21 +442,18 @@ class PrimarySearchAppBar extends React.Component {
               
               </div>
 
-              <div className={classes.sectionMobile} style={{ display:'inline'}}>
+              <div className={classes.sectionMobile}>
                 <SearchIcon  
-
-                  style={{ display:'inline' }}
+                  style={{ position:'relative',display:'inline',marginLeft:'0px',paddingLeft:'0px', paddingRight:'0px', height:'40px', width:'40px' }}
                   color="inherit"
                   aria-label="Open drawer"
                   onClick={this.handleDrawerOpen}
-                />                
-<div className={classes.sectionMobile} style={{display:'inline'}}>
-
-<StyledBadge badgeContent={4} color="primary">
-  <ShoppingCartIcon style={{ color:'#515151',display:'inline'}}     
-/>
-</StyledBadge>
-      </div>
+                /> 
+                   
+      <StyledBadge badgeContent={this.props.cartItemCount} color="primary" style={{display:'inline'}}>
+      <Link href='/cart'><ShoppingCartIcon style={{ display:'inline',color:'black', paddingRight:'8px',marginLeft:"0px",marginRight:'0px',  height:'40px', width:'40px'}}/></Link>
+      </StyledBadge>
+      
               </div>
             </Toolbar>
           </AppBar>
