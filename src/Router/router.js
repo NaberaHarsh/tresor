@@ -96,8 +96,8 @@ class Routes extends Component {
           />} />
           <PrivateRoute path='/details/:id' 
           component={Details}
-          addToCart={this.addToCart.bind(this)}
-          />
+                                addToCart={this.addToCart.bind(this)}
+ />
            <Route path="/register" exact component={Register} />
                       <Route path="/cart" exact 
                       render={()=> 
