@@ -25,7 +25,8 @@ import callApi from "../utils/callApi";
 import { login, isLogin, logout, getLoginData } from '../utils/session';
 import { Redirect, withRouter } from "react-router-dom";
 import Badge from '@material-ui/core/Badge';
-
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 const StyledBadge = withStyles(theme => ({
@@ -190,6 +191,7 @@ class PrimarySearchAppBar extends React.Component {
     this.props.onSearch(this.query.value);
     e.currentTarget.reset();
   };
+  
   handleProfileMenuOpen = event => {
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -240,15 +242,16 @@ class PrimarySearchAppBar extends React.Component {
           isLogin() ? 
 
           <MenuItem>
-               Welcome! {getLoginData().name}
+              <span style={{color:'black'}}> Welcome! {getLoginData().name}</span>
         </MenuItem> 
         :
 
         <MenuItem>
-          <Link href="/Login">
-            <PersonIcon />
-            <span>Login</span>
-          </Link>
+           <Link href="Login">
+        <IconButton aria-label="show 17 new notifications" color="inherit">
+          <PersonIcon style={{color:'black'}} />
+        </IconButton>
+        </Link>
         </MenuItem> 
 
        } 
@@ -257,20 +260,30 @@ class PrimarySearchAppBar extends React.Component {
        {
           isLogin() ? 
 
-          <MenuItem  onClick={() => {
+          <MenuItem 
+          style={{paddingLeft:'0px'}}
+          onClick={() => {
             logout();
               this.setState({logout:true});
            
           }}> 
-            <PersonIcon />
-            <span>Logout</span>
+            <IconButton aria-label="show 17 new notifications" color="inherit">
+            <Tooltip title="Signout">
+<PowerSettingsNewIcon style={{color:'black', marginLeft:"0px"}} />
+</Tooltip>
+<span style={{   fontFamily: "Helvetica",
+            color:'black',
+            fontSize: '16px'
+            }}>Signout</span>
+        </IconButton>
          </MenuItem> 
         :
         
         <MenuItem>
         <Link href="/Register">
-          <PersonAddIcon />
-          <span>Register</span>
+        <IconButton aria-label="show 17 new notifications" color="inherit">
+          <PersonAddIcon style={{color:'black'}} />
+          </IconButton>
         </Link>
       </MenuItem>
 
@@ -325,7 +338,7 @@ class PrimarySearchAppBar extends React.Component {
                 className={classes.sectionDesktop}
               >
                 <div
-                  style={{ backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto", textAlign:"center", marginRight:'150px' }}
+                  style={{ alignItems:'center', backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto", textAlign:"center", marginRight:'180px' }}
                   className={classes.search}
                 >
                   <div style={{marginTop:"4px"}} className={classes.searchIcon}>
@@ -350,17 +363,13 @@ class PrimarySearchAppBar extends React.Component {
                 
 
                 <Link href="/cart">
-        <p
-        style={{marginTop:'2px'}}
-        >
-              <IconButton aria-label="cart">
-
-      <StyledBadge badgeContent={this.props.cartItemCount} color="primary">
-        <ShoppingCartIcon style={{ color:'#515151'}}/>
-      </StyledBadge>
-    </IconButton>
-          
-        </p>
+                <IconButton aria-label="show 4 new mails" color="inherit">
+                <StyledBadge badgeContent={this.props.cartItemCount} color="primary" style={{display:'inline'}}>
+                <Tooltip title="My Cart">
+                <ShoppingCartIcon  style={{color:'black'}} />
+                </Tooltip>
+              </StyledBadge>
+            </IconButton>
       </Link>
 
                 
@@ -368,7 +377,7 @@ class PrimarySearchAppBar extends React.Component {
              
                 {
           isLogin() ? 
-
+          <Tooltip title="You are logged in">
           <p
           style={{
           
@@ -378,22 +387,19 @@ class PrimarySearchAppBar extends React.Component {
             marginTop:'16px'
           }}
         >
-        <span className="vertical-align-super">Welcome! {getLoginData().name}</span>
+        <span className="vertical-align-super" style={{color:'black'}}>Welcome! {getLoginData().name}</span>
         </p>
+        </Tooltip>
         :
 
 
-        <Link href="/Login">
-        <p
-          style={{
-            color : '#515151',
-            fontFamily: "Helvetica",
-            marginRight : '12px'
-
-          }}
-        >
-          <span className="vertical-align-super">LOGIN</span>
-        </p>
+        
+         <Link href="Login">
+        <IconButton aria-label="show 17 new notifications" color="inherit">
+        <Tooltip title="Login">
+ <PersonIcon style={{color:'black'}} />
+ </Tooltip>
+        </IconButton>
       </Link>
 
 
@@ -402,37 +408,33 @@ class PrimarySearchAppBar extends React.Component {
 {
           isLogin() ? 
 
-          <p
-          style={{
           
-            fontFamily: "Helvetica",
-            fontSize: '12px',
-            color:'#515151'
-          }}
-
+<div
           onClick={() => {
             logout();
               this.setState({logout:true});
            
           }}
         >
-          <span className="vertical-align-super">LOGOUT</span>
-        </p>
+<IconButton aria-label="show 17 new notifications" color="inherit">
+<Tooltip title="Signout">
+          <PowerSettingsNewIcon style={{color:'black'}} />
+          </Tooltip>
+        </IconButton>        </div>
         :
 
         <Link href="/Register">
-        <p
-          style={{
-            // marginTop: "10px",
-            // fontSize: "16px",
-            fontFamily: "Helvetica",
-            color:'#515151',
-            fontSize: '12px'
-          }}
-        >
-          <span className="vertical-align-super">REGISTER</span>
-        </p>
-      </Link>
+            <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-haspopup="true"
+              color="inherit"
+            >
+          <Tooltip title="Register">
+          <PersonAddIcon style={{color:'black'}} />
+          </Tooltip>
+            </IconButton>
+            </Link>
 
 
        } 
@@ -449,10 +451,13 @@ class PrimarySearchAppBar extends React.Component {
                   aria-label="Open drawer"
                   onClick={this.handleDrawerOpen}
                 /> 
-                   
-      <StyledBadge badgeContent={this.props.cartItemCount} color="primary" style={{display:'inline'}}>
-      <Link href='/cart'><ShoppingCartIcon style={{ display:'inline',color:'black', paddingRight:'8px',marginLeft:"0px",marginRight:'0px',  height:'40px', width:'40px'}}/></Link>
-      </StyledBadge>
+          <Link href='/cart'>         
+      <StyledBadge badgeContent={this.props.cartItemCount} color="primary">
+               <Tooltip title="My Cart">
+                <ShoppingCartIcon style={{ display:'inline',color:'black', paddingRight:'8px',marginLeft:"0px",marginRight:'0px',  height:'40px', width:'40px'}} />
+                </Tooltip>
+              </StyledBadge>
+            </Link>
       
               </div>
             </Toolbar>

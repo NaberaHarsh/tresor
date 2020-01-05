@@ -9,7 +9,8 @@ import Forgot from '../component/Forgot';
 import ResetPassword from '../component/ResetPassword';
 import {PrivateRoute} from '../utils/PrivateRoute';
 import Header from '../component/header';
-import Cart from '../component/Cart'
+import Cart from '../component/Cart';
+
 
 
 class Routes extends Component {
@@ -22,12 +23,14 @@ class Routes extends Component {
       shows:[],
       refreshHead : true,
       cart : []
-    }
+        }
 
     
 
     
   }
+
+ 
 
   changeQuantity(p,e){
     let db = this.state.db;
@@ -38,6 +41,7 @@ class Routes extends Component {
     )
     console.log(db);
   }
+
 
 
   addToCart(productDetail){
@@ -71,6 +75,7 @@ class Routes extends Component {
 
   render() {
     
+    const {  category } = this.state;
 
     return (
       <BrowserRouter>
@@ -78,6 +83,8 @@ class Routes extends Component {
       category={this.props.category}
       cartItemCount={this.state.cart.length}
      /> 
+     
+
       <Switch>
           <Route 
                 path="/" 

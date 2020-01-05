@@ -1,0 +1,327 @@
+import React, { Component }from 'react';
+import { fade, makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import InputBase from '@material-ui/core/InputBase';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from '@material-ui/icons/Search';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import PersonIcon from '@material-ui/icons/Person';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import Link from "@material-ui/core/Link";
+import { login, isLogin, logout, getLoginData } from '../utils/session';
+import { Redirect, withRouter } from "react-router-dom";
+
+
+
+const useStyles = makeStyles(theme => ({
+  grow: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    display: 'none',
+    [theme.breakpoints.up('sm')]: {
+      display: 'block',
+    },
+  },
+  search: {
+    position: 'relative',
+    borderRadius: theme.shape.borderRadius,
+    backgroundColor: fade(theme.palette.common.white, 0.15),
+    '&:hover': {
+      backgroundColor: fade(theme.palette.common.white, 0.25),
+    },
+    marginRight: theme.spacing(2),
+    marginLeft: 0,
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: theme.spacing(3),
+      width: 'auto',
+    },
+  },
+  searchIcon: {
+    width: theme.spacing(7),
+    height: '100%',
+    position: 'absolute',
+    pointerEvents: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  inputRoot: {
+    color: 'inherit',
+  },
+  inputInput: {
+    padding: theme.spacing(1, 1, 1, 7),
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 200,
+    },
+  },
+  sectionDesktop: {
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+    },
+  },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
+}));
+
+class PrimarySearchAppBar extends Component {
+  constructor(props) {
+  super(props);
+  this.state = {
+    anchorEl: null,
+    mobileMoreAnchorEl: null,
+    category: [],
+    subCategoryList: [],
+    search: [],
+    loading: true,
+    searchText: "",
+    logout: false
+  };
+  
+  }
+  // const [signout,logout]= useState(false);
+
+
+   classes = useStyles();
+   render() {
+    let a = 0;
+    const { mobileMoreAnchorEl,search } = this.state;
+    const { classes } = this.props;
+    // const isMenuOpen = Boolean(anchorEl);
+    const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+    const { open, category, searchText } = this.state;
+
+
+
+  //  [anchorEl, setAnchorEl] = React.useState(null);
+  // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+//   const isMenuOpen = Boolean(anchorEl);
+// const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+const handleProfileMenuOpen = event => {
+  this.setState({ anchorEl: event.currentTarget });
+};
+
+const handleMobileMenuClose = () => {
+  this.setState({ mobileMoreAnchorEl: null });
+};
+
+  const handleMenuClose = () => {
+    this.setState({ anchorEl: null });
+    handleMobileMenuClose();
+  };
+
+  const handleMobileMenuOpen = event => {
+    this.setState({ mobileMoreAnchorEl: event.currentTarget });
+  };
+
+  const menuId = 'primary-search-account-menu';
+  // const renderMenu = (
+  //   <Menu
+  //     anchorEl={anchorEl}
+  //     anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     id={menuId}
+  //     keepMounted
+  //     transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+  //     open={isMenuOpen}
+  //     onClose={handleMenuClose}
+  //   >
+  //     <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+  //     <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+  //   </Menu>
+  // );
+
+  const mobileMenuId = 'primary-search-account-menu-mobile';
+   const renderMobileMenu = (
+    <Menu
+      anchorEl={mobileMoreAnchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={mobileMenuId}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMobileMenuOpen}
+      onClose={handleMobileMenuClose}
+    >
+      <MenuItem>
+        <IconButton aria-label="show 4 new mails" color="inherit">
+          <Badge badgeContent={this.props.cartItemCount} color="primary">
+            <ShoppingCartIcon />
+          </Badge>
+        </IconButton>
+      </MenuItem>
+      <MenuItem>
+        <IconButton aria-label="show 11 new notifications" color="inherit">
+            <PersonIcon />
+        </IconButton>
+      </MenuItem>
+      <MenuItem onClick={handleProfileMenuOpen}>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
+        >
+          <PersonAddIcon />
+        </IconButton>
+      </MenuItem>
+    </Menu>
+  );
+
+  if (this.state.logout === true) {
+
+    this.setState({logout : false});
+    return <Redirect to='/' />
+  }
+
+
+  return (
+    <div className={classes.grow}>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="open drawer"
+          >
+            {/* <MenuIcon /> */}
+          </IconButton>
+          <Typography className={classes.title} variant="h6" noWrap>
+          <Link href="/">
+                <img
+                  style={{
+                    height: "52px",
+                    marginLeft: "20px",
+                    marginRight: "24px",
+                  }}
+                  src="/logo.jpg"
+                  alt=""
+                />{" "}
+              </Link>
+          </Typography>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </div>
+          <div className={classes.grow} />
+          <div className={classes.sectionDesktop}>
+            <Link href="/cart">
+            <IconButton aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={this.props.cartItemCount} color="primary">
+                <ShoppingCartIcon style={{color:'black'}} />
+              </Badge>
+            </IconButton>
+            </Link>
+
+
+            {
+            isLogin() ? 
+
+          <div
+          style={{
+          
+            fontFamily: "Helvetica",
+            color:'black',
+            fontSize: '12px',
+            marginTop:'16px'
+          }}
+        >
+        <span className="vertical-align-super">Welcome! {getLoginData().name}</span>
+        </div>
+        :
+
+
+       
+        <Link href="Login">
+        <IconButton aria-label="show 17 new notifications" color="inherit">
+          <PersonIcon style={{color:'black'}} />
+        </IconButton>
+        </Link>
+
+
+       } 
+
+{
+          isLogin() ? 
+          <div
+          onClick={()=>
+          logout({signout:'true'})}            
+          >
+<IconButton aria-label="show 17 new notifications" color="inherit">
+          <PowerSettingsNewIcon style={{color:'black'}} />
+        </IconButton>
+        
+        </div>
+        :
+
+
+            <Link href="/Register">
+            <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+              onClick={handleProfileMenuOpen}
+              color="inherit"
+            >
+          <PersonAddIcon style={{color:'black'}} />
+            </IconButton>
+            </Link>
+}
+
+</div>
+          <div className={classes.sectionMobile}>
+            <IconButton
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="inherit"
+            >
+              <MoreIcon />
+            </IconButton>
+          </div>
+        </Toolbar>
+      </AppBar>
+      {renderMobileMenu}
+      {/* {renderMenu} */}
+    </div>
+  );
+}
+}
+
+
+
+export default (PrimarySearchAppBar);
