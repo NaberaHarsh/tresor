@@ -249,7 +249,11 @@ class PrimarySearchAppBar extends React.Component {
         <MenuItem>
            <Link href="Login">
         <IconButton aria-label="show 17 new notifications" color="inherit">
-          <PersonIcon style={{color:'black'}} />
+          <PersonIcon style={{color:'black', marginLeft:"0px"}} />
+          <span style={{   fontFamily: "Helvetica",
+            color:'black',
+            fontSize: '16px'
+            }}>Login</span>
         </IconButton>
         </Link>
         </MenuItem> 
@@ -282,7 +286,11 @@ class PrimarySearchAppBar extends React.Component {
         <MenuItem>
         <Link href="/Register">
         <IconButton aria-label="show 17 new notifications" color="inherit">
-          <PersonAddIcon style={{color:'black'}} />
+          <PersonAddIcon style={{color:'black', marginLeft:"0px"}} />
+          <span style={{   fontFamily: "Helvetica",
+            color:'black',
+            fontSize: '16px'
+            }}>Register</span>
           </IconButton>
         </Link>
       </MenuItem>
@@ -337,13 +345,14 @@ class PrimarySearchAppBar extends React.Component {
                 style={{ marginRight: "10px" }}
                 className={classes.sectionDesktop}
               >
+                
                 <div
-                  style={{ alignItems:'center', backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto", textAlign:"center", marginRight:'180px' }}
+                  style={{ alignItems:'center', backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto", textAlign:"center",marginRight:'180px',position:'relative'}}
                   className={classes.search}
                 >
-                  <div style={{marginTop:"4px"}} className={classes.searchIcon}>
+                  <div style={{marginTop:"2px"}} className={classes.searchIcon}>
                     
-                    <SearchIcon style={{marginTop:'5x'}}/>
+                    <SearchIcon style={{marginTop:'2px'}}/>
                      
                   </div>
                   <InputBase
@@ -363,13 +372,14 @@ class PrimarySearchAppBar extends React.Component {
                 
 
                 <Link href="/cart">
+                <Tooltip title="My Cart">
                 <IconButton aria-label="show 4 new mails" color="inherit">
                 <StyledBadge badgeContent={this.props.cartItemCount} color="primary" style={{display:'inline'}}>
-                <Tooltip title="My Cart">
                 <ShoppingCartIcon  style={{color:'black'}} />
-                </Tooltip>
               </StyledBadge>
             </IconButton>
+            </Tooltip>
+
       </Link>
 
                 
@@ -395,11 +405,12 @@ class PrimarySearchAppBar extends React.Component {
 
         
          <Link href="Login">
+                   <Tooltip title="Login">
         <IconButton aria-label="show 17 new notifications" color="inherit">
-        <Tooltip title="Login">
  <PersonIcon style={{color:'black'}} />
- </Tooltip>
         </IconButton>
+        </Tooltip>
+
       </Link>
 
 
@@ -416,24 +427,25 @@ class PrimarySearchAppBar extends React.Component {
            
           }}
         >
+          <Tooltip title="Signout">
 <IconButton aria-label="show 17 new notifications" color="inherit">
-<Tooltip title="Signout">
           <PowerSettingsNewIcon style={{color:'black'}} />
-          </Tooltip>
-        </IconButton>        </div>
+        </IconButton>
+                  </Tooltip>
+        </div>
         :
 
         <Link href="/Register">
+                     <Tooltip title="Register">
             <IconButton
               edge="end"
               aria-label="account of current user"
               aria-haspopup="true"
               color="inherit"
             >
-          <Tooltip title="Register">
           <PersonAddIcon style={{color:'black'}} />
-          </Tooltip>
             </IconButton>
+            </Tooltip>
             </Link>
 
 

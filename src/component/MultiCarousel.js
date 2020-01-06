@@ -44,7 +44,7 @@ class MultiCarousel extends Component {
       <div>
       <Container maxWidth="lg" className="card1">
         <Paper style={{ width: "100% ! important" }}>
-        <p style={{ padding: "20px",  color : "#515151" , fontWeight : '800', fontSize: '22px'}} >
+        <p style={{ padding: "20px",  color : "#515151" , fontWeight : '800', fontSize: '22px', textAlign:'center'}} >
           {"          Most Liked Products".toUpperCase()}
           </p>
           <div>

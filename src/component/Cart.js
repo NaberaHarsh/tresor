@@ -6,9 +6,11 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { Grid, Card, Table } from '@material-ui/core';
 import { TableHeader } from 'semantic-ui-react';
 import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';import { withStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
-import RemoveIcon from '@material-ui/icons/Remove';
+import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core/styles';
+import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 const styles = theme => ({
   '@global': {
@@ -17,16 +19,21 @@ const styles = theme => ({
     },
   },
   sectionDesktop: {
-    display: "none",
-    [theme.breakpoints.up("md")]: {
-      display: "flex"
-    }
+    display: "flex",
+    width:'100%',
+    flexDirection:'row'
   },
   sectionMobile: {
     display: "flex",
     [theme.breakpoints.up("md")]: {
       display: "none"
     }
+  },
+  root: {
+    width: "100%"
+  },
+  grow: {
+    flexGrow: 1
   }
 });
 
@@ -65,11 +72,14 @@ componentDidUpdate() {
   render(){
       const { classes } = this.props;
 
-
+if(this.props.cartItemCount>0){
       return(
+
+
 <div style={{padding:"10px"}}>
 <hr />
   <p>Shopping Cart</p>
+  
   <Grid container space={3}>
     <Grid md={8} lg={8} container space={3}>
     <hr />
@@ -78,20 +88,23 @@ componentDidUpdate() {
 <Grid md={12} lg={12} sm={12} xs={12} container space={3} >
   
 
-<Grid md={6} lg={6} sm={6} xs={6} >
+<Grid md={4} lg={4} sm={6} xs={6} >
 
 <center><img class="img-fluid" src={p.image} style={{maxHeight:120, maxWidth:120, height:'auto', width:'100%', border:"solid #515151 1px"}}  /></center>
 
 </Grid>
-<Grid  md={6} lg={6} sm={6} xs={6} container space={2} >
-  <Grid md={6} lg={6} sm={12} xs={12} container space={2} style={{paddingLeft:'10px'}}>
-      
-  <div style={{fontWeight:'bold', textAlign:'center', color:'black'}}>{p.name}</div>
-  <div></div>
-<Grid md={6} lg={6} sm={8} xs={8}>
+<Grid  md={8} lg={8} sm={6} xs={6} container space={2} >
+<Grid md={3} lg={3} sm={12} xs={12}>      
+  <div style={{fontWeight:'bold', textAlign:'center',color:'black', display:'block',fontSize:'18px'}}>{p.name}</div>
+  </Grid>
+  <Grid md={3} lg={3} sm={12} xs={12}>
+  <div style={{ fontWeight:'bold', textAlign:'center', color:'black',fontSize:'18px'}}>{p.price}/- Rs. </div>
+  </Grid>
+  
+    <Grid md={3} lg={3} sm={8} xs={8}  style={{textAlign:'center'}}>
 
-<form>
-                <select style={{ width:'40px'}} onChange={(e)=>{this.props.changeQuantity(p,e)}}>
+<form >
+                <select style={{ width:'40px',height:'20px'}} onChange={(e)=>{this.props.changeQuantity(p,e)}}>
                   
                 <option>1</option>
                 <option>2</option>
@@ -101,13 +114,14 @@ componentDidUpdate() {
 
 
                   </Grid>
-                  <Grid md={6} lg={6} sm={4} xs={4}>
-                  <DeleteIcon />
+                  <Grid md={3} lg={3} sm={4} xs={4}>
+                    <Tooltip title="Delete">
+                    <DeleteIcon style={{alignItems:'center',height:'40px', width:'40px'}}/>
+                    </Tooltip>
+
 </Grid>
-</Grid>
-<Grid md={6} lg={6} sm={12} xs={12}>
-  <div style={{ fontWeight:'bold', textAlign:'center', color:'black'}}>{p.price}/- Rs. </div>
-  </Grid>
+
+
 </Grid>
 
 <hr />
@@ -133,10 +147,20 @@ componentDidUpdate() {
 </Grid>
 
   </Grid>
-{console.log(this.props.cart.length)}
 </div>
 
-      )
+  )
+  }
+  else{
+    return(
+      <div style={{alignItems:'center',textAlign:'center', paddingTop:'100px', paddingBottom:'80px' }}>
+        <div>
+       < RemoveShoppingCartIcon style={{ color:'grey', height:'100px ', width:'100%' }} />
+       </div><br />
+       <div style={{ color:'grey', fontSize:'24px'}}>There is nothing to show in your cart !!</div>
+      </div>
+    )
+  }
   }
 
 }

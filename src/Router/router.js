@@ -22,7 +22,13 @@ class Routes extends Component {
       banner:[],
       shows:[],
       refreshHead : true,
-      cart : []
+      cart : [
+//         {name:'New Earring',
+//       desc:'this is earring',
+//     price:'999',
+//   image:'.././favicon/rrr.jpg',
+// quantity:'1'}
+      ]
         }
 
     
@@ -33,14 +39,13 @@ class Routes extends Component {
  
 
   changeQuantity(p,e){
-    let db = this.state.db;
-    let i = db.Cart.indexOf(p)
-     db.Cart[i].quantity = parseInt(e.target.value); 
+    let cart = this.state.cart;
+    let i = cart.indexOf(p)
+     cart[i].quantity = parseInt(e.target.value); 
     this.setState(
-      {db:db}
+      {cart:cart}
     )
-    console.log(db);
-  }
+      }
 
 
 
@@ -109,6 +114,7 @@ class Routes extends Component {
                       <Route path="/cart" exact 
                       render={()=> 
                       <Cart cart={this.state.cart} 
+                      cartItemCount={this.state.cart.length}
                       changeQuantity={this.changeQuantity.bind(this)}  
                       /> } />
 

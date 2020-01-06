@@ -32,7 +32,7 @@ class Catlog extends Component {
       <div>
         <Container maxWidth="lg" className="about_me">
           <Paper style={{ width: "100% ! important", height: "100%",marginBottom:'10px' }}>
-          <p style={{ padding: "20px",  color : "#515151" , fontWeight : '800', fontSize: '22px'}} >
+          <p style={{ padding: "20px",  color : "#515151" , fontWeight : '800', fontSize: '22px',textAlign:'center'}} >
             {"              Our Catalog".toUpperCase()}
       </p>
             <div className="card-body fea features ">
