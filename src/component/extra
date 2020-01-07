@@ -754,3 +754,8 @@ PrimarySearchAppBar.propTypes = {
 
 export default withStyles(styles)(PrimarySearchAppBar);
 
+
+
+
+increase badge content 
+this.props.addToCart(this.state.ProductDetails)

@@ -7,17 +7,56 @@ import APIUrl from "../utils/APIUrl";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
+import axios from "axios";
+import { getLoginData } from '../utils/session';
+
 
 class Details extends Component {
   constructor(props) {
     super(props);
     this.state = {
       ProductDetails: {},
+      UserDetails: {},
       bigImage: "",
       Detail: {},
-      img: []
+      img: [],
+      product_id:"",
+      quantity:'',
+      user_id:"  ",
+      status:'',
     };
   }
+
+  handleSubmit(productDetail){
+    const { product_id, quantity, user_id } = this.state;
+    const userdata = { product_id:productDetail.detail.product_id,  quantity:1, user_id:getLoginData().user_id };
+
+
+
+    console.log(userdata);
+    console.log(product_id);
+
+    // convert json to form data with '&' seprater
+    const data = Object.keys(userdata)
+      .map(key => {
+        return (
+          encodeURIComponent(key) + "=" + encodeURIComponent(userdata[key])
+        );
+      })
+      .join("&");
+    const requestOptions = {
+      method: 'POST',
+      url: APIUrl.url.AddToCart,
+      data:data,
+
+    };
+
+    axios(requestOptions)
+      .then(response => {
+      })
+      .catch(err => { });
+  };
+
 
   componentDidMount() {
     const requestOptions = {
@@ -51,6 +90,11 @@ class Details extends Component {
   }
 
   render() {
+
+    const { classes } = this.props;
+    const { email } = this.state;
+   
+
     const { bigImage, img, Detail } = this.state;
     return (
       <div>
@@ -153,7 +197,7 @@ class Details extends Component {
                             backgroundColor: "black",
                             color: "white"
                           }}
-                          onClick={()=> this.props.addToCart(this.state.ProductDetails)}
+                          onClick={()=> this.handleSubmit(this.state.ProductDetails)}
                         >
                           Add to Cart
                         </Button>

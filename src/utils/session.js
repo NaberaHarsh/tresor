@@ -23,3 +23,9 @@ export const getLoginData = () => {
     return JSON.parse(localStorage.getItem(TOKEN_KEY));
      
 }
+
+export const getItemData = () => {
+
+    return JSON.parse(localStorage.getItem(TOKEN_KEY));
+     
+}
