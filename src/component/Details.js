@@ -28,14 +28,13 @@ class Details extends Component {
   }
 
   handleSubmit(productDetail){
-    const { product_id, quantity, user_id } = this.state;
-    const userdata = { product_id:productDetail.detail.product_id,  quantity:1, user_id:getLoginData().user_id };
-
+    const { product_id, quantity, user_id, status } = this.state;
+    const userdata = { product_id:productDetail.detail.product_id,  quantity:[1], user_id:getLoginData().user_id, status:'addnew' };
+this.setState({product_id:product_id})
 
 
     console.log(userdata);
-    console.log(product_id);
-
+console.log(product_id);
     // convert json to form data with '&' seprater
     const data = Object.keys(userdata)
       .map(key => {
@@ -197,7 +196,7 @@ class Details extends Component {
                             backgroundColor: "black",
                             color: "white"
                           }}
-                          onClick={()=> this.handleSubmit(this.state.ProductDetails)}
+                          onClick={()=>{ this.handleSubmit(this.state.ProductDetails); this.props.addToCart(this.state.ProductDetails) }}
                         >
                           Add to Cart
                         </Button>

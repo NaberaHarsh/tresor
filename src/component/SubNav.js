@@ -8,7 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import Hidden from "@material-ui/core/Hidden";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Container } from "semantic-ui-react";
-import toastr from "toastr";
 
 function a11yProps(index) {
   return {

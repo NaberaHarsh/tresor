@@ -7,7 +7,6 @@ import MultiCarousel from "./MultiCarousel";
 import { Grid, Container } from "@material-ui/core";
 import APIUrl from "../utils/APIUrl";
 import callApi from "../utils/callApi";
-import Top from './topProducts';
 
 
 

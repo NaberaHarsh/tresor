@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 // import { Table} from 'react-bootstrap';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Grid, Card, Table } from '@material-ui/core';
-import { TableHeader } from 'semantic-ui-react';
-import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 import Tooltip from '@material-ui/core/Tooltip';
+import { getLoginData } from '../utils/session';
+import axios from "axios";
+import APIUrl from "../utils/APIUrl";
 
 
 const styles = theme => ({
@@ -42,16 +41,73 @@ class Cart extends Component{
   constructor(props){
       super(props)
       this.state={
-        count:0
+        ProductDetails:"",
+        count:0,
+        product_id:" ",
+        quantity:"",
+        user_id:" ",
+        status:" "
       }
   }
+
+  handleSubmit(productDetail){
+    const { product_id, quantity, user_id, status } = this.state;
+    const userdata = { product_id:this.props.product_id, quantity:this.props.cart.map((p)=>p.quantity), user_id:getLoginData().user_id, status:'exist' };
+
+    console.log(userdata);
+  
+    // convert json to form data with '&' seprater
+    const data = Object.keys(userdata)
+      .map(key => {
+        return (
+          encodeURIComponent(key) + "=" + encodeURIComponent(userdata[key])
+        );
+      })
+      .join("&");
+    const requestOptions = {
+      method: 'POST',
+      url: APIUrl.url.AddToCart,
+      data:data,
+
+    };
+
+    axios(requestOptions)
+      .then(response => {
+      })
+      .catch(err => { });
+  };
+
+
 
   componentDidMount() {
     var counter1 = JSON.parse(localStorage.getItem("Cart"))
     if (counter1 != this.state.count) {
         this.setState({ count: counter1 })
     }
-}
+      const { user_id } = this.state;
+     const idData={user_id:getLoginData().user_id};
+      console.log(idData);
+      
+      const data1 = Object.keys(idData)
+        .map(key => {
+          return (
+            encodeURIComponent(key) + "=" + encodeURIComponent(idData[key])
+          );
+        })
+        .join("&");
+      const requestOptions = {
+        method: "POST",
+        url: APIUrl.url.GetHead,
+        data: data1
+      };
+  
+      axios(requestOptions)
+        .then(response => {
+        })
+        .catch(err => { });
+    };
+  
+
 
 componentDidUpdate() {
     var counter1 = JSON.parse(localStorage.getItem("Cart"))
@@ -70,7 +126,6 @@ componentDidUpdate() {
   }
 
   render(){
-      const { classes } = this.props;
 
 if(this.props.cartItemCount>0){
       return(
@@ -104,7 +159,7 @@ if(this.props.cartItemCount>0){
     <Grid md={3} lg={3} sm={8} xs={8}  style={{textAlign:'center'}}>
 
 <form >
-                <select style={{ width:'40px',height:'20px'}} onChange={(e)=>{this.props.changeQuantity(p,e)}}>
+                <select onClick={()=> this.handleSubmit(this.state.ProductDetails)} style={{ width:'40px',height:'20px'}} onChange={(e)=>{this.props.changeQuantity(p,e)}}>
                   
                 <option>1</option>
                 <option>2</option>

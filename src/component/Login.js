@@ -9,10 +9,8 @@ import Container from "@material-ui/core/Container";
 import Paper from "@material-ui/core/Paper";
 import APIUrl from "../utils/APIUrl";
 import axios from "axios";
-import setCookie from "../utils/setCookie";
-import { Redirect, withRouter } from "react-router-dom";
-import toastr from 'toastr';
-import { login, isLogin ,logout} from '../utils/session';
+import { Redirect } from "react-router-dom";
+import { login, isLogin} from '../utils/session';
 import CustomizedSnackbars from './SnackBars';
 
 
@@ -61,7 +59,6 @@ class SignIn extends Component {
       isToastOpen : false,
       type : "success",
       errors: {email: '',password:'' }
-
     };
   }
 
@@ -73,7 +70,8 @@ class SignIn extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
-    const { email, password } = this.state;
+  
+    const { email, password} = this.state;
     const userdata = { email, password };
     let errors = { email: '',password:''};
     if (!email) {
@@ -98,6 +96,7 @@ if(password){
       url: APIUrl.url.Login,
       data: data
     };
+
 
     axios(requestOptions)
       .then(response => {
@@ -130,12 +129,12 @@ if(password){
     }
 
   };
-
+  
   render() {
     const { errors } = this.state;
 
     const { classes } = this.props;
-    const { email, password, token } = this.state;
+    const { email, password } = this.state;
 
     if (isLogin()) {
       return (
