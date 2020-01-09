@@ -84,27 +84,7 @@ class Cart extends Component{
     if (counter1 != this.state.count) {
         this.setState({ count: counter1 })
     }
-      const { user_id } = this.state;
-     const idData={user_id:getLoginData().user_id};
-      console.log(idData);
       
-      const data1 = Object.keys(idData)
-        .map(key => {
-          return (
-            encodeURIComponent(key) + "=" + encodeURIComponent(idData[key])
-          );
-        })
-        .join("&");
-      const requestOptions = {
-        method: "POST",
-        url: APIUrl.url.GetHead,
-        data: data1
-      };
-  
-      axios(requestOptions)
-        .then(response => {
-        })
-        .catch(err => { });
     };
   
 

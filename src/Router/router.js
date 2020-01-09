@@ -104,6 +104,8 @@ class Routes extends Component {
           <PrivateRoute path="/products/:catId/:subCatId" 
           exact={false} 
           component={Product}
+          addToCart={this.addToCart.bind(this)}
+
           data = {this.props}
           />} />
           <PrivateRoute path='/details/:id' 

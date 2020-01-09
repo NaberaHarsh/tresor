@@ -5,6 +5,9 @@ import { connect } from "react-redux";
 import Routes from './Router/router.js';
 import APIUrl from './utils/APIUrl';
 import callApi from './utils/callApi'
+import axios from "axios";
+import { isLogin, logout, getLoginData } from './utils/session';
+
 
 
 class App extends Component {
@@ -16,6 +19,7 @@ class App extends Component {
       shows:[],
       activeStep: 0,
       payload: {},
+      idData:" ",
       loading:true
     };
 
@@ -24,6 +28,7 @@ class App extends Component {
 
 
   componentDidMount() {
+
     const banner = localStorage.getItem("banner");
     const category = localStorage.getItem("category");
     const shows = localStorage.getItem("shows");
@@ -39,11 +44,37 @@ class App extends Component {
       alert("you are offline");
       return;
     }
-    const requestOptions = {
-      method: "GET",
-      url: APIUrl.url.GetHead,
-    };
+    
+    const { user_id } = this.state;
+    if(isLogin()){
 
+     this.state.idData={user_id:getLoginData().user_id};
+    }
+    else{
+     this.state.idData={user_id:'0'}
+    }
+      console.log(this.state.idData);
+      
+      const data1 = Object.keys(this.state.idData)
+        .map(key => {
+          return (
+            encodeURIComponent(key) + "=" + encodeURIComponent(this.state.idData[key])
+          );
+        })
+        .join("&");
+      const requestOptions = {
+        method: "POST",
+        url: APIUrl.url.GetHead,
+        data: data1
+      };
+  
+      axios(requestOptions)
+        .then(response => {
+        })
+        .catch(err => { });
+
+
+  
     callApi(requestOptions, (err, response) => {
       if (err) {
 

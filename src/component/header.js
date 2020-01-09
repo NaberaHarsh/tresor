@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
+import axios from "axios";
 
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -139,6 +140,7 @@ class PrimarySearchAppBar extends React.Component {
       search: [],
       loading: true,
       searchText: "",
+      iddata:'',
       logout: false
     };
   }
@@ -185,6 +187,8 @@ class PrimarySearchAppBar extends React.Component {
     });
   };
 
+
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSearch(this.query.value);
@@ -214,6 +218,8 @@ class PrimarySearchAppBar extends React.Component {
     this.setState({ mobileMoreAnchorEl: null });
   };
 
+  componentDidMount(){
+  }
 
   render() {
     let a = 0;
@@ -235,6 +241,8 @@ class PrimarySearchAppBar extends React.Component {
         onClose={this.handleMenuClose}
       >
         <br />
+
+      
 
 
         {
@@ -305,6 +313,12 @@ class PrimarySearchAppBar extends React.Component {
       return <Redirect to='/' />
     }
 
+    if(isLogin()){
+
+    }
+    else{
+
+    }
 
 
     return (
