@@ -9,6 +9,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { getLoginData } from '../utils/session';
 import axios from "axios";
 import APIUrl from "../utils/APIUrl";
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+
 
 
 const styles = theme => ({
@@ -43,16 +48,18 @@ class Cart extends Component{
       this.state={
         ProductDetails:"",
         count:0,
-        product_id:" ",
+        product_id:"",
         quantity:"",
         user_id:" ",
-        status:" "
+        status:" ",
+        clicks: 0,
+      show: true
       }
   }
 
   handleSubmit(productDetail){
     const { product_id, quantity, user_id, status } = this.state;
-    const userdata = { product_id:this.props.product_id, quantity:this.props.cart.map((p)=>p.quantity), user_id:getLoginData().user_id, status:'exist' };
+    const userdata = { product_id:productDetail.product_id, quantity:productDetail.quantity,user_id:getLoginData().user_id, status:'exist' };
 
     console.log(userdata);
   
@@ -78,15 +85,53 @@ class Cart extends Component{
   };
 
 
+  IncrementItem(p){
+    this.setState({ clicks: this.state.clicks + 1 });
+  }
+  DecreaseItem(p){
+    this.setState({ clicks: this.state.clicks - 1 });
+  }
+  
+  processOrder(){
+    const { user_id } = this.state;
+    const processdata = { user_id:getLoginData().user_id};
+
+    console.log(processdata);
+  
+    // convert json to form data with '&' seprater
+    const data1 = Object.keys(processdata)
+      .map(key => {
+        return (
+          encodeURIComponent(key) + "=" + encodeURIComponent(processdata[key])
+        );
+      })
+      .join("&");
+    const requestOptions1 = {
+      method: 'POST',
+      url: APIUrl.url.ProcessOrder,
+      data:data1,
+
+    };
+
+    axios(requestOptions1)
+      .then(response => {
+      })
+      .catch(err => { });
+  };
+
+
 
   componentDidMount() {
     var counter1 = JSON.parse(localStorage.getItem("Cart"))
     if (counter1 != this.state.count) {
         this.setState({ count: counter1 })
-    }
-      
+    }  
     };
   
+    refreshPage(){
+      window.location.reload();
+      console.log('refresh done')
+  } 
 
 
 componentDidUpdate() {
@@ -96,14 +141,17 @@ componentDidUpdate() {
     }
 }
 
-  change(action){
-    let quantity=0;
-    if(action=="plus")
-    quantity++;
-    if(action=="minus")
-    quantity--;
-    return quantity;
-  }
+orderPlaced(){
+  alert("your order has been placed")
+    window.location.reload();
+}
+
+getValue(e){
+  let x=e.target.value;
+  this.setState({
+      search:x
+  })
+      }
 
   render(){
 
@@ -125,27 +173,26 @@ if(this.props.cartItemCount>0){
 
 <Grid md={4} lg={4} sm={6} xs={6} >
 
-<center><img class="img-fluid" src={p.image} style={{maxHeight:120, maxWidth:120, height:'auto', width:'100%', border:"solid #515151 1px"}}  /></center>
+<center><img class="img-fluid" src={p.url} style={{maxHeight:120, maxWidth:120, height:'auto', width:'100%', border:"solid #515151 1px"}}  /></center>
 
 </Grid>
 <Grid  md={8} lg={8} sm={6} xs={6} container space={2} >
 <Grid md={3} lg={3} sm={12} xs={12}>      
-  <div style={{fontWeight:'bold', textAlign:'center',color:'black', display:'block',fontSize:'18px'}}>{p.name}</div>
+  <div style={{ textAlign:'center',color:'black', display:'block',fontSize:'14px'}}>{p.product_name}</div>
   </Grid>
   <Grid md={3} lg={3} sm={12} xs={12}>
-  <div style={{ fontWeight:'bold', textAlign:'center', color:'black',fontSize:'18px'}}>{p.price}/- Rs. </div>
+  <div style={{ textAlign:'center', color:'black',fontSize:'14px'}}>{p.price}/- Rs. </div>
   </Grid>
   
     <Grid md={3} lg={3} sm={8} xs={8}  style={{textAlign:'center'}}>
 
-<form >
-                <select onClick={()=> this.handleSubmit(this.state.ProductDetails)} style={{ width:'40px',height:'20px'}} onChange={(e)=>{this.props.changeQuantity(p,e)}}>
-                  
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option></select></form>
+              
+                 <div>
+        <AddIcon onClick={()=>{this.IncrementItem(p); this.handleSubmit(p)}} style={{display:'inline', height:'20px', width:"20px"}}/>
+       <input style={{display:'inline',width:'12px'} } onChange={(e)=>{this.props.changeQuantity(p,e)}}  value={ this.state.clicks } /> 
+        <RemoveIcon style={{display:'inline',  height:'20px', width:"20px"}} onClick={()=> {this.DecreaseItem(p); this.handleSubmit(p)}} />
+      </div>
+                
 
 
                   </Grid>
@@ -173,7 +220,9 @@ if(this.props.cartItemCount>0){
   <h2 style={{paddingTop:'4px', textAlign:'center'}}>Checkout</h2>
   <h6 style={{color:'black'}}>SubTotal: {this.props.cart.reduce((sum,p)=>sum+p.price*p.quantity,0)}</h6>
   
-  <Button variant="contained" style={{backgroundColor:'black', color:'white'}}>Proceed To Buy</Button> 
+  <Button variant="contained" style={{backgroundColor:'black', color:'white'}}
+  onClick={()=>{ this.processOrder(); this.orderPlaced()}}
+  >Proceed To Buy</Button> 
    <br /><br />
    </div>
    </div>

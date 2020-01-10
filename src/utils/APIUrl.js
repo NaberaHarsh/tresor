@@ -15,6 +15,7 @@ const config = {
    ResetPassword:`${apiEndPoint}/user/updatepass`,   
    Search:`${apiEndPoint}/api/search`,
    AddToCart:`${apiEndPoint1}/Api/add_to_cart`,
+   ProcessOrder:`${apiEndPoint1}/Api/process_order`,
 
 
   }

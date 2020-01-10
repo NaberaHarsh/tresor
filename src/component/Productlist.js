@@ -7,6 +7,8 @@ import callApi from "../utils/callApi";
 import APIUrl from "../utils/APIUrl";
 import { Redirect } from "react-router-dom";
 import Skeleton from "@material-ui/lab/Skeleton";
+import { getLoginData } from '../utils/session';
+import axios from "axios";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -38,9 +40,45 @@ class ProductList extends Component {
       retrieveId: "",
       retrievePage: false,
       loading: false,
+      product_id:"",
+      quantity:'',
+      user_id:"",
+      status:"",
       skeleton: new Array(6).fill(true)
     };
   }
+
+  handleSubmit(productDetail){
+    console.log(productDetail);
+    const { product_id, quantity, user_id, status } = this.state;
+    const userdata = { product_id:productDetail.product_id,  quantity:[1], user_id:getLoginData().user_id, status:'addnew' };
+this.setState({product_id:product_id})
+
+
+
+console.log(product_id);
+    // convert json to form data with '&' seprater
+    const data = Object.keys(userdata)
+      .map(key => {
+        return (
+          encodeURIComponent(key) + "=" + encodeURIComponent(userdata[key])
+        );
+      })
+      .join("&");
+    const requestOptions = {
+      method: 'POST',
+      url: APIUrl.url.AddToCart,
+      data:data,
+
+    };
+
+    axios(requestOptions)
+      .then(response => {
+      })
+      .catch(err => { });
+  };
+
+
 
   viewDetails = e => {
     this.setState({
@@ -181,12 +219,12 @@ class ProductList extends Component {
                     md={6}
                     lg={6}
        > 
-       <Link href='/cart'> <div>
+       <div>
                   <Button
 
                         style={{ width: "98%", backgroundColor: "black", color: 'white', border:'solid white 0.5px' }}
                         variant="contained"
-
+onClick={()=>{ this.handleSubmit(data); this.props.addToCart({detail :data})}}
                       >
                          
                          Add To Cart                    
@@ -194,7 +232,6 @@ class ProductList extends Component {
 
                         </Button>
                         </div>
-                        </Link>
                         </Grid>  
                         </Grid>
                     </Paper>

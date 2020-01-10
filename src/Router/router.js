@@ -10,8 +10,10 @@ import ResetPassword from '../component/ResetPassword';
 import {PrivateRoute} from '../utils/PrivateRoute';
 import Header from '../component/header';
 import Cart from '../component/Cart';
-
-
+import APIUrl from "../utils/APIUrl";
+import callApi from "../utils/callApi";
+import { isLogin, getLoginData } from '../utils/session';
+import axios from "axios";
 
 class Routes extends Component {
   constructor(props) {
@@ -21,29 +23,86 @@ class Routes extends Component {
     this.state = {
       banner:[],
       shows:[],
+      user_id:" ",
       refreshHead : true,
-      cart : [
+      cartList : [],
 //         {name:'New Earring',
 //       desc:'this is earring',
 //     price:'999',
 //   image:'.././favicon/rrr.jpg',
 // quantity:'1'}
-      ]
+
         }
-
-    
-
-    
   }
 
+  componentDidMount() {
+    const cartList = localStorage.getItem("cartList");
+    const dataGet = localStorage.getItem("dataGet");
+
+    if (cartList &&  dataGet && !navigator.onLine) {
+      this.setState({
+        lat_cart: JSON.parse(cartList),
+        like_cart:JSON.parse(dataGet)
+      }, ()=> {
+      });
+      return;
+    } else if (!navigator.onLine) {
+      alert("you are offline");
+      return;
+    }
+
+    
+    const { user_id } = this.state;
+    if(isLogin()){
+
+     this.state.idData={user_id:getLoginData().user_id};
+    }
+    else{
+     this.state.idData={user_id:'0'}
+    }
+      console.log(this.state.idData);
+      
+      const data1 = Object.keys(this.state.idData)
+        .map(key => {
+          return (
+            encodeURIComponent(key) + "=" + encodeURIComponent(this.state.idData[key])
+          );
+        })
+        .join("&");
+      const requestOptions = {
+        method: "POST",
+        url: APIUrl.url.GetHead,
+        data: data1
+      };
+  
+      axios(requestOptions)
+        .then(response => {
+        })
+        .catch(err => { });
+
+    callApi(requestOptions, (err, response) => {
+      if (err) {
+        return;
+      }
+      localStorage.setItem("cartList", JSON.stringify(response.data.cart));
+      localStorage.setItem("dataGet", JSON.stringify(response.data.cart.length));
+      this.setState({
+        cartList: response.data.cart,
+        dataGet: response.data.cart.length,
+        loading: true
+      });
+    });
+
+    console.log(this.state.cartList)
+  }
  
 
   changeQuantity(p,e){
-    let cart = this.state.cart;
+    let cart = this.state.cartList;
     let i = cart.indexOf(p)
      cart[i].quantity = parseInt(e.target.value); 
     this.setState(
-      {cart:cart}
+      {cartList:cart}
     )
       }
 
@@ -53,17 +112,17 @@ class Routes extends Component {
 
     console.log("add to cart" , productDetail);
    
-    this.state.cart.map(item => {
+    this.state.cartList.map(item => {
 
     });
 
 
-    let isAvail = this.state.cart.filter(item => item.productId === productDetail.detail.product_id);
+    let isAvail = this.state.cartList.filter(item => item.productId === productDetail.detail.product_id);
 
     if(isAvail.length > 0){
 
     }else{
-      let updateCart = this.state.cart;
+      let updateCart = this.state.cartList;
 
       updateCart.push({
         productId: productDetail.detail.product_id,
@@ -74,7 +133,7 @@ class Routes extends Component {
 
       })
       
-      this.setState({cart: updateCart});
+      this.setState({cartList: updateCart});
     }
   }
 
@@ -86,7 +145,7 @@ class Routes extends Component {
       <BrowserRouter>
       <Header
       category={this.props.category}
-      cartItemCount={this.state.cart.length}
+      cartItemCount={this.state.cartList.length}
      /> 
      
 
@@ -115,8 +174,8 @@ class Routes extends Component {
            <Route path="/register" exact component={Register} />
                       <Route path="/cart" exact 
                       render={()=> 
-                      <Cart cart={this.state.cart} 
-                      cartItemCount={this.state.cart.length}
+                      <Cart cart={this.state.cartList} 
+                      cartItemCount={this.state.cartList.length}
                       changeQuantity={this.changeQuantity.bind(this)}  
                       /> } />
 

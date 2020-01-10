@@ -36,7 +36,7 @@ class Product extends Component {
                        <SideNav  getProductByCatId = {this.getProductByCatId} catId={catId} category = {this.props.data.category}/>
                     </Grid>
                     <Grid item xs={12} sm={12} md={9} lg={9}>
-                        <Productlist subCatId= {subCatId} catId ={catId}/>
+                        <Productlist subCatId= {subCatId} catId ={catId} addToCart={this.props.addToCart}/>
                     </Grid>
                 </Grid>
 
