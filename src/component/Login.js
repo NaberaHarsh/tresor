@@ -141,6 +141,7 @@ if(password){
         <Redirect
           to={{
             pathname: "/"
+            
           }}
         />
       );

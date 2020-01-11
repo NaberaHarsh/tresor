@@ -289,18 +289,19 @@ class PrimarySearchAppBar extends React.Component {
         </IconButton>
          </MenuItem> 
         :
+        <MenuItem></MenuItem>
         
-        <MenuItem>
-        <Link href="/Register">
-        <IconButton aria-label="show 17 new notifications" color="inherit">
-          <PersonAddIcon style={{color:'black', marginLeft:"0px"}} />
-          <span style={{   fontFamily: "Helvetica",
-            color:'black',
-            fontSize: '16px'
-            }}>Register</span>
-          </IconButton>
-        </Link>
-      </MenuItem>
+      //   <MenuItem>
+      //   <Link href="/Register">
+      //   <IconButton aria-label="show 17 new notifications" color="inherit">
+      //     <PersonAddIcon style={{color:'black', marginLeft:"0px"}} />
+      //     <span style={{   fontFamily: "Helvetica",
+      //       color:'black',
+      //       fontSize: '16px'
+      //       }}>Register</span>
+      //     </IconButton>
+      //   </Link>
+      // </MenuItem>
 
        } 
       
@@ -360,7 +361,7 @@ class PrimarySearchAppBar extends React.Component {
               >
                 
                 <div
-                  style={{ alignItems:'center', backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto", textAlign:"center",marginRight:'180px',position:'relative'}}
+                  style={{ alignItems:'center', backgroundColor: "whitesmoke",height:'40px',marginTop:'10px', outline: "auto", textAlign:"center",marginRight:`${isLogin() ? '116px' :'260px' }`,position:'relative'}}
                   className={classes.search}
                 >
                   <div style={{marginTop:"2px"}} className={classes.searchIcon}>
@@ -447,19 +448,20 @@ class PrimarySearchAppBar extends React.Component {
                   </Tooltip>
         </div>
         :
+        <div></div>
 
-        <Link href="/Register">
-                     <Tooltip title="Register">
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-haspopup="true"
-              color="inherit"
-            >
-          <PersonAddIcon style={{color:'black'}} />
-            </IconButton>
-            </Tooltip>
-            </Link>
+        // <Link href="/Register">
+        //              <Tooltip title="Register">
+        //     <IconButton
+        //       edge="end"
+        //       aria-label="account of current user"
+        //       aria-haspopup="true"
+        //       color="inherit"
+        //     >
+        //   <PersonAddIcon style={{color:'black'}} />
+        //     </IconButton>
+        //     </Tooltip>
+        //     </Link>
 
 
        } 

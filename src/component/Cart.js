@@ -60,9 +60,10 @@ class Cart extends Component{
   handleSubmit(productDetail){
     const { product_id, quantity, user_id, status } = this.state;
     const userdata = { product_id:productDetail.product_id, quantity:productDetail.quantity,user_id:getLoginData().user_id, status:'exist' };
-
     console.log(userdata);
   
+
+
     // convert json to form data with '&' seprater
     const data = Object.keys(userdata)
       .map(key => {
@@ -80,16 +81,19 @@ class Cart extends Component{
 
     axios(requestOptions)
       .then(response => {
+        this.props.addToCart(productDetail);
       })
       .catch(err => { });
   };
 
 
   IncrementItem(p){
-    this.setState({ clicks: this.state.clicks + 1 });
+    let plus=p.quantity++;
+    this.setState({ quantity: plus });
   }
   DecreaseItem(p){
-    this.setState({ clicks: this.state.clicks - 1 });
+    let minus= p.quantity--;
+    this.setState({ quantity: minus});
   }
   
   processOrder(){
@@ -186,19 +190,32 @@ if(this.props.cartItemCount>0){
   
     <Grid md={3} lg={3} sm={8} xs={8}  style={{textAlign:'center'}}>
 
+
+{/* <form>
+  <select defaultValue={p.quantity} onClick={()=> this.handleSubmit(p)} style={{width:"40px"}} onChange={(e)=>{this.props.changeQuantity(p,e)}}>
+    <option>0</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+
+  </select>
+</form> */}
               
-                 <div>
-        <AddIcon onClick={()=>{this.IncrementItem(p); this.handleSubmit(p)}} style={{display:'inline', height:'20px', width:"20px"}}/>
-       <input style={{display:'inline',width:'12px'} } onChange={(e)=>{this.props.changeQuantity(p,e)}}  value={ this.state.clicks } /> 
-        <RemoveIcon style={{display:'inline',  height:'20px', width:"20px"}} onClick={()=> {this.DecreaseItem(p); this.handleSubmit(p)}} />
-      </div>
-                
+              
+        <AddIcon onClick={()=>{this.IncrementItem(p); this.handleSubmit(p)}} style={{display:'inline',color:'black', height:'20px', width:"20px"}}/>
+          <div style={{display:'inline', verticalAlign:'super',paddingLeft:'10px',color:'black',fontWeight:'bold', paddingRight:'10px'}}>{p.quantity}</div>
+        <RemoveIcon style={{display:'inline', color:'black', height:'20px', width:"20px"}} onClick={()=> {this.DecreaseItem(p); this.handleSubmit(p)}} />
+        
 
 
                   </Grid>
                   <Grid md={3} lg={3} sm={4} xs={4}>
                     <Tooltip title="Delete">
-                    <DeleteIcon style={{alignItems:'center',height:'40px', width:'40px'}}/>
+                    <DeleteIcon style={{alignItems:'center',height:'40px', width:'40px'}}  onClick={()=> this.handleSubmit(Object.assign(p, {quantity: 0}))}/>
                     </Tooltip>
 
 </Grid>
