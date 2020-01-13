@@ -5,10 +5,11 @@ import { isLogin } from './session';
 
 
 
-export  const PrivateRoute = ({component : Component ,data, addToCart, ...rest}) =>  (
+export  const PrivateRoute = ({component : Component ,data, cart,cartItemCount,changeQuantity,  addToCart, ...rest}) =>  (
     <Route {...rest} render={props => (
         isLogin()
-            ? <Component {...props} data={data} addToCart={addToCart}/>
+            ? <Component {...props} data={data} addToCart={addToCart} cart={cart} cartItemCount={cartItemCount}
+            changeQuantity={changeQuantity}/>
             : <Redirect  to='/Login' />
         
      )

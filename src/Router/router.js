@@ -6,6 +6,7 @@ import Details from '../component/Details';
 import Register from '../component/Register';
 import Login from '../component/Login';
 import Forgot from '../component/Forgot';
+import Order from '../component/order';
 import ResetPassword from '../component/ResetPassword';
 import { PrivateRoute } from '../utils/PrivateRoute';
 import Header from '../component/header';
@@ -14,6 +15,7 @@ import APIUrl from "../utils/APIUrl";
 import callApi from "../utils/callApi";
 import { isLogin, getLoginData } from '../utils/session';
 import axios from "axios";
+
 
 class Routes extends Component {
   constructor(props) {
@@ -26,6 +28,23 @@ class Routes extends Component {
       user_id: " ",
       refreshHead: true,
       cartList: [],
+      orderList:[
+        {
+        orderId:'123456',
+        amount:'99',
+        date:'13/01/2020'
+      },
+      {
+        orderId:'123456',
+        amount:'99',
+        date:'13/01/2020'
+      },
+      {
+        orderId:'123456',
+        amount:'99',
+        date:'13/01/2020'
+      }
+      ],
 
     }
   }
@@ -180,13 +199,14 @@ class Routes extends Component {
             addToCart={this.addToCart.bind(this)}
           />
           <Route path="/register" exact component={Register} />
-          <Route path="/cart" exact
-            render={() =>
-              <Cart cart={this.state.cartList}
+
+          <PrivateRoute path="/cart" 
+            component={Cart}
+               cart={this.state.cartList}
                 cartItemCount={this.state.cartList.length}
                 addToCart={this.addToCart.bind(this)}
                 changeQuantity={this.changeQuantity.bind(this)}
-              />} />
+               />
 
           <Route
             path="/login"
@@ -206,6 +226,14 @@ class Routes extends Component {
 
 
           />
+<Route
+            path="/order"
+            exact
+            render={() => <Order  
+              order={this.state.orderList} 
+            />}
+          />
+
           <Route path="/forgot" exact component={Forgot} />
           <Route path="/reset_password/:token" exact={false} component={ResetPassword} />
         </Switch>
