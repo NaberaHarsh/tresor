@@ -16,6 +16,9 @@ const config = {
    Search:`${apiEndPoint}/api/search`,
    AddToCart:`${apiEndPoint1}/Api/add_to_cart`,
    ProcessOrder:`${apiEndPoint1}/Api/process_order`,
+   Order:`${apiEndPoint1}/api/user_order`,
+   UserOrder:`${apiEndPoint1}/api/user_order_details`,
+
 
 
   }

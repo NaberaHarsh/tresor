@@ -27,7 +27,9 @@ import { Redirect } from "react-router-dom";
 import Badge from '@material-ui/core/Badge';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import Tooltip from '@material-ui/core/Tooltip';
-
+import AssignmentTurnedInOutlinedIcon from '@material-ui/icons/AssignmentTurnedInOutlined';
+import CardTravelOutlinedIcon from '@material-ui/icons/CardTravelOutlined';
+import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
 
 const StyledBadge = withStyles(theme => ({
   badge: {
@@ -252,21 +254,29 @@ class PrimarySearchAppBar extends React.Component {
               <span style={{color:'black'}}> Welcome! {getLoginData().name}</span>
         </MenuItem> 
         :
+        <Link href="Login">
 
-        <MenuItem>
-           <Link href="Login">
-        <IconButton aria-label="show 17 new notifications" color="inherit">
+        <MenuItem           style={{paddingLeft:'0px'}}>
           <PersonIcon style={{color:'black', marginLeft:"0px"}} />
           <span style={{   fontFamily: "Helvetica",
             color:'black',
             fontSize: '16px'
             }}>Login</span>
-        </IconButton>
-        </Link>
-        </MenuItem> 
+        </MenuItem>         </Link>
+
 
        } 
-       
+<Link href="/order">
+       <MenuItem 
+          style={{paddingLeft:'0px'}}
+      > 
+<LocalMallOutlinedIcon style={{color:'black', marginLeft:"0px"}} />
+<span style={{   fontFamily: "Helvetica",
+            color:'black',
+            fontSize: '16px'
+            }}>My Orders</span>
+         </MenuItem>
+         </Link>
 
        {
           isLogin() ? 
@@ -278,7 +288,6 @@ class PrimarySearchAppBar extends React.Component {
               this.setState({logout:true});
            
           }}> 
-            <IconButton aria-label="show 17 new notifications" color="inherit">
             <Tooltip title="Signout">
 <PowerSettingsNewIcon style={{color:'black', marginLeft:"0px"}} />
 </Tooltip>
@@ -286,11 +295,9 @@ class PrimarySearchAppBar extends React.Component {
             color:'black',
             fontSize: '16px'
             }}>Signout</span>
-        </IconButton>
          </MenuItem> 
         :
-        <MenuItem></MenuItem>
-        
+""        
       //   <MenuItem>
       //   <Link href="/Register">
       //   <IconButton aria-label="show 17 new notifications" color="inherit">
@@ -387,15 +394,21 @@ class PrimarySearchAppBar extends React.Component {
 
                 <Link href="/cart">
                 <Tooltip title="My Cart">
-                <IconButton aria-label="show 4 new mails" color="inherit">
+                <IconButton edge="end" aria-label="show 4 new mails" color="inherit">
                 <StyledBadge badgeContent={this.props.cartItemCount} color="primary" style={{display:'inline'}}>
                 <ShoppingCartIcon  style={{color:'black'}} />
               </StyledBadge>
             </IconButton>
             </Tooltip>
+            </Link>
 
-      </Link>
-
+            <Link href="/order">
+                <Tooltip title="My Orders">
+                <IconButton aria-label="show 4 new mails" color="inherit">
+                <LocalMallOutlinedIcon  style={{color:'black'}} />
+            </IconButton>
+            </Tooltip>
+            </Link>
                 
                 
              

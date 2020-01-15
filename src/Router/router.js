@@ -7,6 +7,7 @@ import Register from '../component/Register';
 import Login from '../component/Login';
 import Forgot from '../component/Forgot';
 import Order from '../component/order';
+import OrderDetails from '../component/OrderDetails';
 import ResetPassword from '../component/ResetPassword';
 import { PrivateRoute } from '../utils/PrivateRoute';
 import Header from '../component/header';
@@ -29,21 +30,21 @@ class Routes extends Component {
       refreshHead: true,
       cartList: [],
       orderList:[
-        {
-        orderId:'123456',
-        amount:'99',
-        date:'13/01/2020'
-      },
-      {
-        orderId:'123456',
-        amount:'99',
-        date:'13/01/2020'
-      },
-      {
-        orderId:'123456',
-        amount:'99',
-        date:'13/01/2020'
-      }
+      //   {
+      //   orderId:'123456',
+      //   amount:'99',
+      //   date:'13/01/2020'
+      // },
+      // {
+      //   orderId:'123456',
+      //   amount:'99',
+      //   date:'13/01/2020'
+      // },
+      // {
+      //   orderId:'123456',
+      //   amount:'99',
+      //   date:'13/01/2020'
+      // }
       ],
 
     }
@@ -51,12 +52,15 @@ class Routes extends Component {
 
   componentDidMount() {
     const cartList = localStorage.getItem("cartList");
+    const orderList = localStorage.getItem("orderList");
     const dataGet = localStorage.getItem("dataGet");
 
-    if (cartList && dataGet && !navigator.onLine) {
+    if (cartList && orderList && dataGet && !navigator.onLine) {
       this.setState({
         lat_cart: JSON.parse(cartList),
-        like_cart: JSON.parse(dataGet)
+        lat_order: JSON.parse(orderList),
+        like_cart: JSON.parse(dataGet),
+        like_order: JSON.parse(dataGet)
       }, () => {
       });
       return;
@@ -89,8 +93,29 @@ class Routes extends Component {
       data: data1
     };
 
+    const data2 = Object.keys(this.state.idData)
+      .map(key => {
+        return (
+          encodeURIComponent(key) + "=" + encodeURIComponent(this.state.idData[key])
+        );
+      })
+      .join("&");
+    const requestOptions1 = {
+      method: "POST",
+      url: APIUrl.url.Order,
+      data: data2
+    };
+    
+
     axios(requestOptions)
       .then(response => {
+        
+      })
+      .catch(err => { });
+
+      axios(requestOptions1)
+      .then(response => {
+        console.log("data coming")
       })
       .catch(err => { });
 
@@ -107,7 +132,23 @@ class Routes extends Component {
       });
     });
 
+    
+    callApi(requestOptions1, (err, response) => {
+      if (err) {
+        return;
+      }
+      localStorage.setItem("orderList", JSON.stringify(response.data.orders));
+      localStorage.setItem("dataGet", JSON.stringify(response.data.orders.length));
+      this.setState({
+        orderList: response.data.orders,
+        dataGet: response.data.orders.length,
+        loading: true
+      });
+    });
+
     console.log(this.state.cartList)
+    console.log(this.state.orderList)
+
   }
 
 
@@ -226,12 +267,17 @@ class Routes extends Component {
 
 
           />
-<Route
+<PrivateRoute
             path="/order"
-            exact
-            render={() => <Order  
-              order={this.state.orderList} 
-            />}
+            component ={Order}
+            order={this.state.orderList}  
+          />
+
+<PrivateRoute
+            path='/order_detail/:id'
+            exact={false}
+            component={OrderDetails}
+
           />
 
           <Route path="/forgot" exact component={Forgot} />

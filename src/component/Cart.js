@@ -12,6 +12,7 @@ import APIUrl from "../utils/APIUrl";
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import { isLogin } from '../utils/session';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
 
 
 
@@ -143,7 +144,6 @@ class Cart extends Component {
 
   orderPlaced() {
     alert("your order has been placed")
-    window.location.reload();
   }
 
   getValue(e) {
@@ -221,10 +221,10 @@ class Cart extends Component {
 
                         <h2 style={{ paddingTop: '4px', textAlign: 'center' }}>CHECKOUT</h2>
                         <h6 style={{ color: 'black' }}>Total: {this.props.cart.reduce((sum, p) => sum + p.price * p.quantity, 0)}/- Rs.</h6>
-
+<Link href="/order">
                         <Button variant="contained" style={{ backgroundColor: 'black', color: 'white' }}
                           onClick={() => { this.processOrder(); this.orderPlaced() }}
-                        >Proceed To Buy</Button>
+                        >Proceed To Buy</Button></Link>
                         <br /><br />
                       </div>
                     </div>
