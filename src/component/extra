@@ -1045,3 +1045,80 @@ if(this.props.cartItemCount>0){
 }
 
 export default withStyles(styles)(Cart);
+
+
+
+
+
+
+order previous ui
+
+<Container maxWidth="lg" className="card1">
+        <Paper style={{ width: "100% ! important", padding: '20px' }}>
+          <Grid container spacing={4}>
+
+            {this.props.order.map(p =>
+              <Grid
+                style={{ textAlign:"center" }}
+                item
+                xs={12}
+                sm={12}
+                md={6}
+                lg={6}
+              >
+                <Paper className="marginB">
+                  <div className="Rating" style={{ padding: '24px', }}>
+                    <Typography
+                      style={{
+                        alignItems:'initial',
+                        textAlign:'center',
+                        color: 'black'
+                      }}
+                    >
+                     <span style={{fontWeight:'bold'}}> Order ID </span>: TJ2020{p.order_id}
+                    </Typography>
+                    <Typography
+                      style={{
+                        alignItems:'initial',
+                        textAlign: "center",
+                        color: 'black'
+                      }}
+                    >
+                      <span style={{fontWeight:'bold'}}>Total Amount</span>: {p.amount}
+                    </Typography>
+                    <Typography
+                      style={{   
+                                             alignItems:'initial',
+                        textAlign: "center",
+                        color: 'black'
+                      }}
+                    >
+                     <span style={{fontWeight:'bold'}}>No. Of Products</span>: {p.total_products_of_quantity}
+                    </Typography>
+                    <Typography
+                      style={{
+                        alignItems:'initial',
+
+                        textAlign: "center",
+                        color: 'black'
+                      }}
+                    >
+                    <span style={{fontWeight:'bold'}}>  Ordered on</span>:{p.created}
+                    </Typography>
+                    <br />
+                    <Link href={`/order_detail/${p.order_id}`}>
+                    <Button variant='contained' style={{ backgroundColor: "black", color: 'white' }}
+                     onClick={() => {this.handleSubmit(p); }}
+                     >
+View Details
+                       </Button>
+                       </Link>
+                  </div>
+                </Paper>
+              </Grid>)}
+          </Grid>
+        </Paper>
+      </Container>
+    </div>
+  );
+}

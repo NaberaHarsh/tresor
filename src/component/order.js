@@ -88,44 +88,85 @@ if(this.props.order.length>0){
                 item
                 xs={12}
                 sm={12}
-                md={6}
-                lg={6}
+                md={12}
+                lg={12}
               >
                 <Paper className="marginB">
                   <div className="Rating" style={{ padding: '24px', }}>
+                    <Grid container spacing={4}>
+                    <Grid
+                     xs={12}
+                     sm={12}
+                     md={2}
+                     lg={2}
+                     >
                     <Typography
                       style={{
+                        alignItems:'initial',
                         textAlign:'center',
                         color: 'black'
                       }}
                     >
                      <span style={{fontWeight:'bold'}}> Order ID </span>: TJ2020{p.order_id}
                     </Typography>
+                    </Grid>
+                    <Grid
+                     xs={12}
+                     sm={12}
+                     md={2}
+                     lg={2}
+                     >
                     <Typography
                       style={{
+                        alignItems:'initial',
                         textAlign: "center",
                         color: 'black'
                       }}
                     >
                       <span style={{fontWeight:'bold'}}>Total Amount</span>: {p.amount}
                     </Typography>
+                    </Grid>
+                    <Grid
+                     xs={12}
+                     sm={12}
+                     md={2}
+                     lg={2}
+                     >
                     <Typography
-                      style={{
+                      style={{   
+                                             alignItems:'initial',
                         textAlign: "center",
                         color: 'black'
                       }}
                     >
                      <span style={{fontWeight:'bold'}}>No. Of Products</span>: {p.total_products_of_quantity}
                     </Typography>
+                    </Grid>
+                    <Grid
+                     xs={12}
+                     sm={12}
+                     md={3}
+                     lg={3}
+                     >
                     <Typography
                       style={{
+                        alignItems:'initial',
+
                         textAlign: "center",
                         color: 'black'
                       }}
                     >
                     <span style={{fontWeight:'bold'}}>  Ordered on</span>:{p.created}
                     </Typography>
+                    </Grid>
                     <br />
+                    <br />
+                    <Grid
+                     xs={12}
+                     sm={12}
+                     md={3}
+                     lg={3}
+                     >
                     <Link href={`/order_detail/${p.order_id}`}>
                     <Button variant='contained' style={{ backgroundColor: "black", color: 'white' }}
                      onClick={() => {this.handleSubmit(p); }}
@@ -133,6 +174,9 @@ if(this.props.order.length>0){
 View Details
                        </Button>
                        </Link>
+                       </Grid>
+                       </Grid>
+
                   </div>
                 </Paper>
               </Grid>)}
