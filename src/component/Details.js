@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import axios from "axios";
 import { getLoginData } from '../utils/session';
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 class Details extends Component {
@@ -24,8 +25,21 @@ class Details extends Component {
       quantity:'',
       user_id:"  ",
       status:'',
+      open:false,
     };
   }
+
+
+  handleClick = () => {
+    this.setState({open:true});
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({open:false});
+  };
 
   handleSubmit(productDetail){
     const { product_id, quantity, user_id, status } = this.state;
@@ -196,10 +210,20 @@ console.log(product_id);
                             backgroundColor: "black",
                             color: "white"
                           }}
-                          onClick={()=>{ this.handleSubmit(this.state.ProductDetails); this.props.addToCart(this.state.ProductDetails) }}
-                        >
+                          onClick={()=>{ this.handleSubmit(this.state.ProductDetails); this.props.addToCart(this.state.ProductDetails); this.handleClick(); }}
+                        >  
                           Add to Cart
                         </Button>
+                        <Snackbar
+     anchorOrigin={{
+      vertical: 'bottom',
+      horizontal: 'left',
+    }}
+    open={this.state.open}
+    autoHideDuration={1000}
+    onClose={this.handleClose}
+    message="Added To Cart"
+      />
                       {/* </Link> */}
                     </center>
                   </div>

@@ -1,3 +1,4 @@
+
 import React , { Component }  from 'react'
 import Button from '@material-ui/core/Button';
 import ListItem from '@material-ui/core/ListItem';
@@ -14,8 +15,6 @@ class CustomizedTreeView extends Component {
       category: [],
       catId: "",
       anchorEl:null,
-    //  silver_visible: {display : 'none'}, gemstone_visible: {display : 'none'}, diamond_visible: {display : 'none'}, charm_visible:{display: 'none'}};
-
 
     }
   }
@@ -27,38 +26,6 @@ class CustomizedTreeView extends Component {
   handleClose = () => {
     this.setState({anchorEl:null})
   };
-// do(e){
-  
-//   if(e.target.value=='silver'){
-//     console.log("hello")
-//     this.setState({silver_visible:{display:'block'}})
-//     this.setState({gemstone_visible:{display:'none'}})
-//     this.setState({diamond_visible:{display:'none'}})
-//     this.setState({charm_visible:{display:'none'}})
-
-//   }
-//   if(e.target.value=='gemstone'){
-//     this.setState({silver_visible:{display:'none'}})
-//   this.setState({gemstone_visible:{display:'block'}})
-//   this.setState({diamond_visible:{display:'none'}})
-//   this.setState({charm_visible:{display:''}})
-
-//   }
-//   if(e.target.value=='diamond'){
-//     this.setState({silver_visible:{display:'none'}})
-//   this.setState({gemstone_visible:{display:'none'}})
-//   this.setState({diamond_visible:{display:'block'}})
-//   this.setState({charm_visible:{display:'none'}})
-
-//   }
-//   if(e.target.value=='charm'){
-//     this.setState({silver_visible:{display:'none'}})
-//   this.setState({gemstone_visible:{display:'none'}})
-//   this.setState({diamond_visible:{display:'none'}})
-//   this.setState({charm_visible:{display:'block'}})
-
-//   }
-// }
 
  
 static getDerivedStateFromProps(nextProps, prevProps) {

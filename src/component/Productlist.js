@@ -9,6 +9,8 @@ import { Redirect } from "react-router-dom";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { getLoginData } from '../utils/session';
 import axios from "axios";
+import Snackbar from '@material-ui/core/Snackbar';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,9 +46,21 @@ class ProductList extends Component {
       quantity:'',
       user_id:"",
       status:"",
+      open:false,
       skeleton: new Array(6).fill(true)
     };
   }
+
+  handleClick = () => {
+    this.setState({open:true});
+  };
+
+  handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    this.setState({open:false});
+  };
 
   handleSubmit(productDetail){
     console.log(productDetail);
@@ -149,135 +163,165 @@ console.log(product_id);
       );
     }
 
-    return (
-      <div>
-        <Container maxWidth="lg">
-          {dataGet!=null ? (
-            <h3 className="total-count-product">
-              {dataGet === 0
-                ? "No Product Found".toUpperCase()
-                : ``.toUpperCase()}
-            </h3>
-          ) : (
-              ""
-            )}
+if(loading=== true && dataGet>0){
+  return (
+    <div>
+      <Container maxWidth="lg">
+        {dataGet!=null ? (
+          <h3 className="total-count-product">
+            {dataGet === 0
+              ? "No Product Found".toUpperCase()
+              :
+               `` .toUpperCase()}
+          </h3>
+        ) : (
+            ""
+          )}
 
-          <Grid container spacing={2}>
-            {loading === true && dataGet !== 0 ? (
+        <Grid container spacing={2}>
+          {loading === true && dataGet !== 0 ? (
+            <>
+              {ProductList.map((data,index)  => (
+                <Grid 
+                  style={{ textAlign: "center" }}
+                  item
+                  xs={12}
+                  sm={12}
+                  md={4}
+                  lg={4}
+                  key={index}
+                >
+                  <Paper key={`product-list-${index}`} className="marginB">
+                    <img 
+                      className="img1"
+                      src={`http://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
+                      alt=""
+                    />
+                    <div className="Rating">
+                      <Typography
+                        style={{
+                          textAlign: "left",
+                          height: "70px",
+                          marginBottom: "6px",
+                          color: 'black'
+                        }}
+                        variant="subtitle1"
+                      >
+                        {data.name}
+                      </Typography>
+                    </div>
+
+<Grid container spacing={24}> 
+<Grid 
+                 
+                  xs={12}
+                  sm={12}
+                  md={6}
+                  lg={6}
+     > 
+             <Button
+                      onClick={() => this.viewDetails(`${data.product_id}`)}
+                      style={{ width: "98%", backgroundColor: "black", color: 'white' ,border:"solid white 0.5px" }}
+                      variant="contained"
+
+                    >
+                      View Detail
+                      </Button>
+                      </Grid>
+                      
+                      <Grid 
+                   xs={12}
+                  sm={12}
+                  md={6}
+                  lg={6}
+     > 
+     <div>
+                <Button
+
+                      style={{ width: "98%", backgroundColor: "black", color: 'white', border:'solid white 0.5px' }}
+                      variant="contained"
+onClick={()=>{ this.handleSubmit(data); this.props.addToCart({detail :data}); this.handleClick();}}
+                    >
+                       
+                       Add To Cart                    
+                        
+
+                      </Button>
+                      <Snackbar
+   anchorOrigin={{
+    vertical: 'bottom',
+    horizontal: 'left',
+  }}
+  open={this.state.open}
+  autoHideDuration={1000}
+  onClose={this.handleClose}
+  message="Added To Cart"
+    />
+                      </div>
+                      </Grid>  
+                      </Grid>
+                  </Paper>
+                </Grid>
+              ))}{" "}
+            </>
+          ) : (
               <>
-                {ProductList.map((data,index)  => (
-                  <Grid 
+                {" "}
+                {skeleton.map((item,index) => (
+                  <Grid   key={`skele-pro-${index}`}
                     style={{ textAlign: "center" }}
                     item
                     xs={12}
                     sm={12}
                     md={4}
                     lg={4}
-                    key={index}
+                    
                   >
-                    <Paper key={`product-list-${index}`} className="marginB">
-                      <img 
-                        className="img1"
-                        src={`http://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
-                        alt=""
-                      />
+                    <Paper className="marginB">
+                      <Skeleton   variant="rect" className="skeleton-img1" />
                       <div className="Rating">
-                        <Typography
-                          style={{
-                            textAlign: "left",
-                            height: "70px",
-                            marginBottom: "6px",
-                            color: 'black'
-                          }}
-                          variant="subtitle1"
-                        >
-                          {data.name}
-                        </Typography>
+                        <div>
+                          <Skeleton height={6} />
+                          <Skeleton height={6} width="80%" />
+                        </div>
                       </div>
 
-<Grid container spacing={24}> 
-<Grid 
-                   
-                    xs={12}
-                    sm={12}
-                    md={6}
-                    lg={6}
-       > 
-               <Button
-                        onClick={() => this.viewDetails(`${data.product_id}`)}
-                        style={{ width: "98%", backgroundColor: "black", color: 'white' ,border:"solid white 0.5px" }}
+
+                      <Button
+                        style={{ width: "100%" }}
                         variant="contained"
 
                       >
-                        View Detail
-                        </Button>
-                        </Grid>
-                        
-                        <Grid 
-                     xs={12}
-                    sm={12}
-                    md={6}
-                    lg={6}
-       > 
-       <div>
-                  <Button
 
-                        style={{ width: "98%", backgroundColor: "black", color: 'white', border:'solid white 0.5px' }}
-                        variant="contained"
-onClick={()=>{ this.handleSubmit(data); this.props.addToCart({detail :data})}}
-                      >
-                         
-                         Add To Cart                    
-                          
+                      </Button>
 
-                        </Button>
-                        </div>
-                        </Grid>  
-                        </Grid>
                     </Paper>
                   </Grid>
-                ))}{" "}
+                ))}
               </>
-            ) : (
-                <>
-                  {" "}
-                  {skeleton.map((item,index) => (
-                    <Grid   key={`skele-pro-${index}`}
-                      style={{ textAlign: "center" }}
-                      item
-                      xs={12}
-                      sm={12}
-                      md={4}
-                      lg={4}
-                      
-                    >
-                      <Paper className="marginB">
-                        <Skeleton   variant="rect" className="skeleton-img1" />
-                        <div className="Rating">
-                          <div>
-                            <Skeleton height={6} />
-                            <Skeleton height={6} width="80%" />
-                          </div>
-                        </div>
+            )}
+        </Grid>
+      </Container>
+    </div>
+  );
+}
+else{
+  return(
+    <div>
+      
+      <Container maxWidth="lg" className="productCard5" style={{minHeight:"250px"}}>
+      <Paper elivation='0' style={{ width: "100% ! important", marginTop:"18px", height:'250px' }}>
+                        
+      <div style={{ alignItems: 'center', textAlign: 'center', paddingTop: '100px', paddingBottom: '80px' }}>
+          <div style={{ color: 'grey', fontSize: '24px' }}>No Product Found</div>
+        </div>  
+        </Paper>
+  </Container>
+  </div>
+  )
+}
 
-
-                        <Button
-                          style={{ width: "100%" }}
-                          variant="contained"
-
-                        >
-
-                        </Button>
-
-                      </Paper>
-                    </Grid>
-                  ))}
-                </>
-              )}
-          </Grid>
-        </Container>
-      </div>
-    );
+    
   }
 }
 

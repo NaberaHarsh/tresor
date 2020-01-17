@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Button from "@material-ui/core/Button";
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Grid, Container, Paper, Link } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, responsiveFontSizes } from '@material-ui/core/styles';
 import RemoveShoppingCartIcon from '@material-ui/icons/RemoveShoppingCart';
 import Tooltip from '@material-ui/core/Tooltip';
 import { getLoginData } from '../utils/session';
@@ -49,6 +49,7 @@ class OrderDetails extends Component {
         super(props)
         this.state = {
             orderDetailList: [],
+            List:[],
             show: true
         }
     }
@@ -57,11 +58,13 @@ class OrderDetails extends Component {
 
     componentDidMount() {
         const orderDetailList = localStorage.getItem("orderDetailList");
+        const List = localStorage.getItem("List");
         const dataGet = localStorage.getItem("dataGet");
 
-        if (orderDetailList && dataGet && !navigator.onLine) {
+        if (orderDetailList && dataGet && List && !navigator.onLine) {
             this.setState({
                 lat_orderDetailList: JSON.parse(orderDetailList),
+                lat_List: JSON.parse(List),
                 like_orderDetailList: JSON.parse(dataGet)
             }, () => {
             });
@@ -81,10 +84,12 @@ class OrderDetails extends Component {
                 return;
             }
             localStorage.setItem("orderDetailList", JSON.stringify(response.data.product));
+            localStorage.setItem("List", JSON.stringify(response.data));
             localStorage.setItem("dataGet", JSON.stringify(response.data.product.length));
             this.setState({
                 orderDetailList: response.data.product,
                 dataGet: response.data.product.length,
+                List:response.data,
                 loading: true
             });
         });
@@ -95,7 +100,14 @@ class OrderDetails extends Component {
         return (
             <div style={{ padding: "10px" }}>
                 <hr />
+                <Grid container space={2}>
+                    <Grid md={6} lg={6} sm={6} xs={6}>
                 <p>Order Details</p>
+                </Grid>
+                <Grid md={6} lg={6} sm={6} xs={6}>
+        <p style={{textAlign:'right'}}>Order Id:{this.state.List.order_id}</p>
+        </Grid>
+        </Grid>
                 <hr />
                 <Container maxWidth="lg">
                     <Grid item xs={12} sm={12}>
