@@ -18,17 +18,14 @@ class CustomizedTreeView extends Component {
     this.state = {
       category: [],
       catId: "",
-      anchorEl:null,
-
+expanded:'83'
     }
   }
     
-   handleClick(event){
-    this.setState({anchorEl:event.currentTarget})
-  };
-    
-  handleClose = () => {
-    this.setState({anchorEl:null})
+   handleChange = panel => (event, newExpanded) => {
+
+    console.log(panel);
+    this.setState({ expanded:panel});
   };
 
  
@@ -52,19 +49,17 @@ static getDerivedStateFromProps(nextProps, prevProps) {
         return (
            
             <div>
-                        <ul type="none" style={{marginInlineStart:'10px' , padding:'0px'}} >
-                        {category.map((p, index) => (                          
+                        {category.map((p, index) => console.log(p) || (                          
   
-      <ExpansionPanel style={{marginRight:'8px'}}>
+      <ExpansionPanel expanded={this.state.expanded === p.catId} onChange={this.handleChange(p.catId)}>
          <ExpansionPanelSummary
+                   expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
-          id="panel1a-header"
+          id={`${p.catId}`}
         >
-                 <Typography >
- {<li><Button onClick={(e)=>this.handleClick(e)} value={p.name} key={p.catId} nodeId={p.catId} label={p.name} variant="outlined" style={{width:250}}>{p.name}</Button>
-           
-        </li>}
-      </Typography>
+                 <Typography value={p.name} key={p.catId} nodeId={p.catId} label={p.name}  style={{width:250, textAlign:'center'}} >
+ {p.name}
+ </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <ul type='none'>
@@ -78,8 +73,8 @@ static getDerivedStateFromProps(nextProps, prevProps) {
         </ExpansionPanelDetails>
       </ExpansionPanel>
 ))}
-</ul>
-   </div>
-        )}
-}
+        </div>
+        )
+      }
+    }
 export default CustomizedTreeView;

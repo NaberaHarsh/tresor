@@ -299,10 +299,10 @@ class Cart extends Component {
                 <Card>
                   <CardActionArea>
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2">
+                      <Typography gutterBottom variant="h5" component="h2" style={{textAlign:'center'}}>
                         CHECKOUT
                       </Typography>
-                      <h6 style={{ color: "black" }}>
+                      <h6 style={{ color: "black", textAlign:'center' }}>
                         Total:{" "}
                         {this.props.cart.reduce(
                           (sum, p) => sum + p.price * p.quantity,
@@ -312,7 +312,7 @@ class Cart extends Component {
                       </h6>
                     </CardContent>
                   </CardActionArea>
-                  <CardActions>
+                  <CardActions style={{alignItems:'center'}}>
                     <Link href="/order">
                       <Button
                         variant="contained"
