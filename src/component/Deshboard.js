@@ -7,7 +7,7 @@ import MultiCarousel from "./MultiCarousel";
 import { Grid, Container } from "@material-ui/core";
 import APIUrl from "../utils/APIUrl";
 import callApi from "../utils/callApi";
-
+import Moving from "./marquee";
 
 
 class Deshboard extends Component {
@@ -80,6 +80,7 @@ class Deshboard extends Component {
 
     return (
       <div>
+        <Moving />
         {banner !== [] ? <Coreusel banner={banner} /> : undefined}
         <Container maxWidth="lg">
           <Grid item xs={12} sm={12}>
