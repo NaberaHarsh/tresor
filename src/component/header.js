@@ -492,7 +492,12 @@ class PrimarySearchAppBar extends React.Component {
                   onClick={this.handleDrawerOpen}
                 /> 
           <Link href='/cart'>         
-      <StyledBadge badgeContent={this.props.cartItemCount} color="primary">
+      <StyledBadge    overlap="circle"
+      anchorOrigin={{
+    vertical: 'top',
+    horizontal: 'left',
+  }}
+  badgeContent={this.props.cartItemCount} color="primary">
                <Tooltip title="My Cart">
                 <ShoppingCartIcon style={{ display:'inline',color:'black', paddingRight:'8px',marginLeft:"0px",marginRight:'0px',  height:'40px', width:'40px'}} />
                 </Tooltip>

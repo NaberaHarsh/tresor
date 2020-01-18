@@ -99,17 +99,19 @@ class OrderDetails extends Component {
     render() {
         return (
             <div style={{ padding: "10px" }}>
-                <hr />
+                
+                
+                <Container maxWidth="lg">
+                <Paper elevation={4} style={{padding:'2px'}}>
+
                 <Grid container space={2}>
                     <Grid md={6} lg={6} sm={6} xs={6}>
-                <p>Order Details</p>
+                <p style={{paddingLeft:'16px', fontSize:"16px"}}>Order Details</p>
                 </Grid>
                 <Grid md={6} lg={6} sm={6} xs={6}>
-        <p style={{textAlign:'right'}}>Order Id:{this.state.List.order_id}</p>
+        <p style={{textAlign:'right', paddingRight:'16px', fontSize:"16px"}}>Order Id:{this.state.List.order_id}</p>
         </Grid>
-        </Grid>
-                <hr />
-                <Container maxWidth="lg">
+        </Grid>      </Paper><br />
                     <Grid item xs={12} sm={12}>
                         <Paper style={{ width: "100% ! important" }}>
 

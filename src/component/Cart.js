@@ -161,10 +161,11 @@ class Cart extends Component {
 
 
         <div style={{ padding: "10px" }}>
-          <hr />
-          <p>Shopping Cart</p>
-          <hr />
+         
           <Container maxWidth="lg">
+          <Paper elevation={4} style={{padding:'2px'}}>
+      <p style={{paddingLeft:'28px', fontSize:"16px"}}> Shopping Cart</p>
+      </Paper><br />
             <Grid item xs={12} sm={12}>
               <Paper style={{ width: "100% ! important" }}>
 

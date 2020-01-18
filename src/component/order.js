@@ -9,6 +9,31 @@ import { getLoginData } from '../utils/session';
 import axios from "axios";
 import APIUrl from "../utils/APIUrl";
 import LocalMallOutlinedIcon from '@material-ui/icons/LocalMallOutlined';
+import { withStyles } from '@material-ui/core/styles';
+
+
+const styles = theme => ({
+  root: {
+    width: "100%"
+  },
+  grow: {
+    flexGrow: 1
+  },
+  sectionDesktop: {
+    display: "none",
+    [theme.breakpoints.up("md")]: {
+      display: "flex"
+    }
+  },
+  sectionMobile: {
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      display: "none"
+    }
+  }
+});
+
+
 
 
 
@@ -70,17 +95,39 @@ class Order extends Component {
 
 
   render() {
+    const { classes } = this.props;
+
 if(this.props.order.length>0){
 
   return (
 
     <div style={{ padding: '10px' }}>
-      <hr />
-      <p>My Orders</p>
-      <hr />
+     
+      <div className={classes.sectionDesktop}>
+        
       <Container maxWidth="lg" className="card1">
-        <Paper style={{ width: "100% ! important", padding: '20px' }}>
-          <Grid container spacing={4}>
+      <div> <Paper elevation={4} style={{padding:'2px'}}>
+      <p style={{paddingLeft:'20px', fontSize:"16px"}}> My Orders</p>
+      </Paper>
+      </div><br/>
+          <br />
+        <Grid container spacing={4}>
+          <Grid md={2} lg={2}  
+                         style={{ textAlign:"center", paddingLeft:'24px' }}
+><span style={{fontWeight:'bold'}}>OrderId</span></Grid>
+          <Grid md={2} lg={2} 
+          style={{ textAlign:"center" }}
+> <span style={{fontWeight:'bold'}}>Amount</span></Grid>
+          <Grid md={2} lg={2}  
+                         style={{ textAlign:"center" }}
+> <span style={{fontWeight:'bold'}}>No. of Products</span></Grid>
+          <Grid md={2} lg={2}   
+                        style={{textAlign:"center"}}
+> <span style={{fontWeight:'bold'}}>Date</span></Grid>
+          <Grid md={4} lg={4}></Grid>
+        </Grid>
+        <br />
+          <Grid container spacing={2}>
 
             {this.props.order.map(p =>
               <Grid
@@ -102,12 +149,12 @@ if(this.props.order.length>0){
                      >
                     <Typography
                       style={{
-                        alignItems:'initial',
+                        
                         textAlign:'center',
                         color: 'black'
                       }}
                     >
-                     <span style={{fontWeight:'bold'}}> Order ID </span>: TJ2020{p.order_id}
+                      TJ2020{p.order_id}
                     </Typography>
                     </Grid>
                     <Grid
@@ -118,12 +165,12 @@ if(this.props.order.length>0){
                      >
                     <Typography
                       style={{
-                        alignItems:'initial',
+                        
                         textAlign: "center",
                         color: 'black'
                       }}
                     >
-                      <span style={{fontWeight:'bold'}}>Total Amount</span>: {p.amount}
+                       {p.amount}-/ Rs.
                     </Typography>
                     </Grid>
                     <Grid
@@ -134,12 +181,12 @@ if(this.props.order.length>0){
                      >
                     <Typography
                       style={{   
-                                             alignItems:'initial',
+                                             
                         textAlign: "center",
                         color: 'black'
                       }}
                     >
-                     <span style={{fontWeight:'bold'}}>No. Of Products</span>: {p.total_products_of_quantity}
+                     {p.total_products_of_quantity}
                     </Typography>
                     </Grid>
                     <Grid
@@ -150,13 +197,13 @@ if(this.props.order.length>0){
                      >
                     <Typography
                       style={{
-                        alignItems:'initial',
+                        
 
                         textAlign: "center",
                         color: 'black'
                       }}
                     >
-                    <span style={{fontWeight:'bold'}}>  Ordered on</span>:{p.created}
+                    {p.created}
                     </Typography>
                     </Grid>
                     <br />
@@ -181,14 +228,124 @@ View Details
                 </Paper>
               </Grid>)}
           </Grid>
-        </Paper>
       </Container>
+      </div>
+      <div className={classes.sectionMobile}>
+        
+      <Container maxWidth="lg" className="card1">
+      <div> <Paper elevation={4} style={{padding:'2px'}}>
+      <p style={{paddingLeft:'4px', fontSize:"16px"}}> My Orders</p>
+      </Paper>
+      </div>
+          <Grid container spacing={2}>
+
+            {this.props.order.map(p =>
+              <Grid
+                style={{ textAlign:"center" }}
+                item
+                xs={12}
+                sm={12}
+                md={12}
+                lg={12}
+              >
+                <Paper>
+                  <div className="Rating" style={{paddingBottom:'24px'}} >
+                    <Grid container spacing={2}>
+                    <Grid
+                     xs={12}
+                     sm={12}
+                     md={2}
+                     lg={2}
+                     >
+                    <Typography
+                      style={{
+                        paddingLeft:'58px',
+                        textAlign:'initial',
+                        color: 'black'
+                      }}
+                    >
+                     <span style={{fontWeight:'bold'}}> Order ID </span>: TJ2020{p.order_id}
+                    </Typography>
+                    </Grid>
+                    <Grid
+                     xs={12}
+                     sm={12}
+                     md={2}
+                     lg={2}
+                     >
+                    <Typography
+                      style={{
+                        paddingLeft:'58px',
+                        textAlign: "initial",
+                        color: 'black'
+                      }}
+                    >
+                      <span style={{fontWeight:'bold'}}>Total Amount</span>: {p.amount}-/ Rs.
+                    </Typography>
+                    </Grid>
+                    <Grid
+                     xs={12}
+                     sm={12}
+                     md={2}
+                     lg={2}
+                     >
+                    <Typography
+                      style={{   
+                        paddingLeft:'58px',                     
+                        textAlign: "initial",
+                        color: 'black'
+                      }}
+                    >
+                     <span style={{fontWeight:'bold'}}>No. Of Products</span>: {p.total_products_of_quantity}
+                    </Typography>
+                    </Grid>
+                    <Grid
+                     xs={12}
+                     sm={12}
+                     md={3}
+                     lg={3}
+                     >
+                    <Typography
+                      style={{
+                        
+                        paddingLeft:'58px',
+                        textAlign: "initial",
+                        color: 'black'
+                      }}
+                    >
+                    <span style={{fontWeight:'bold'}}>  Date</span>:{p.created}
+                    </Typography>
+                    </Grid>
+                    <br />
+                    <br />
+                    <Grid
+                     xs={12}
+                     sm={12}
+                     md={3}
+                     lg={3}
+                     >
+                    <Link href={`/order_detail/${p.order_id}`}>
+                    <Button variant='contained' style={{ backgroundColor: "black", color: 'white' }}
+                     onClick={() => {this.handleSubmit(p); }}
+                     >
+View Details
+                       </Button>
+                       </Link>
+                       <br />
+                       </Grid>
+                       </Grid>
+
+                  </div>
+                </Paper>
+              </Grid>)}
+          </Grid>
+      </Container>
+</div>
     </div>
   );
 }
 else{
   return (
-
 
     <div style={{ padding: '20px' }}>
       <Paper style={{ width: "100% ! important" }}>
@@ -207,4 +364,4 @@ else{
 }
 }
 
-export default Order;
+export default withStyles(styles)(Order);

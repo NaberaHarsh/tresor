@@ -6,7 +6,11 @@ import Link from "@material-ui/core/Link";
 import ListItemText from '@material-ui/core/ListItemText';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 class CustomizedTreeView extends Component {
   constructor(props) {
@@ -48,27 +52,32 @@ static getDerivedStateFromProps(nextProps, prevProps) {
         return (
            
             <div>
-                        <ul type="none" >
-                        {category.map((p, index) => (
-                            <li><Button onClick={(e)=>this.handleClick(e)} value={p.name} key={p.catId} nodeId={p.catId} label={p.name} variant="outlined" style={{width:250}}>{p.name}</Button>
-                            
+                        <ul type="none" style={{marginInlineStart:'10px' , padding:'0px'}} >
+                        {category.map((p, index) => (                          
   
-       <Menu
-  id="simple-menu"
-  anchorEl={this.state.anchorEl}
-  keepMounted
-  open={Boolean(this.state.anchorEl)}
-  onClose={this.handleClose}
->       
-{p.subcat.map((data, index) => (
+      <ExpansionPanel style={{marginRight:'8px'}}>
+         <ExpansionPanelSummary
+          aria-controls="panel1a-content"
+          id="panel1a-header"
+        >
+                 <Typography >
+ {<li><Button onClick={(e)=>this.handleClick(e)} value={p.name} key={p.catId} nodeId={p.catId} label={p.name} variant="outlined" style={{width:250}}>{p.name}</Button>
+           
+        </li>}
+      </Typography>
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <ul type='none'>
+          {p.subcat.map((data, index) => (
  
-  <MenuItem onClick={this.handleClose} key={data.subcat_id} > 
+ <li onClick={this.handleClose} key={data.subcat_id} > 
 <Link href={`/products/${data.cat_id}/${data.subcat_id}`} >{data.sub_name}</Link>
-</MenuItem>
-))}
-</Menu>
-<br /><br />
 </li>))}
+</ul>
+          
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+))}
 </ul>
    </div>
         )}
