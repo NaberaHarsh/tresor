@@ -106,7 +106,7 @@ if(this.props.order.length>0){
       <div className={classes.sectionDesktop}>
         
       <Container maxWidth="lg" className="card1">
-      <div> <Paper elevation={4} style={{padding:'2px'}}>
+      <div> <Paper elevation={0} style={{padding:'2px'}}>
       <p style={{paddingLeft:'20px', fontSize:"16px"}}> My Orders</p>
       </Paper>
       </div><br/>
@@ -127,7 +127,7 @@ if(this.props.order.length>0){
           <Grid md={4} lg={4}></Grid>
         </Grid>
         <br />
-          <Grid container spacing={2}>
+          <Grid container spacing={0}>
 
             {this.props.order.map(p =>
               <Grid
@@ -138,7 +138,7 @@ if(this.props.order.length>0){
                 md={12}
                 lg={12}
               >
-                <Paper className="marginB">
+                 <Card style={{width:'100%', marginBottom:'8px', padding:'8px'}}>
                   <div className="Rating" style={{ padding: '24px', }}>
                     <Grid container spacing={4}>
                     <Grid
@@ -225,7 +225,7 @@ View Details
                        </Grid>
 
                   </div>
-                </Paper>
+                </Card>
               </Grid>)}
           </Grid>
       </Container>
