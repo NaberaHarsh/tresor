@@ -11,40 +11,33 @@ import axios from "axios";
 import APIUrl from "../utils/APIUrl";
 import AddIcon from "@material-ui/icons/Add";
 import RemoveIcon from "@material-ui/icons/Remove";
-import { isLogin } from "../utils/session";
-import { Route, BrowserRouter, Switch } from "react-router-dom";
-
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 
+import Modal from '@material-ui/core/Modal';
+import Backdrop from '@material-ui/core/Backdrop';
+import Fade from '@material-ui/core/Fade';
+
+
 const styles = theme => ({
-  "@global": {
-    body: {
-      backgroundColor: theme.palette.common.white
-    }
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
-  sectionDesktop: {
-    display: "flex",
-    width: "100%",
-    flexDirection: "row"
+  paper: {
+    textAlign:'center',
+    backgroundColor: theme.palette.background.paper,
+    border: '1px solid #515151',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
   },
-  sectionMobile: {
-    display: "flex",
-    [theme.breakpoints.up("md")]: {
-      display: "none"
-    }
-  },
-  root: {
-    width: "100%"
-  },
-  grow: {
-    flexGrow: 1
-  }
 });
+
+
 
 class Cart extends Component {
   constructor(props) {
@@ -56,9 +49,20 @@ class Cart extends Component {
       quantity: "",
       user_id: " ",
       status: " ",
-      show: true
+      show: true,
+      open:false
     };
   }
+
+  
+   handleOpen = () => {
+    this.setState({open:true})
+  };
+
+   handleClose = () => {
+    this.setState({open:false})
+  };
+
 
   handleSubmit(productDetail) {
     const { product_id, quantity, user_id, status } = this.state;
@@ -121,7 +125,9 @@ class Cart extends Component {
     };
 
     axios(requestOptions1)
-      .then(response => {})
+      .then(response => {
+        this.handleOpen()
+      })
       .catch(err => {});
   }
 
@@ -139,18 +145,13 @@ class Cart extends Component {
     }
   }
 
-  orderPlaced() {
-    alert("your order has been placed");
-  }
+ 
 
-  getValue(e) {
-    let x = e.target.value;
-    this.setState({
-      search: x
-    });
-  }
+  render() 
 
-  render() {
+  {
+    const { classes } = this.props
+
     if (this.props.cartItemCount > 0) {
       return (
         <div style={{ padding: "10px" }}>
@@ -296,7 +297,7 @@ class Cart extends Component {
               <Grid item xs={12} sm={12} xl={4} lg={4} md={4}>
               
 
-                <Card>
+                <Card style={{display:"flex", flexDirection:'column', alignItems:'center'}}>
                   <CardActionArea>
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="h2" style={{textAlign:'center'}}>
@@ -313,18 +314,37 @@ class Cart extends Component {
                     </CardContent>
                   </CardActionArea>
                   <CardActions style={{alignItems:'center'}}>
-                    <Link href="/order">
                       <Button
                         variant="contained"
                         style={{ backgroundColor: "black", color: "white" }}
                         onClick={() => {
                           this.processOrder();
-                          this.orderPlaced();
                         }}
                       >
                         Proceed To Buy
                       </Button>
-                    </Link>
+                     <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={this.state.open}
+        onClose={this.handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 1000,
+        }}
+      >
+        <Fade in={this.state.open}>
+          <div className={classes.paper} >
+            <h2 id="transition-modal-title">Your Order Is Placed</h2>
+                               <Link href="/order">
+ <Button style={{textAlign:'center'}}>Proceed To Orders</Button>
+                                </Link>
+
+</div>
+        </Fade>
+      </Modal>
                   </CardActions>
                 </Card>
               </Grid>

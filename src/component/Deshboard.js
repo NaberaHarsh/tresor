@@ -80,7 +80,7 @@ class Deshboard extends Component {
 
     return (
       <div>
-        <Moving />
+        <Moving shows={this.props.shows} />
         {banner !== [] ? <Coreusel banner={banner} /> : undefined}
         <Container maxWidth="lg">
           <Grid item xs={12} sm={12}>

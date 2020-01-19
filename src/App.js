@@ -144,7 +144,7 @@ const {banner,category,shows} = this.state;
     <div className="body">
   
      
-   <Routes banner={banner} category = {category} shows = {shows} />
+   <Routes banner={banner} category = {category} shows = {this.state.shows} />
      <Footer/>
     </div>
   )};

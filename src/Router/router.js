@@ -60,7 +60,7 @@ class Routes extends Component {
         lat_cart: JSON.parse(cartList),
         lat_order: JSON.parse(orderList),
         like_cart: JSON.parse(dataGet),
-        like_order: JSON.parse(dataGet)
+        like_order: JSON.parse(dataGet),
       }, () => {
       });
       return;
@@ -126,6 +126,8 @@ class Routes extends Component {
       localStorage.setItem("cartList", JSON.stringify(response.data.cart));
       localStorage.setItem("dataGet", JSON.stringify(response.data.cart.length));
       this.setState({
+        shows: response.data.shows,
+        dataGet: response.data.shows.length,
         cartList: response.data.cart,
         dataGet: response.data.cart.length,
         loading: true
@@ -145,9 +147,6 @@ class Routes extends Component {
         loading: true
       });
     });
-
-    console.log(this.state.cartList)
-    console.log(this.state.orderList)
 
   }
 
@@ -216,14 +215,13 @@ class Routes extends Component {
           cartItemCount={this.state.cartList.length}
         />
 
-
         <Switch>
           <Route
             path="/"
             exact
             render={(props) => <Deshboard
               data={this.props}
-
+              shows={this.props.shows}
               refreshHead={this.state.refreshHead}
               {...props}
             />}

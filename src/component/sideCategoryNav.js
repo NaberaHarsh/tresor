@@ -23,8 +23,6 @@ expanded:'83'
   }
     
    handleChange = panel => (event, newExpanded) => {
-
-    console.log(panel);
     this.setState({ expanded:panel});
   };
 
@@ -49,23 +47,22 @@ static getDerivedStateFromProps(nextProps, prevProps) {
         return (
            
             <div>
-                        {category.map((p, index) => console.log(p) || (                          
-  
-      <ExpansionPanel expanded={this.state.expanded === p.catId} onChange={this.handleChange(p.catId)}>
+                        {category.map((p, index) =>  (                          
+      <ExpansionPanel expanded={this.state.expanded === p.catId} onChange={this.handleChange(p.catId)} style={{width:'100%'}}>
          <ExpansionPanelSummary
                    expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
           id={`${p.catId}`}
         >
-                 <Typography value={p.name} key={p.catId} nodeId={p.catId} label={p.name}  style={{width:250, textAlign:'center'}} >
+                 <Typography value={p.name} key={p.catId} nodeId={p.catId} label={p.name}  style={{ textAlign:'center'}} >
  {p.name}
  </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <ul type='none'>
+          <ul type='disc' style={{color:'#515151'}}>
           {p.subcat.map((data, index) => (
  
- <li onClick={this.handleClose} key={data.subcat_id} > 
+ <li onClick={this.handleClose} key={data.subcat_id} style={{padding:'4px'}}> 
 <Link href={`/products/${data.cat_id}/${data.subcat_id}`} >{data.sub_name}</Link>
 </li>))}
 </ul>

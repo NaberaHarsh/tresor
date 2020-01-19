@@ -9,7 +9,6 @@ import { Redirect } from "react-router-dom";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { getLoginData } from '../utils/session';
 import axios from "axios";
-import Snackbar from '@material-ui/core/Snackbar';
 
 
 function TabPanel(props) {
@@ -46,21 +45,13 @@ class ProductList extends Component {
       quantity:'',
       user_id:"",
       status:"",
-      open:false,
       skeleton: new Array(6).fill(true)
     };
   }
 
-  handleClick = () => {
-    this.setState({open:true});
-  };
+ 
 
-  handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    this.setState({open:false});
-  };
+ 
 
   handleSubmit(productDetail){
     console.log(productDetail);
@@ -238,23 +229,14 @@ console.log(product_id);
 
                         style={{ width: "98%", backgroundColor: "black", color: 'white', border:'solid white 0.5px' }}
                         variant="contained"
-onClick={()=>{ this.handleSubmit(data); this.props.addToCart({detail :data}); this.handleClick();}}
+onClick={()=>{ this.handleSubmit(data); this.props.addToCart({detail :data});}}
                       >
                          
                          Add To Cart                    
                           
 
                         </Button>
-                        <Snackbar
-     anchorOrigin={{
-      vertical: 'bottom',
-      horizontal: 'left',
-    }}
-    open={this.state.open}
-    autoHideDuration={1000}
-    onClose={this.handleClose}
-    message="Added To Cart"
-      />
+                        
                         </div>
                         </Grid>  
                         </Grid>
