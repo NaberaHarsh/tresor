@@ -27,13 +27,20 @@ class Moving extends React.Component {
     
 
 render(){
+  if(this.props.shows.length>0){
 return(
 <div style={{backgroundColor:'black', fontSize:'20px', color:'white', padding:"12px"}}>
     {this.props.shows.map((p)=>(
 <marquee>{p.detail}</marquee>
     ))}
 </div>
-)
+)}
+else{
+  return(
+    <div></div>
+  )
+}
+
 }
 }
 export default Moving;

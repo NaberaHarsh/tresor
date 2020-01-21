@@ -154,7 +154,7 @@ if(this.props.order.length>0){
                         color: 'black'
                       }}
                     >
-                      TJ2020{p.order_id}
+TJ-{p.order_date}-{p.order_id}
                     </Typography>
                     </Grid>
                     <Grid
@@ -170,8 +170,9 @@ if(this.props.order.length>0){
                         color: 'black'
                       }}
                     >
-                       {p.amount}-/ Rs.
-                    </Typography>
+                    {p.subtotal} $
+                          
+                                           </Typography>
                     </Grid>
                     <Grid
                      xs={12}
@@ -259,12 +260,12 @@ View Details
                      >
                     <Typography
                       style={{
-                        paddingLeft:'58px',
+                        paddingLeft:'74px',
                         textAlign:'initial',
                         color: 'black'
                       }}
                     >
-                     <span style={{fontWeight:'bold'}}> Order ID </span>: TJ2020{p.order_id}
+                     <span style={{fontWeight:'bold'}}> Order ID </span>:TJ-{p.order_date}-{p.order_id}
                     </Typography>
                     </Grid>
                     <Grid
@@ -275,12 +276,12 @@ View Details
                      >
                     <Typography
                       style={{
-                        paddingLeft:'58px',
+                        paddingLeft:'74px',
                         textAlign: "initial",
                         color: 'black'
                       }}
                     >
-                      <span style={{fontWeight:'bold'}}>Total Amount</span>: {p.amount}-/ Rs.
+                      <span style={{fontWeight:'bold'}}>Total Amount</span>: {p.subtotal} $
                     </Typography>
                     </Grid>
                     <Grid
@@ -291,7 +292,7 @@ View Details
                      >
                     <Typography
                       style={{   
-                        paddingLeft:'58px',                     
+                        paddingLeft:'74px',                     
                         textAlign: "initial",
                         color: 'black'
                       }}
@@ -308,7 +309,7 @@ View Details
                     <Typography
                       style={{
                         
-                        paddingLeft:'58px',
+                        paddingLeft:'74px',
                         textAlign: "initial",
                         color: 'black'
                       }}

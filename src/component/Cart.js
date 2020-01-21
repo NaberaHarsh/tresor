@@ -16,7 +16,7 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-
+import callApi from "../utils/callApi";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
@@ -45,6 +45,7 @@ class Cart extends Component {
     this.state = {
       ProductDetails: "",
       count: 0,
+      discount:[],
       product_id: "",
       quantity: "",
       user_id: " ",
@@ -61,7 +62,49 @@ class Cart extends Component {
 
    handleClose = () => {
     this.setState({open:false})
+    this.reload()
   };
+
+discount(){
+  
+  const { user_id} = this.state;
+    const userdata1 = {
+          user_id: getLoginData().user_id,
+        };
+    console.log(userdata1);
+
+    const data1 = Object.keys(userdata1)
+    .map(key => {
+      return (
+        encodeURIComponent(key) + "=" + encodeURIComponent(userdata1[key])
+      );
+    })
+    .join("&");
+  const requestOptions1 = {
+    method: "POST",
+    url: APIUrl.url.Discount,
+    data: data1
+  };
+
+  axios(requestOptions1)
+    .then(response => {
+      console.log(userdata1)
+    })
+    .catch(err => {});
+
+    callApi(requestOptions1, (err, response) => {
+      if (err) {
+        return;
+      }
+      localStorage.setItem("discount", JSON.stringify(response.data));
+      this.setState({
+        discount:response.data,
+        loading: true
+      });
+    });
+  
+
+}
 
 
   handleSubmit(productDetail) {
@@ -91,9 +134,11 @@ class Cart extends Component {
     axios(requestOptions)
       .then(response => {
         this.props.addToCart(productDetail);
+        this.discount()
       })
       .catch(err => {});
-  }
+
+    }
 
   IncrementItem(p) {
     let plus = p.quantity++;
@@ -135,6 +180,57 @@ class Cart extends Component {
     var counter1 = JSON.parse(localStorage.getItem("Cart"));
     if (counter1 != this.state.count) {
       this.setState({ count: counter1 });
+
+    const discount = localStorage.getItem("discount");
+  
+  if ( discount && !navigator.onLine) {
+    this.setState({
+      lat_discount: JSON.parse(discount)
+    }, () => {
+    });
+    return;
+  } else if (!navigator.onLine) {
+    alert("you are offline");
+    return;
+  }
+  
+  const { user_id} = this.state;
+  const userdata1 = {
+        user_id: getLoginData().user_id,
+      };
+  console.log(userdata1);
+
+  const data1 = Object.keys(userdata1)
+  .map(key => {
+    return (
+      encodeURIComponent(key) + "=" + encodeURIComponent(userdata1[key])
+    );
+  })
+  .join("&");
+const requestOptions1 = {
+  method: "POST",
+  url: APIUrl.url.Discount,
+  data: data1
+};
+
+axios(requestOptions1)
+  .then(response => {
+    console.log(userdata1)
+  })
+  .catch(err => {});
+
+  callApi(requestOptions1, (err, response) => {
+    if (err) {
+      return;
+    }
+    localStorage.setItem("discount", JSON.stringify(response.data));
+    this.setState({
+      discount:response.data,
+      loading: true
+    });
+  });
+console.log(this.state.discount)
+
     }
   }
 
@@ -145,7 +241,9 @@ class Cart extends Component {
     }
   }
 
- 
+ reload(){
+   window.location.reload()
+ }
 
   render() 
 
@@ -218,7 +316,7 @@ class Cart extends Component {
                                   fontWeight: "bold"
                                 }}
                               >
-                                {p.price}/- Rs.{" "}
+                                {p.price} $ {" "}
                               </div>
                             </Grid>
 
@@ -298,27 +396,31 @@ class Cart extends Component {
               
 
                 <Card style={{display:"flex", flexDirection:'column', alignItems:'center'}}>
-                  <CardActionArea>
                     <CardContent>
-                      <Typography gutterBottom variant="h5" component="h2" style={{textAlign:'center'}}>
+                      <Typography gutterBottom variant="h4" component="h1" style={{textAlign:'center',textDecoration:'underline'}}>
                         CHECKOUT
                       </Typography>
-                      <h6 style={{ color: "black", textAlign:'center' }}>
-                        Total:{" "}
+                      <p style={{ color:'black', textAlign:'center', fontSize:'14px'}}>
+                        TOTAL:{" "}
+                        
                         {this.props.cart.reduce(
                           (sum, p) => sum + p.price * p.quantity,
                           0
                         )}
-                        /- Rs.
-                      </h6>
+                          $
+                      </p>
+                        <p style={{ textAlign:'center', fontSize:'14px'}} >DISCOUNT ({`${this.props.discount.discount}`}%): {this.state.discount.total_discount}$
+                    </p>
+                    <h6  style={{ color: "black", textAlign:'center', fontSize:'14px' }}>SUBTOTAL:{" "}  {this.state.discount.total_subtotal} $</h6>
                     </CardContent>
-                  </CardActionArea>
+                  
                   <CardActions style={{alignItems:'center'}}>
                       <Button
                         variant="contained"
                         style={{ backgroundColor: "black", color: "white" }}
                         onClick={() => {
                           this.processOrder();
+                        
                         }}
                       >
                         Proceed To Buy
@@ -339,7 +441,7 @@ class Cart extends Component {
           <div className={classes.paper} >
             <h2 id="transition-modal-title">Your Order Is Placed</h2>
                                <Link href="/order">
- <Button style={{textAlign:'center'}}>Proceed To Orders</Button>
+ <Button style={{textAlign:'center',textDecoration:'underline'}}>Proceed To Orders</Button>
                                 </Link>
 
 </div>

@@ -3,6 +3,8 @@ const apiEndPoint = "http://admin.tresorjewelryinc.com/index.php";
 const apiEndPoint1 = "http://admin.tresorjewelryinc.com";
 
 
+
+
 const config = {
   url: {
    Dashboard:`${apiEndPoint}/Api`,
@@ -18,8 +20,7 @@ const config = {
    ProcessOrder:`${apiEndPoint1}/Api/process_order`,
    Order:`${apiEndPoint1}/api/user_order`,
    UserOrder:`${apiEndPoint1}/api/user_order_details`,
-
-
+   Discount:`${apiEndPoint1}/Api/getOrderSubtotal`,
 
   }
 };

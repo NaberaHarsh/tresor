@@ -26,6 +26,8 @@ class Routes extends Component {
     this.state = {
       banner: [],
       shows: [],
+      discount:[],
+      orderDiscount:[],
       user_id: " ",
       refreshHead: true,
       cartList: [],
@@ -53,11 +55,13 @@ class Routes extends Component {
   componentDidMount() {
     const cartList = localStorage.getItem("cartList");
     const orderList = localStorage.getItem("orderList");
+    const discount = localStorage.getItem("discount");
     const dataGet = localStorage.getItem("dataGet");
 
-    if (cartList && orderList && dataGet && !navigator.onLine) {
+    if (cartList && orderList && dataGet && discount &&!navigator.onLine) {
       this.setState({
         lat_cart: JSON.parse(cartList),
+        lat_discount: JSON.parse(discount),
         lat_order: JSON.parse(orderList),
         like_cart: JSON.parse(dataGet),
         like_order: JSON.parse(dataGet),
@@ -124,9 +128,11 @@ class Routes extends Component {
         return;
       }
       localStorage.setItem("cartList", JSON.stringify(response.data.cart));
+      localStorage.setItem("discount", JSON.stringify(response.data));
       localStorage.setItem("dataGet", JSON.stringify(response.data.cart.length));
       this.setState({
         shows: response.data.shows,
+        discount:response.data,
         dataGet: response.data.shows.length,
         cartList: response.data.cart,
         dataGet: response.data.cart.length,
@@ -147,7 +153,7 @@ class Routes extends Component {
         loading: true
       });
     });
-
+console.log(this.state.discount)
   }
 
 
@@ -241,6 +247,7 @@ class Routes extends Component {
 
           <PrivateRoute path="/cart" 
             component={Cart}
+            discount={this.state.discount}
                cart={this.state.cartList}
                 cartItemCount={this.state.cartList.length}
                 addToCart={this.addToCart.bind(this)}

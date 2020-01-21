@@ -107,20 +107,20 @@ class OrderDetails extends Component {
         <Container maxWidth="lg">
           <Paper elevation={0} style={{ padding: "2px" }}>
             <Grid container space={2}>
-              <Grid md={6} lg={6} sm={6} xs={6}>
-                <p style={{ paddingLeft: "16px", fontSize: "16px" }}>
+              <Grid md={6} lg={6} sm={4} xs={4}>
+                <p style={{ paddingLeft: "16px", fontSize: "14px" }}>
                   Order Details
                 </p>
               </Grid>
-              <Grid md={6} lg={6} sm={6} xs={6}>
+              <Grid md={6} lg={6} sm={8} xs={8}>
                 <p
                   style={{
                     textAlign: "right",
                     paddingRight: "16px",
-                    fontSize: "16px"
+                    fontSize: "14px"
                   }}
                 >
-                  Order Id:{this.state.List.order_id}
+                  Order Id:TJ-{this.state.List.order_date}-{this.state.List.order_id}
                 </p>
               </Grid>
             </Grid>{" "}
@@ -171,7 +171,7 @@ class OrderDetails extends Component {
                               fontSize: "14px"
                             }}
                           >
-                            {p.price}/- Rs.{" "}
+                            {p.price} ${" "}
                           </div>
                         </Grid>
 
