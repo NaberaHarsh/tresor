@@ -82,7 +82,7 @@ discount(){
     .join("&");
   const requestOptions1 = {
     method: "POST",
-    url: APIUrl.url.Discount,
+    url: APIUrl.url.GetHead,
     data: data1
   };
 
@@ -96,9 +96,9 @@ discount(){
       if (err) {
         return;
       }
-      localStorage.setItem("discount", JSON.stringify(response.data));
+      localStorage.setItem("discount", JSON.stringify(response.data.cart));
       this.setState({
-        discount:response.data,
+        discount:response.data.cart,
         loading: true
       });
     });
@@ -209,7 +209,7 @@ discount(){
   .join("&");
 const requestOptions1 = {
   method: "POST",
-  url: APIUrl.url.Discount,
+  url: APIUrl.url.GetHead,
   data: data1
 };
 
@@ -223,9 +223,9 @@ axios(requestOptions1)
     if (err) {
       return;
     }
-    localStorage.setItem("discount", JSON.stringify(response.data));
+    localStorage.setItem("discount", JSON.stringify(response.data.cart));
     this.setState({
-      discount:response.data,
+      discount:response.data.cart,
       loading: true
     });
   });
@@ -266,7 +266,7 @@ console.log(this.state.discount)
               <Grid item xs={12} sm={12} xl={8} lg={8} md={8}>
                   <Grid container space={2}>
                     <Grid md={12} lg={12} container space={3}>
-                      {this.props.cart.map(p => (
+                      {this.state.discount.map(p => (
 
                         <Card style={{width:'100%', marginBottom:'8px', padding:'8px'}}>
                         <Grid
@@ -318,6 +318,17 @@ console.log(this.state.discount)
                               >
                                 {p.price} $ {" "}
                               </div>
+                              { p.discount == 0 ?"":
+                              <div
+                              style={{
+                                textAlign: "center",
+                                color: "black",
+                                fontSize: "12px",
+                              
+                              }}
+                              >
+                              Discount:{p.discount}%
+                              </div>}
                             </Grid>
 
                             <Grid
@@ -409,9 +420,18 @@ console.log(this.state.discount)
                         )}
                           $
                       </p>
-                        <p style={{ textAlign:'center', fontSize:'14px'}} >DISCOUNT ({`${this.props.discount.discount}`}%): {this.state.discount.total_discount}$
+                      
+                        <p style={{ textAlign:'center', fontSize:'14px'}} >DISCOUNT : {this.state.discount.reduce(
+                          (sum, p) => sum + ((p.price * p.quantity)*(p.discount))/100,
+                          0)}
+                      $
+                        
                     </p>
-                    <h6  style={{ color: "black", textAlign:'center', fontSize:'14px' }}>SUBTOTAL:{" "}  {this.state.discount.total_subtotal} $</h6>
+                    <h6  style={{ color: "black", textAlign:'center', fontSize:'14px' }}>SUBTOTAL:{" "} {this.state.discount.reduce(
+                          (sum, p) => (sum + p.price * p.quantity)- ((p.price * p.quantity)*(p.discount))/100,
+                          0
+                        )}
+                        $</h6>
                     </CardContent>
                   
                   <CardActions style={{alignItems:'center'}}>

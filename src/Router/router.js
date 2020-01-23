@@ -128,11 +128,11 @@ class Routes extends Component {
         return;
       }
       localStorage.setItem("cartList", JSON.stringify(response.data.cart));
-      localStorage.setItem("discount", JSON.stringify(response.data));
+      localStorage.setItem("discount", JSON.stringify(response.data.discount_range));
       localStorage.setItem("dataGet", JSON.stringify(response.data.cart.length));
       this.setState({
         shows: response.data.shows,
-        discount:response.data,
+        discount:response.data.discount_range,
         dataGet: response.data.shows.length,
         cartList: response.data.cart,
         dataGet: response.data.cart.length,
