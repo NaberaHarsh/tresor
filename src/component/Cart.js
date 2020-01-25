@@ -20,6 +20,8 @@ import callApi from "../utils/callApi";
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
+import Info from '@material-ui/icons/Info';
+
 
 
 const styles = theme => ({
@@ -45,7 +47,7 @@ class Cart extends Component {
     this.state = {
       ProductDetails: "",
       count: 0,
-      discount:[],
+      cart:[],
       product_id: "",
       quantity: "",
       user_id: " ",
@@ -65,7 +67,7 @@ class Cart extends Component {
     this.reload()
   };
 
-discount(){
+cart(){
   
   const { user_id} = this.state;
     const userdata1 = {
@@ -96,9 +98,9 @@ discount(){
       if (err) {
         return;
       }
-      localStorage.setItem("discount", JSON.stringify(response.data.cart));
+      localStorage.setItem("cart", JSON.stringify(response.data.cart));
       this.setState({
-        discount:response.data.cart,
+        cart:response.data.cart,
         loading: true
       });
     });
@@ -134,7 +136,7 @@ discount(){
     axios(requestOptions)
       .then(response => {
         this.props.addToCart(productDetail);
-        this.discount()
+        this.cart()
       })
       .catch(err => {});
 
@@ -181,11 +183,11 @@ discount(){
     if (counter1 != this.state.count) {
       this.setState({ count: counter1 });
 
-    const discount = localStorage.getItem("discount");
+    const cart = localStorage.getItem("cart");
   
-  if ( discount && !navigator.onLine) {
+  if ( cart && !navigator.onLine) {
     this.setState({
-      lat_discount: JSON.parse(discount)
+      lat_cart: JSON.parse(cart)
     }, () => {
     });
     return;
@@ -223,13 +225,13 @@ axios(requestOptions1)
     if (err) {
       return;
     }
-    localStorage.setItem("discount", JSON.stringify(response.data.cart));
+    localStorage.setItem("cart", JSON.stringify(response.data.cart));
     this.setState({
-      discount:response.data.cart,
+      cart:response.data.cart,
       loading: true
     });
   });
-console.log(this.state.discount)
+console.log(this.state.cart)
 
     }
   }
@@ -266,7 +268,7 @@ console.log(this.state.discount)
               <Grid item xs={12} sm={12} xl={8} lg={8} md={8}>
                   <Grid container space={2}>
                     <Grid md={12} lg={12} container space={3}>
-                      {this.state.discount.map(p => (
+                      {this.state.cart.map(product => (
 
                         <Card style={{width:'100%', marginBottom:'8px', padding:'8px'}}>
                         <Grid
@@ -278,11 +280,11 @@ console.log(this.state.discount)
                           space={3}
                         >
                           <Grid md={4} lg={4} sm={6} xs={6}>
-                            <Link href={`/Details/${p.product_id}`}>
+                            <Link href={`/Details/${product.product_id}`}>
                               <center>
                                 <img
                                   class="img-fluid"
-                                  src={p.url}
+                                  src={product.url}
                                   style={{
                                     maxHeight: 120,
                                     maxWidth: 120,
@@ -304,10 +306,10 @@ console.log(this.state.discount)
                                   fontSize: "14px"
                                 }}
                               >
-                                {p.product_name}
+                                {product.product_name}
                               </div>
                             </Grid>
-                            <Grid md={3} lg={3} sm={12} xs={12}>
+                            <Grid md={2} lg={2} sm={12} xs={12}>
                               <div
                                 style={{
                                   textAlign: "center",
@@ -316,21 +318,33 @@ console.log(this.state.discount)
                                   fontWeight: "bold"
                                 }}
                               >
-                                {p.price} $ {" "}
+                                ${product.price} {" "}
                               </div>
-                              { p.discount == 0 ?"":
+                              
+                            </Grid>
+                            <Grid md={2} lg={2} sm={12} xs={12} >
+                              <div 
+                              style={{
+                                textAlign: "center",
+                                color: "black",
+                                fontSize: "14px",
+                              }}
+                              >
+                              
+                           ${product.price*product.quantity - ((product.price*product.quantity*product.discount)/100)      }                     
+                           </div>
+                           { product.discount == 0 ?"":
                               <div
                               style={{
                                 textAlign: "center",
                                 color: "black",
                                 fontSize: "12px",
-                              
+                              display:'inline'
                               }}
                               >
-                              Discount:{p.discount}%
+                              Discount:{product.discount}% <Info style={{display:'inline', color:'#135BD2', maxHeight:'12px'}}/>
                               </div>}
-                            </Grid>
-
+                           </Grid>
                             <Grid
                               md={3}
                               lg={3}
@@ -340,8 +354,8 @@ console.log(this.state.discount)
                             >
                               <AddIcon
                                 onClick={() => {
-                                  this.IncrementItem(p);
-                                  this.handleSubmit(p);
+                                  this.IncrementItem(product);
+                                  this.handleSubmit(product);
                                 }}
                                 style={{
                                   display: "inline",
@@ -360,7 +374,7 @@ console.log(this.state.discount)
                                   paddingRight: "10px"
                                 }}
                               >
-                                {p.quantity}
+                                {product.quantity}
                               </div>
                               <RemoveIcon
                                 style={{
@@ -370,12 +384,12 @@ console.log(this.state.discount)
                                   width: "20px"
                                 }}
                                 onClick={() => {
-                                  this.DecreaseItem(p);
-                                  this.handleSubmit(p);
+                                  this.DecreaseItem(product);
+                                  this.handleSubmit(product);
                                 }}
                               />
                             </Grid>
-                            <Grid md={3} lg={3} sm={4} xs={4}>
+                            <Grid md={2} lg={2} sm={4} xs={4}>
                               <Tooltip title="Delete">
                                 <DeleteIcon
                                   style={{
@@ -385,7 +399,7 @@ console.log(this.state.discount)
                                   }}
                                   onClick={() =>
                                     this.handleSubmit(
-                                      Object.assign(p, { quantity: 0 })
+                                      Object.assign(product, { quantity: 0 })
                                     )
                                   }
                                 />
@@ -406,36 +420,57 @@ console.log(this.state.discount)
               <Grid item xs={12} sm={12} xl={4} lg={4} md={4}>
               
 
-                <Card style={{display:"flex", flexDirection:'column', alignItems:'center'}}>
+                <Card >
                     <CardContent>
-                      <Typography gutterBottom variant="h4" component="h1" style={{textAlign:'center',textDecoration:'underline'}}>
+                      <Typography gutterBottom variant="h4" component="h1" style={{textDecoration:'underline'}}>
                         CHECKOUT
                       </Typography>
-                      <p style={{ color:'black', textAlign:'center', fontSize:'14px'}}>
-                        TOTAL:{" "}
-                        
-                        {this.props.cart.reduce(
+                      <p style={{ color:'black', fontSize:'14px'}}>
+                      <Grid container spacing={2}>
+                        <Grid md={6} lg={6} sm={6} xs={6}>TOTAL:{" "}</Grid>
+                        <Grid md={6} lg={6} sm={6} xs={6} style={{textAlign:'end'}}>
+                        ${this.state.cart.reduce(
                           (sum, p) => sum + p.price * p.quantity,
                           0
                         )}
-                          $
+                          
+                          </Grid>
+                          </Grid>
                       </p>
                       
-                        <p style={{ textAlign:'center', fontSize:'14px'}} >DISCOUNT : {this.state.discount.reduce(
+                        <p style={{  fontSize:'14px'}} >
+                          <Grid container spacing={2}>
+                        <Grid md={6} lg={6} sm={6} xs={6}>
+Discount :
+</Grid>
+<Grid md={6} lg={6} sm={6} xs={6} style={{textAlign:'end'}}>
+ ${this.state.cart.reduce(
                           (sum, p) => sum + ((p.price * p.quantity)*(p.discount))/100,
                           0)}
-                      $
-                        
+                      
+                        </Grid>
+                        </Grid>
                     </p>
-                    <h6  style={{ color: "black", textAlign:'center', fontSize:'14px' }}>SUBTOTAL:{" "} {this.state.discount.reduce(
+                    <h6  style={{ color: "black", fontSize:'14px' }}>
+                    <Grid container spacing={2}>
+
+                    <Grid md={6} lg={6} sm={6} xs={6}>
+SUBTOTAL:{" "} 
+</Grid>
+<Grid md={6} lg={6} sm={6} xs={6} style={{textAlign:'end'}}>
+
+${this.state.cart.reduce(
                           (sum, p) => (sum + p.price * p.quantity)- ((p.price * p.quantity)*(p.discount))/100,
                           0
                         )}
-                        $</h6>
+                        
+                        </Grid>
+                        </Grid></h6>
                     </CardContent>
                   
                   <CardActions style={{alignItems:'center'}}>
                       <Button
+                      fullWidth
                         variant="contained"
                         style={{ backgroundColor: "black", color: "white" }}
                         onClick={() => {

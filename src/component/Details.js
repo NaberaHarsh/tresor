@@ -9,7 +9,8 @@ import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import axios from "axios";
 import { getLoginData } from '../utils/session';
-
+import InfoIcon from '@material-ui/icons/Info';
+import { Icon } from 'antd';
 
 class Details extends Component {
   constructor(props) {
@@ -145,6 +146,32 @@ console.log(product_id);
                   </p>
                   <p>{Detail.name}</p>
                 </div>
+                <Grid container spacing={2}>
+                  <Grid md={6} lg={6} sm={6} xs={6} >
+                  <div className="section-heading">
+
+<p> <span 
+style={{ color: "#515151",
+    fontWeight: "800",
+    fontSize: "24px"
+
+    }}>
+      Price:</span> ${Detail.price}</p>
+</div>
+                  </Grid>
+                  <Grid md={6} lg={6} sm={6} xs={6} >
+                  <div className="section-heading">
+
+<p> <span 
+style={{ color: "#515151",
+    fontWeight: "800",
+    fontSize: "24px"
+    }}>
+      Discount:</span><InfoIcon style={{color:'#135BD2', maxHeight:'22px'}} /> </p>
+</div>
+                  </Grid>
+
+                </Grid>
 
                 {Detail.description && (
                   <div style={{ marginTop: "12px", marginBottom: "10px" }}>
@@ -190,8 +217,7 @@ console.log(product_id);
                     </p>
 
                     <br />
-                    <center>
-                      {/* <Link href="/cart"> */}
+                    
                         <Button
                           variant="contained"
                           style={{
@@ -203,10 +229,7 @@ console.log(product_id);
                         >  
                           Add to Cart
                         </Button>
-                       
-                      {/* </Link> */}
-                    </center>
-                  </div>
+                                         </div>
                 )}
               </Grid>
             </Grid>

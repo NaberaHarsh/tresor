@@ -171,7 +171,7 @@ class OrderDetails extends Component {
                               fontSize: "14px"
                             }}
                           >
-                            {p.price} ${" "}
+                            ${p.price}{" "}
                           </div>
                         </Grid>
 

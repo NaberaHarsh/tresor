@@ -170,7 +170,7 @@ TJ-{p.order_date}-{p.order_id}
                         color: 'black'
                       }}
                     >
-                    {p.subtotal} $
+                    ${p.subtotal} 
                           
                                            </Typography>
                     </Grid>
