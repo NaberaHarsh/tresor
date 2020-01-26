@@ -17,6 +17,7 @@ class App extends Component {
       banner: [],
       category:[],
       shows:[],
+      posts:[],
       activeStep: 0,
       payload: {},
       idData:" ",
@@ -84,10 +85,14 @@ class App extends Component {
      this.generateCategories(response.data);
      localStorage.setItem("banner", JSON.stringify(response.data.banner));
      localStorage.setItem("shows", JSON.stringify(response.data.shows));
+     localStorage.setItem("posts", JSON.stringify(response.data.posts));
+
       this.setState({
         banner: response.data.banner,
         shows:response.data.shows,
-        loading:false
+        loading:false,
+        posts:response.data.posts,
+
       });
       
     })
@@ -144,7 +149,7 @@ const {banner,category,shows} = this.state;
     <div className="body">
   
      
-   <Routes banner={banner} category = {category} shows = {this.state.shows} />
+   <Routes banner={banner} category = {category} shows = {this.state.shows} posts = {this.state.posts} />
      <Footer/>
     </div>
   )};

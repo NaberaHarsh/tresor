@@ -71,7 +71,7 @@ class CollectionCarousel extends Component {
                                     <img
                                    
                                       className="img2"
-                                      src={`http://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
+                                      src={`https://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
                                       alt=""
                                     />{" "}
                                 

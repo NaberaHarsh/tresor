@@ -183,7 +183,7 @@ console.log(product_id);
                     <Paper key={`product-list-${index}`} className="marginB">
                       <img 
                         className="img1"
-                        src={`http://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
+                        src={`https://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
                         alt=""
                       />
                       <div className="Rating">

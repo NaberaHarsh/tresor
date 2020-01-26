@@ -54,9 +54,10 @@ class SubNav extends React.Component {
     return null;
   }
 
-  handleChange = value => {
+  handleChange =  (event, newValue) => {
 
-    this.setState({ value });
+    console.log(newValue);
+    this.setState({ newValue });
   };
 
   render() {
@@ -74,7 +75,9 @@ class SubNav extends React.Component {
                 centered
                 scrollButtons="auto"
                 aria-label="scrollable auto tabs example"
-                indicator="false"
+                indicatorColor="default"
+
+              
               >
                 {category.map((data, index) => (
                   <Link

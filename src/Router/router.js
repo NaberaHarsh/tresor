@@ -22,6 +22,7 @@ class Routes extends Component {
   constructor(props) {
     super(props);
 
+    console.log(props);
 
     this.state = {
       banner: [],
@@ -136,7 +137,8 @@ class Routes extends Component {
         dataGet: response.data.shows.length,
         cartList: response.data.cart,
         dataGet: response.data.cart.length,
-        loading: true
+        loading: true,
+        posts: response.data.posts
       });
     });
 

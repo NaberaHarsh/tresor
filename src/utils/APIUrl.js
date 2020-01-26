@@ -1,6 +1,6 @@
-const apiEndPoint = "http://admin.tresorjewelryinc.com/index.php";
+// const apiEndPoint = "http://admin.tresorjewelryinc.com/index.php";
 // const apiEndPoint = "http://45.77.147.212";
-const apiEndPoint1 = "http://admin.tresorjewelryinc.com";
+const apiEndPoint = "https://admin.tresorjewelryinc.com";
 
 
 
@@ -16,11 +16,11 @@ const config = {
    ForgotPassword:`${apiEndPoint}/user/forgotpass/gen`,
    ResetPassword:`${apiEndPoint}/user/updatepass`,   
    Search:`${apiEndPoint}/api/search`,
-   AddToCart:`${apiEndPoint1}/Api/add_to_cart`,
-   ProcessOrder:`${apiEndPoint1}/Api/process_order`,
-   Order:`${apiEndPoint1}/api/user_order`,
-   UserOrder:`${apiEndPoint1}/api/user_order_details`,
-   Discount:`${apiEndPoint1}/Api/getOrderSubtotal`,
+   AddToCart:`${apiEndPoint}/Api/add_to_cart`,
+   ProcessOrder:`${apiEndPoint}/Api/process_order`,
+   Order:`${apiEndPoint}/api/user_order`,
+   UserOrder:`${apiEndPoint}/api/user_order_details`,
+   Discount:`${apiEndPoint}/Api/getOrderSubtotal`,
 
   }
 };

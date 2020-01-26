@@ -29,7 +29,8 @@ class Deshboard extends Component {
       return {
         banner: nextProps.data.banner,
         categoryList: nextProps.data.category,
-        shows: nextProps.data.shows
+        shows: nextProps.data.shows,
+        posts: nextProps.data.posts
       };
     }
 
@@ -76,7 +77,7 @@ class Deshboard extends Component {
   };
 
   render() {
-    const { banner, shows, lat_product, like_product } = this.state;
+    const { banner, shows, lat_product, like_product, posts } = this.state;
 
     return (
       <div>
@@ -90,7 +91,7 @@ class Deshboard extends Component {
             
             <CollectionCarousel lat_product={lat_product} />
             <MultiCarousel like_product={like_product} />
-            {shows !== [] ? <Catlog shows={shows} /> : undefined}
+            {posts !== [] ? <Catlog shows={posts} /> : undefined}
 
             <br></br>
           </Grid>

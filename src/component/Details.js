@@ -75,14 +75,14 @@ console.log(product_id);
         ProductDetails: response.data,
         Detail: response.data.detail,
         img: response.data.img,
-        bigImage: `http://admin.tresorjewelryinc.com/tresor-admin/${response.data.img[0].url}`
+        bigImage: `https://admin.tresorjewelryinc.com/tresor-admin/${response.data.img[0].url}`
       });
     });
   }
 
   ChangeImage = e => {
     this.setState({
-      bigImage: `http://admin.tresorjewelryinc.com/tresor-admin/${e}`
+      bigImage: `https://admin.tresorjewelryinc.com/tresor-admin/${e}`
     });
   };
 
@@ -122,7 +122,7 @@ console.log(product_id);
                     >
                       <Card style={{ padding: "5px" }}>
                         <img
-                          src={`http://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
+                          src={`https://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
                           alt="productimg"
                           style={{ width: "100%" }}
                           onClick={() => this.ChangeImage(data.url)}
