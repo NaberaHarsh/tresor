@@ -22,6 +22,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Info from '@material-ui/icons/Info';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Menu from '@material-ui/core/Menu';
 
 
 const styles = theme => ({
@@ -59,8 +60,20 @@ class Cart extends Component {
       show: true,
       open:false,
       display:false,
+      menu:null,
+      range:[],
+
     };
   }
+
+  handleClick = event => {
+    this.setState({menu:event.currentTarget});
+  };
+
+   handleMenuClose = () => {
+    this.setState({menu:null});
+  };
+
 
  handleDisplay = () => {
     this.setState({display:false});
@@ -191,12 +204,14 @@ cart(){
 
   componentDidMount() {
     var counter1 = JSON.parse(localStorage.getItem("Cart"));
+    
     if (counter1 != this.state.count) {
       this.setState({ count: counter1 });
 
     const cart = localStorage.getItem("cart");
-  
-  if ( cart && !navigator.onLine) {
+    const range= localStorage.getItem("range")
+
+  if ( cart && range && !navigator.onLine) {
     this.setState({
       lat_cart: JSON.parse(cart),
     }, () => {
@@ -237,6 +252,8 @@ axios(requestOptions1)
       return;
     }
     localStorage.setItem("cart", JSON.stringify(response.data.cart));
+    localStorage.setItem("range", JSON.stringify(response.data.cart.discount_range));
+
     this.setState({
       cart:response.data.cart,
       loading: true
@@ -320,16 +337,16 @@ console.log(this.state.cart)
                                 {product.product_name}
                               </div>
                             </Grid>
-                            <Grid md={2} lg={2} sm={12} xs={12}>
+                            <Grid md={3} lg={3} sm={12} xs={12}>
                               <div
                                 style={{
                                   textAlign: "center",
                                   color: "black",
                                   fontSize: "14px",
-                                  fontWeight: "bold"
+                                  paddingTop:'8px'
                                 }}
                               >
-                                ${product.price} {" "}
+    {product.quantity} x ${product.price} {" "}
                               </div>
                               
                             </Grid>
@@ -339,6 +356,9 @@ console.log(this.state.cart)
                                 textAlign: "center",
                                 color: "black",
                                 fontSize: "14px",
+                                fontWeight: "bold",
+                                paddingTop:'8px'
+
                               }}
                               >
                               
@@ -350,15 +370,37 @@ console.log(this.state.cart)
                                 textAlign: "center",
                                 color: "black",
                                 fontSize: "12px",
-                              display:'inline'
+                            
                               }}
                               >
-                              Discount:{product.discount}% <Info style={{display:'inline', color:'#135BD2', maxHeight:'12px'}}/>
+                              Discount:{product.discount}%
+                               {/* <Info style={{display:'inline', color:'#135BD2', maxHeight:'12px'}}  aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}/> */}
+                              {/* <Menu
+        id="simple-menu"
+       anchorEl={this.state.menu}
+        keepMounted
+        open={Boolean(this.state.menu)}
+        onClose={this.handleMenuClose}
+      >
+        <table> 
+          <tr>
+          <th style={{width:'60px', textAlign:'center'}}>Qty </th>
+          <th style={{width:'60px', textAlign:'center'}}>Disount</th> 
+          </tr>
+                {this.state.range.map(data=>(
+          <tr>
+            <td style={{width:'60px', textAlign:'center'}}>{data.quantity_from}-{data.quantity_to}</td>
+                <td style={{width:'70px', textAlign:'center'}}>{data.quantity_discount}%</td>
+          </tr>
+    ))}
+    
+     </table>
+     </Menu> */}
                               </div>}
                            </Grid>
                             <Grid
-                              md={3}
-                              lg={3}
+                              md={2}
+                              lg={2}
                               sm={8}
                               xs={8}
                               style={{ textAlign: "center" }}
@@ -379,10 +421,10 @@ console.log(this.state.cart)
                                 style={{
                                   display: "inline",
                                   verticalAlign: "super",
-                                  paddingLeft: "10px",
+                                  paddingLeft: "4px",
                                   color: "black",
                                   fontWeight: "bold",
-                                  paddingRight: "10px"
+                                  paddingRight: "4px"
                                 }}
                               >
                                 {product.quantity}

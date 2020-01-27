@@ -11,6 +11,7 @@ import axios from "axios";
 import { getLoginData } from '../utils/session';
 import InfoIcon from '@material-ui/icons/Info';
 import CustomizedSnackbars from './SnackBars';
+import Menu from '@material-ui/core/Menu';
 
 
 class Details extends Component {
@@ -28,9 +29,17 @@ class Details extends Component {
       status:'',
       open:false,
       range:[],
+      menu:null
 
     };
   }
+   handleClick = event => {
+    this.setState({menu:event.currentTarget});
+  };
+
+   handleMenuClose = () => {
+    this.setState({menu:null});
+  };
 
 
 
@@ -181,11 +190,11 @@ console.log(product_id);
 
 <p> <span 
 style={{ color: "#515151",
-    fontWeight: "800",
+    fontWeight: "500",
     fontSize: "24px"
 
     }}>
-      Price:</span> ${Detail.price}</p>
+       Price:</span><span style={{fontSize:'20px'}}> ${Detail.price} </span></p>
 </div>)}
                   </Grid>
                   <Grid md={6} lg={6} sm={6} xs={6} >
@@ -194,18 +203,38 @@ style={{ color: "#515151",
 
 <p> <span 
 style={{ color: "#515151",
-    fontWeight: "800",
+    fontWeight: "500",
     fontSize: "24px"
     }}>
-      Discount:</span><InfoIcon style={{color:'#135BD2', maxHeight:'22px'}} /> </p>
+      Discount:</span><InfoIcon style={{color:'#135BD2', maxHeight:'22px'}} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} /> 
+      <Menu
+        id="simple-menu"
+       anchorEl={this.state.menu}
+        keepMounted
+        open={Boolean(this.state.menu)}
+        onClose={this.handleMenuClose}
+      >
+        <table> 
+          <tr>
+          <th style={{width:'60px', textAlign:'center'}}>Qty </th>
+          <th style={{width:'60px', textAlign:'center'}}>Disount</th> 
+          </tr>
+                {this.state.range.map(data=>(
+          <tr>
+            <td style={{width:'60px', textAlign:'center'}}>{data.quantity_from}-{data.quantity_to}</td>
+                <td style={{width:'70px', textAlign:'center'}}>{data.quantity_discount}%</td>
+          </tr>
+    ))}
+    
+     </table>
+     </Menu>
+        </p>
      
 </div>)}
                   </Grid>
 
                 </Grid>
-              {/* {this.state.range.map(data=>(
-                  <div>{data.quantity_discount}</div>
-                ))} */}
+              
                 {Detail.description && (
                   <div style={{ marginTop: "12px", marginBottom: "10px" }}>
                     <h5
