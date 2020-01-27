@@ -30,6 +30,10 @@ const styles = theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
   paper: {
     textAlign:'center',
     backgroundColor: theme.palette.background.paper,
@@ -62,7 +66,7 @@ class Cart extends Component {
     this.setState({display:false});
   };
  handleToggle = () => {
-    this.setState({display:!this.state.display});
+    this.setState({display: ! this.state.display});
   };
    handleOpen = () => {
     this.setState({open:true})
@@ -179,7 +183,8 @@ cart(){
 
     axios(requestOptions1)
       .then(response => {
-        this.handleOpen()
+        this.handleOpen();
+        
       })
       .catch(err => {});
   }
@@ -482,11 +487,15 @@ ${this.state.cart.reduce(
                         style={{ backgroundColor: "black", color: "white" }}
                         onClick={() => {
                           this.processOrder();
-                        this.handleToggle();
+                          this.handleToggle();
                         }}
                       >
                         Proceed To Buy
                       </Button>
+                      <Backdrop className={classes.backdrop} open={this.state.display} onClick={this.handleClose}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+ 
                      <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
