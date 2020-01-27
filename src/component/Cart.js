@@ -21,7 +21,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Info from '@material-ui/icons/Info';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 
 const styles = theme => ({
@@ -53,11 +53,17 @@ class Cart extends Component {
       user_id: " ",
       status: " ",
       show: true,
-      open:false
+      open:false,
+      display:false,
     };
   }
 
-  
+ handleDisplay = () => {
+    this.setState({display:false});
+  };
+ handleToggle = () => {
+    this.setState({display:!this.state.display});
+  };
    handleOpen = () => {
     this.setState({open:true})
   };
@@ -187,7 +193,7 @@ cart(){
   
   if ( cart && !navigator.onLine) {
     this.setState({
-      lat_cart: JSON.parse(cart)
+      lat_cart: JSON.parse(cart),
     }, () => {
     });
     return;
@@ -448,6 +454,7 @@ Discount :
                           (sum, p) => sum + ((p.price * p.quantity)*(p.discount))/100,
                           0)}
                       
+                       
                         </Grid>
                         </Grid>
                     </p>
@@ -475,7 +482,7 @@ ${this.state.cart.reduce(
                         style={{ backgroundColor: "black", color: "white" }}
                         onClick={() => {
                           this.processOrder();
-                        
+                        this.handleToggle();
                         }}
                       >
                         Proceed To Buy

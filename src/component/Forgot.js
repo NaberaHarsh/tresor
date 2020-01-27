@@ -10,6 +10,9 @@ import APIUrl from "../utils/APIUrl";
 import axios from "axios";
 import setCookie from "../utils/setCookie";
 import { Redirect } from "react-router-dom";
+import CustomizedSnackbars from './SnackBars';
+
+
 
 const styles = theme => ({
   "@global": {
@@ -76,8 +79,13 @@ class ForgotPassword extends Component {
 
     axios(requestOptions)
       .then(response => {
+             this.setState({isToastOpen:true,message:response.data.message,type:"success"});
+
       })
-      .catch(err => { });
+      .catch(err => { 
+        this.setState({isToastOpen:true,message:"Something went wrong",type:"error"});
+
+      });
   };
 
   render() {
@@ -143,6 +151,12 @@ class ForgotPassword extends Component {
             </form>
           </div>
         </Paper>
+        <CustomizedSnackbars
+                isOpen ={this.state.isToastOpen}
+                message = {this.state.message}
+                type = {this.state.type}
+                handleClose={() => this.setState({isToastOpen : false})}
+                />
       </Container>
     );
   }

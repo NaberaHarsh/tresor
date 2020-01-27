@@ -10,7 +10,8 @@ import Link from "@material-ui/core/Link";
 import axios from "axios";
 import { getLoginData } from '../utils/session';
 import InfoIcon from '@material-ui/icons/Info';
-import { Icon } from 'antd';
+import CustomizedSnackbars from './SnackBars';
+
 
 class Details extends Component {
   constructor(props) {
@@ -26,6 +27,8 @@ class Details extends Component {
       user_id:"  ",
       status:'',
       open:false,
+      range:[],
+
     };
   }
 
@@ -56,12 +59,29 @@ console.log(product_id);
 
     axios(requestOptions)
       .then(response => {
+        this.setState({isToastOpen:true,message:response.data.msg,type:"success"});
+
       })
-      .catch(err => { });
+      .catch(err => { 
+        this.setState({isToastOpen:true,message:"Something went wrong",type:"error"});
+
+      });
   };
 
 
   componentDidMount() {
+    const range= localStorage.getItem("range")
+    if ( range && !navigator.onLine) {
+      this.setState({
+        lat_range:JSON.parse(range)
+      }, () => {
+      });
+      return;
+    } else if (!navigator.onLine) {
+      alert("you are offline");
+      return;
+    }
+
     const requestOptions = {
       method: "GET",
       url: `${APIUrl.url.Detailproduct}/${this.props.match.params.id}`
@@ -71,13 +91,19 @@ console.log(product_id);
       if (err) {
         return;
       }
+      localStorage.setItem("range", JSON.stringify(response.data.detail.discount_range));
       this.setState({
+        range:JSON.parse(response.data.detail.discount_range),
         ProductDetails: response.data,
         Detail: response.data.detail,
         img: response.data.img,
         bigImage: `https://admin.tresorjewelryinc.com/tresor-admin/${response.data.img[0].url}`
       });
+      console.log(this.state.range);
+
     });
+
+
   }
 
   ChangeImage = e => {
@@ -98,7 +124,7 @@ console.log(product_id);
     const { email } = this.state;
    
 
-    const { bigImage, img, Detail } = this.state;
+    const { bigImage, img, Detail,range } = this.state;
     return (
       <div>
         <Container maxWidth="lg" className="productCard1">
@@ -146,8 +172,11 @@ console.log(product_id);
                   </p>
                   <p>{Detail.name}</p>
                 </div>
+
                 <Grid container spacing={2}>
                   <Grid md={6} lg={6} sm={6} xs={6} >
+                    
+                {Detail.price &&( 
                   <div className="section-heading">
 
 <p> <span 
@@ -157,9 +186,10 @@ style={{ color: "#515151",
 
     }}>
       Price:</span> ${Detail.price}</p>
-</div>
+</div>)}
                   </Grid>
                   <Grid md={6} lg={6} sm={6} xs={6} >
+                    {Detail.discount_range && (
                   <div className="section-heading">
 
 <p> <span 
@@ -168,11 +198,14 @@ style={{ color: "#515151",
     fontSize: "24px"
     }}>
       Discount:</span><InfoIcon style={{color:'#135BD2', maxHeight:'22px'}} /> </p>
-</div>
+     
+</div>)}
                   </Grid>
 
                 </Grid>
-
+              {/* {this.state.range.map(data=>(
+                  <div>{data.quantity_discount}</div>
+                ))} */}
                 {Detail.description && (
                   <div style={{ marginTop: "12px", marginBottom: "10px" }}>
                     <h5
@@ -218,7 +251,10 @@ style={{ color: "#515151",
 
                     <br />
                     
-                        <Button
+                        
+                                         </div>
+                )}
+                <Button
                           variant="contained"
                           style={{
                             textAlign: "center",
@@ -229,11 +265,15 @@ style={{ color: "#515151",
                         >  
                           Add to Cart
                         </Button>
-                                         </div>
-                )}
               </Grid>
             </Grid>
           </Grid>
+          <CustomizedSnackbars
+                isOpen ={this.state.isToastOpen}
+                message = {this.state.message}
+                type = {this.state.type}
+                handleClose={() => this.setState({isToastOpen : false})}
+                />
         </Container>
       </div>
     );

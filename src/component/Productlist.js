@@ -9,6 +9,7 @@ import { Redirect } from "react-router-dom";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { getLoginData } from '../utils/session';
 import axios from "axios";
+import CustomizedSnackbars from './SnackBars';
 
 
 function TabPanel(props) {
@@ -79,8 +80,13 @@ console.log(product_id);
 
     axios(requestOptions)
       .then(response => {
+        this.setState({isToastOpen:true,message:response.data.msg,type:"success"});
+
       })
-      .catch(err => { });
+      .catch(err => { 
+        this.setState({isToastOpen:true,message:"Something went wrong",type:"error"});
+
+      });
   };
 
 
@@ -281,6 +287,12 @@ onClick={()=>{ this.handleSubmit(data); this.props.addToCart({detail :data});}}
                 </>
               )}
           </Grid>
+          <CustomizedSnackbars
+                isOpen ={this.state.isToastOpen}
+                message = {this.state.message}
+                type = {this.state.type}
+                handleClose={() => this.setState({isToastOpen : false})}
+                />
         </Container>
       </div>
     );
