@@ -110,10 +110,13 @@ if(this.props.order.length>0){
       <p style={{paddingLeft:'20px', fontSize:"16px"}}> My Orders</p>
       </Paper>
       </div><br/>
-          <br />
+          
+          <Card style={{width:'100%', paddingTop:'16px'}}>
+                  <div className="Rating" style={{ padding: '16px',fontSize:'16px' }}>
+
         <Grid container spacing={4}>
           <Grid md={2} lg={2}  
-                         style={{ textAlign:"center", paddingLeft:'24px' }}
+                         style={{ textAlign:"center" }}
 ><span style={{fontWeight:'bold'}}>OrderId</span></Grid>
           <Grid md={2} lg={2} 
           style={{ textAlign:"center" }}
@@ -122,14 +125,16 @@ if(this.props.order.length>0){
                          style={{ textAlign:"center" }}
 > <span style={{fontWeight:'bold'}}>No. of Products</span></Grid>
           <Grid md={2} lg={2}   
-                        style={{textAlign:"center"}}
+                        style={{textAlign:"center", paddingLeft:'36px'}}
 > <span style={{fontWeight:'bold'}}>Date</span></Grid>
           <Grid md={4} lg={4}></Grid>
         </Grid>
-        <br />
+        </div>
+                </Card>
+        
           <Grid container spacing={0}>
 
-            {this.props.order.map(p =>
+            {this.props.order.map((p,index) =>
               <Grid
                 style={{ textAlign:"center" }}
                 item
@@ -138,9 +143,10 @@ if(this.props.order.length>0){
                 md={12}
                 lg={12}
               >
-                 <Card style={{width:'100%', marginBottom:'8px', padding:'8px'}}>
-                  <div className="Rating" style={{ padding: '24px', }}>
-                    <Grid container spacing={4}>
+
+<div  style={{ padding:'16px' }}>
+
+                    <Grid container spacing={4}  style ={index % 2? { backgroundColor : "white" }:{ backgroundColor : "ghostwhite" } }>
                     <Grid
                      xs={12}
                      sm={12}
@@ -149,12 +155,12 @@ if(this.props.order.length>0){
                      >
                     <Typography
                       style={{
-                        
+                        paddingTop:'8px',
                         textAlign:'center',
                         color: 'black'
                       }}
                     >
-TJ-{p.order_date}-{p.order_id}
+TJ{p.order_date}{p.order_id}
                     </Typography>
                     </Grid>
                     <Grid
@@ -165,7 +171,7 @@ TJ-{p.order_date}-{p.order_id}
                      >
                     <Typography
                       style={{
-                        
+                        paddingTop:'8px',                        
                         textAlign: "center",
                         color: 'black'
                       }}
@@ -182,7 +188,7 @@ TJ-{p.order_date}-{p.order_id}
                      >
                     <Typography
                       style={{   
-                                             
+                        paddingTop:'8px',    
                         textAlign: "center",
                         color: 'black'
                       }}
@@ -199,7 +205,7 @@ TJ-{p.order_date}-{p.order_id}
                     <Typography
                       style={{
                         
-
+                        paddingTop:'8px',
                         textAlign: "center",
                         color: 'black'
                       }}
@@ -214,9 +220,10 @@ TJ-{p.order_date}-{p.order_id}
                      sm={12}
                      md={3}
                      lg={3}
+                     style={{paddingTop:'4px'}}
                      >
                     <Link href={`/order_detail/${p.order_id}`}>
-                    <Button variant='contained' style={{ backgroundColor: "black", color: 'white' }}
+                    <Button variant='contained' style={{ backgroundColor: "black",fontSize:'12px',height:'28px', color: 'white' }}
                      onClick={() => {this.handleSubmit(p); }}
                      >
 View Details
@@ -224,9 +231,8 @@ View Details
                        </Link>
                        </Grid>
                        </Grid>
-
-                  </div>
-                </Card>
+</div>
+                  
               </Grid>)}
           </Grid>
       </Container>

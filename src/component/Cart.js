@@ -170,8 +170,20 @@ cart(){
     this.setState({ quantity: plus });
   }
   DecreaseItem(p) {
-    let minus = p.quantity--;
-    this.setState({ quantity: minus });
+
+    if(p.quantity === 0)
+    {this.setState({quantity:0})
+  }
+  else{
+    this.setState({quantity:p.quantity--})
+  }
+//     let minus = p.quantity--;
+//     {minus > 0 
+//     ?
+//     this.setState({ quantity:minus})
+// :
+// this.setState({quantity: 0})
+//   }
   }
 
   processOrder() {

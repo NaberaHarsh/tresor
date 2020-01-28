@@ -190,11 +190,11 @@ console.log(product_id);
 
 <p> <span 
 style={{ color: "#515151",
-    fontWeight: "500",
+    fontWeight: "600",
     fontSize: "24px"
 
     }}>
-       Price:</span><span style={{fontSize:'20px'}}> ${Detail.price} </span></p>
+       Price:</span><span style={{fontSize:'18px', font:'helvetica'}}> ${Detail.price} / {Detail.unit_name} </span></p>
 </div>)}
                   </Grid>
                   <Grid md={6} lg={6} sm={6} xs={6} >
@@ -203,7 +203,7 @@ style={{ color: "#515151",
 
 <p> <span 
 style={{ color: "#515151",
-    fontWeight: "500",
+    fontWeight: "600",
     fontSize: "24px"
     }}>
       Discount:</span><InfoIcon style={{color:'#135BD2', maxHeight:'22px'}} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} /> 

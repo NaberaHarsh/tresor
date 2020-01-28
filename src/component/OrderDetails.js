@@ -120,7 +120,7 @@ class OrderDetails extends Component {
                     fontSize: "14px"
                   }}
                 >
-                  Order Id:TJ-{this.state.List.order_date}-{this.state.List.order_id}
+                  Order Id:TJ{this.state.List.order_date}{this.state.List.order_id}
                 </p>
               </Grid>
             </Grid>{" "}
@@ -151,7 +151,7 @@ class OrderDetails extends Component {
                         </Link>
                       </Grid>
                       <Grid md={8} lg={8} sm={6} xs={6} container space={2}>
-                        <Grid md={4} lg={4} sm={12} xs={12}>
+                        <Grid md={3} lg={3} sm={12} xs={12}>
                           <div
                             style={{
                               textAlign: "center",
@@ -163,7 +163,7 @@ class OrderDetails extends Component {
                             {p.product_name}
                           </div>
                         </Grid>
-                        <Grid md={4} lg={4} sm={12} xs={12}>
+                        <Grid md={3} lg={3} sm={12} xs={12}>
                           <div
                             style={{
                               textAlign: "center",
@@ -174,10 +174,30 @@ class OrderDetails extends Component {
                             ${p.price}{" "}
                           </div>
                         </Grid>
-
+<Grid md={3} lg={3} sm={12} xs={12}>
+<div
+                            style={{
+                              textAlign: "center",
+                              color: "black",
+                              fontSize: "14px",
+                              fontWeight:'bold'
+                            }}
+                          >
+                             ${p.price - ((p.price*p.discount)/100)      }  
+                             </div>
+                   
+<div
+style={{
+  textAlign: "center",
+  color: "black",
+  fontSize: "12px"
+}}>
+Discount: {p.discount}%
+</div>
+</Grid>
                         <Grid
-                          md={3}
-                          lg={3}
+                          md={2}
+                          lg={2}
                           sm={12}
                           xs={12}
                           style={{ textAlign: "center" }}
