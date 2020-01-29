@@ -292,7 +292,7 @@ console.log(this.state.cart)
   {
     const { classes } = this.props
 
-    if (this.props.cartItemCount > 0) {
+    if (this.state.cart.length > 0) {
       return (
         <div style={{ padding: "10px" }}>
           <Container maxWidth="lg">
@@ -319,7 +319,7 @@ console.log(this.state.cart)
                           container
                           space={3}
                         >
-                          <Grid md={4} lg={4} sm={6} xs={6}>
+                          <Grid md={4} lg={4} sm={6} xs={6} style={{paddingTop:'10px'}}>
                             <Link href={`/Details/${product.product_id}`}>
                               <center>
                                 <img
@@ -355,7 +355,7 @@ console.log(this.state.cart)
                                   textAlign: "center",
                                   color: "black",
                                   fontSize: "14px",
-                                  paddingTop:'8px'
+                                  paddingTop:'4px'
                                 }}
                               >
     {product.quantity} x ${product.price} {" "}
@@ -369,7 +369,7 @@ console.log(this.state.cart)
                                 color: "black",
                                 fontSize: "14px",
                                 fontWeight: "bold",
-                                paddingTop:'8px'
+                                paddingTop:'4px'
 
                               }}
                               >
@@ -386,8 +386,8 @@ console.log(this.state.cart)
                               }}
                               >
                               Discount:{product.discount}%
-                               {/* <Info style={{display:'inline', color:'#135BD2', maxHeight:'12px'}}  aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}/> */}
-                              {/* <Menu
+                               <Info style={{display:'inline', color:'#135BD2', maxHeight:'16px'}}  aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}/>
+                              <Menu
         id="simple-menu"
        anchorEl={this.state.menu}
         keepMounted
@@ -399,7 +399,8 @@ console.log(this.state.cart)
           <th style={{width:'60px', textAlign:'center'}}>Qty </th>
           <th style={{width:'60px', textAlign:'center'}}>Disount</th> 
           </tr>
-                {this.state.range.map(data=>(
+          {console.log(product.discount_range)}
+                {JSON.parse(product.discount_range).map(data=>(
           <tr>
             <td style={{width:'60px', textAlign:'center'}}>{data.quantity_from}-{data.quantity_to}</td>
                 <td style={{width:'70px', textAlign:'center'}}>{data.quantity_discount}%</td>
@@ -407,7 +408,7 @@ console.log(this.state.cart)
     ))}
     
      </table>
-     </Menu> */}
+     </Menu>
                               </div>}
                            </Grid>
                             <Grid
@@ -415,7 +416,7 @@ console.log(this.state.cart)
                               lg={2}
                               sm={8}
                               xs={8}
-                              style={{ textAlign: "center" }}
+                              style={{ textAlign: "center"}}
                             >
                               <AddIcon
                                 onClick={() => {
@@ -426,7 +427,8 @@ console.log(this.state.cart)
                                   display: "inline",
                                   color: "black",
                                   height: "20px",
-                                  width: "20px"
+                                  width: "20px",
+                                  paddingTop:'0px'
                                 }}
                               />
                               <div
@@ -436,7 +438,8 @@ console.log(this.state.cart)
                                   paddingLeft: "4px",
                                   color: "black",
                                   fontWeight: "bold",
-                                  paddingRight: "4px"
+                                  paddingRight: "4px",
+                                  paddingTop:'0px'
                                 }}
                               >
                                 {product.quantity}
@@ -446,7 +449,8 @@ console.log(this.state.cart)
                                   display: "inline",
                                   color: "black",
                                   height: "20px",
-                                  width: "20px"
+                                  width: "20px",
+                                  paddingTop:'0px'
                                 }}
                                 onClick={() => {
                                   this.DecreaseItem(product);
@@ -460,7 +464,8 @@ console.log(this.state.cart)
                                   style={{
                                     alignItems: "center",
                                     height: "40px",
-                                    width: "40px"
+                                    width: "40px",
+                                    paddingTop:'2px'
                                   }}
                                   onClick={() =>
                                     this.handleSubmit(
