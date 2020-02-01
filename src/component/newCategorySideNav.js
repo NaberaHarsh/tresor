@@ -56,7 +56,7 @@ function ResponsiveDrawer(props) {
   const theme = useTheme();
   let [category, setcategory] = React.useState([]);
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [catId, setCatId] = React.useState("");
+  const [catId, setCatId] = React.useState(props.catId);
 
   function handleDrawerToggle() {
     setMobileOpen(!mobileOpen);

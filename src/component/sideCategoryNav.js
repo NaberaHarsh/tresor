@@ -11,6 +11,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import SubNav from './SubNav';
 
 class CustomizedTreeView extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class CustomizedTreeView extends Component {
     this.state = {
       category: [],
       catId: "",
-expanded:'83'
+expanded: props.catId
     }
   }
     

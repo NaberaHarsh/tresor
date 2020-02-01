@@ -36,8 +36,10 @@ class SubNav extends React.Component {
       anchorEl: false,
       category: [],
       skeleton: new Array(4).fill(true),
-      loading: false
+      loading: false,
+      expansion:" "
     };
+    this.handleClick= this.handleClick.bind(this)
   }
 
   static getDerivedStateFromProps(nextProps, prevProps) {
@@ -53,6 +55,12 @@ class SubNav extends React.Component {
     // Return null if the state hasn't changed
     return null;
   }
+
+handleClick(id) {
+
+  console.log(id);
+  this.setState({expansion:id})
+}
 
   handleChange =  (event, newValue) => {
 
@@ -86,6 +94,7 @@ class SubNav extends React.Component {
                     data={category}
                   >
                     <Tab
+                    onClick={()=> this.handleClick(data.catId)}
                       label={data.name}
                       {...a11yProps(index)}
                       variant="contained"
@@ -113,7 +122,7 @@ class SubNav extends React.Component {
                     href={`/products/${data.catId}/${a}`}
                     data={category}
                   >
-                    <MenuItem>{data.name}</MenuItem>
+                    <MenuItem >{data.name}</MenuItem>
                   </Link>
                 ))}
               </Tabs>

@@ -32,23 +32,7 @@ class Routes extends Component {
       user_id: " ",
       refreshHead: true,
       cartList: [],
-      orderList:[
-      //   {
-      //   orderId:'123456',
-      //   amount:'99',
-      //   date:'13/01/2020'
-      // },
-      // {
-      //   orderId:'123456',
-      //   amount:'99',
-      //   date:'13/01/2020'
-      // },
-      // {
-      //   orderId:'123456',
-      //   amount:'99',
-      //   date:'13/01/2020'
-      // }
-      ],
+      orderList:[],
 
     }
   }

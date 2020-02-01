@@ -45,7 +45,7 @@ class Register extends Component {
       tax: '',
       password: '',
       address: '',
-      errors: { name: '',company: '', email: '', mobile:'',tax:'',password:'', address:'' }
+      errors: { name: '',company: '', email: '', mobile:'',tax:'',password:'', address:'',passLength:'' }
     }
   }
   handleChange = e => {
@@ -77,9 +77,13 @@ class Register extends Component {
      if (!password) {
       errors.password = 'Password is required';
      }
+     if(password.length <6){
+      errors.passLength= "password must be atleast 6 characters long"
+    }
      if (!address) {
       errors.address = 'Address is required';
      }
+    
      this.setState({errors});
 
      
@@ -89,6 +93,7 @@ class Register extends Component {
      if(mobile)
      if(tax)
      if(password)
+     if(password.length>=6)
      if(address){
     const data = Object.keys(userdata)
       .map(key => {
@@ -179,7 +184,7 @@ class Register extends Component {
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
-                    required
+                    type="email"
                     fullWidth
                     id="email"
                     label="Email Address"
@@ -193,6 +198,7 @@ class Register extends Component {
                 <Grid item xs={12}>
                   <TextField
                     variant="outlined"
+                    type='number'
                     required
                     fullWidth
                     id="telephone number"
@@ -222,6 +228,7 @@ class Register extends Component {
                   <TextField
                     variant="outlined"
                     required
+                    minLength="6"
                     fullWidth
                     name="password"
                     value={password}
@@ -231,7 +238,9 @@ class Register extends Component {
                     id="password"
                     autoComplete="current-password"
                   />
+                  {errors.password.length < 6 && <span style={{color: "red"}}>{this.state.errors.passLength}</span>}
                   {errors.password != '' && <span style={{color: "red"}}>{this.state.errors.password}</span>}
+
                 </Grid>
                 <Grid item xs={12}>
                   <TextField

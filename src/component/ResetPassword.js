@@ -44,6 +44,8 @@ class ResetPassword extends Component {
       password: '',
       newPass: '',
       isLogin: '',
+      errors: { password:'' }
+
     };
   }
 
@@ -57,6 +59,17 @@ class ResetPassword extends Component {
     e.preventDefault();
     const { password } = this.state;
     const userdata = { password };
+    let errors = {password:''};
+    if (!password) {
+      errors.password = 'Password is required';
+     }
+    if(password.length <6){
+      errors.passLength= "password must be atleast 6 characters long"
+    }
+    this.setState({errors});
+
+    if(password.length>=6)
+{
     const data = Object.keys(userdata)
       .map(key => {
         return (
@@ -80,11 +93,14 @@ class ResetPassword extends Component {
         }
       })
       .catch(err => { });
+    }
   };
 
   render() {
+    const { errors } = this.state;
     const { classes } = this.props;
     const { newPass, password, isLogin, token } = this.state;
+
     if (isLogin) {
       setCookie("token", token, 30);
       return (
@@ -134,6 +150,9 @@ class ResetPassword extends Component {
                 id="password"
                 autoComplete="reset-password"
               />
+               {errors.password.length < 6 && <span style={{color: "red"}}>{this.state.errors.passLength}</span>}
+                  {errors.password != '' && <span style={{color: "red"}}>{this.state.errors.password}</span>}
+
               <TextField
                 variant="outlined"
                 margin="normal"
@@ -148,6 +167,9 @@ class ResetPassword extends Component {
                 id="password"
                 autoComplete="reset-password"
               />
+              {errors.password.length < 6 && <span style={{color: "red"}}>{this.state.errors.passLength}</span>}
+                  {errors.password != '' && <span style={{color: "red"}}>{this.state.errors.password}</span>}
+
 
               <Button
                 type="submit"
