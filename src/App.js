@@ -54,7 +54,6 @@ class App extends Component {
     else{
      this.state.idData={user_id:'0'}
     }
-      console.log(this.state.idData);
       
       const data1 = Object.keys(this.state.idData)
         .map(key => {

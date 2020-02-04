@@ -66,7 +66,6 @@ class Order extends Component {
   handleSubmit(orderDetail) {
     const { order_id, user_id } = this.state;
     const userdata = { order_id: orderDetail.order_id, user_id: getLoginData().user_id };
-    console.log(userdata);
 
 
 

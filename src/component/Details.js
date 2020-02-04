@@ -49,8 +49,6 @@ class Details extends Component {
 this.setState({product_id:product_id})
 
 
-    console.log(userdata);
-console.log(product_id);
     // convert json to form data with '&' seprater
     const data = Object.keys(userdata)
       .map(key => {
@@ -108,7 +106,6 @@ console.log(product_id);
         img: response.data.img,
         bigImage: `https://admin.tresorjewelryinc.com/tresor-admin/${response.data.img[0].url}`
       });
-      console.log(this.state.range);
 
     });
 

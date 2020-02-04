@@ -172,7 +172,6 @@ export default function PrimarySearchAppBar() {
   );
 
   if ({signout} === true) {
-console.log(signout);
     logout({signout : 'false'});
     return <Redirect to='/' />
   }

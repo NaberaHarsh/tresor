@@ -9,7 +9,6 @@ class Moving extends React.Component {
     }
 
     componentDidMount(){
-   console.log(this.props.shows)
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {

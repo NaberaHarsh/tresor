@@ -59,8 +59,7 @@ class ForgotPassword extends Component {
     e.preventDefault();
     const { email } = this.state;
     const userdata = { email:email };
-    console.log(userdata);
-    console.log(email);
+    
 
     // convert json to form data with '&' seprater
     const data = Object.keys(userdata)

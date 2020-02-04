@@ -58,13 +58,11 @@ class SubNav extends React.Component {
 
 handleClick(id) {
 
-  console.log(id);
   this.setState({expansion:id})
 }
 
   handleChange =  (event, newValue) => {
 
-    console.log(newValue);
     this.setState({ newValue });
   };
 

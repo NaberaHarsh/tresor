@@ -22,7 +22,6 @@ class Routes extends Component {
   constructor(props) {
     super(props);
 
-    console.log(props);
 
     this.state = {
       banner: [],
@@ -67,7 +66,6 @@ class Routes extends Component {
     else {
       this.state.idData = { user_id: '0' }
     }
-    console.log(this.state.idData);
 
     const data1 = Object.keys(this.state.idData)
       .map(key => {
@@ -104,7 +102,6 @@ class Routes extends Component {
 
       axios(requestOptions1)
       .then(response => {
-        console.log("data coming")
       })
       .catch(err => { });
 
@@ -139,12 +136,10 @@ class Routes extends Component {
         loading: true
       });
     });
-console.log(this.state.discount)
   }
 
 
   changeQuantity(p, e) {
-    console.log("hello")
     let cart = this.state.cartList;
     let i = cart.indexOf(p)
     cart[i].quantity = parseInt(e.target.value);
@@ -158,9 +153,7 @@ console.log(this.state.discount)
   addToCart(productDetail) {
 
 
-    console.log(this.state.cartList);
 
-    console.log("add to cart", productDetail);
 
     this.state.cartList.map(item => {
 
@@ -171,12 +164,9 @@ console.log(this.state.discount)
 
     if (isAvail.length > 0) {
 
-        console.log("inside exist");
       if(productDetail.quantity == 0){
-        console.log("item quantity 0");
         this.setState({cartList: this.state.cartList.filter(item => item.product_id !== productDetail.product_id) })
       }else{
-        console.log(productDetail.quantity);
       }
      
 

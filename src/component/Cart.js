@@ -96,7 +96,6 @@ cart(){
     const userdata1 = {
           user_id: getLoginData().user_id,
         };
-    console.log(userdata1);
 
     const data1 = Object.keys(userdata1)
     .map(key => {
@@ -113,7 +112,6 @@ cart(){
 
   axios(requestOptions1)
     .then(response => {
-      console.log(userdata1)
     })
     .catch(err => {});
 
@@ -140,7 +138,6 @@ cart(){
       user_id: getLoginData().user_id,
       status: "exist"
     };
-    console.log(userdata);
 
     // convert json to form data with '&' seprater
     const data = Object.keys(userdata)
@@ -190,7 +187,6 @@ cart(){
     const { user_id } = this.state;
     const processdata = { user_id: getLoginData().user_id };
 
-    console.log(processdata);
 
     // convert json to form data with '&' seprater
     const data1 = Object.keys(processdata)
@@ -238,7 +234,6 @@ cart(){
   const userdata1 = {
         user_id: getLoginData().user_id,
       };
-  console.log(userdata1);
 
   const data1 = Object.keys(userdata1)
   .map(key => {
@@ -255,7 +250,6 @@ const requestOptions1 = {
 
 axios(requestOptions1)
   .then(response => {
-    console.log(userdata1)
   })
   .catch(err => {});
 
@@ -271,7 +265,6 @@ axios(requestOptions1)
       loading: true
     });
   });
-console.log(this.state.cart)
 
     }
   }
@@ -292,7 +285,7 @@ console.log(this.state.cart)
   {
     const { classes } = this.props
 
-    if (this.state.cart.length > 0) {
+    if (this.props.cartItemCount > 0) {
       return (
         <div style={{ padding: "10px" }}>
           <Container maxWidth="lg">
@@ -399,7 +392,6 @@ console.log(this.state.cart)
           <th style={{width:'60px', textAlign:'center'}}>Qty </th>
           <th style={{width:'60px', textAlign:'center'}}>Disount</th> 
           </tr>
-          {console.log(product.discount_range)}
                 {JSON.parse(product.discount_range).map(data=>(
           <tr>
             <td style={{width:'60px', textAlign:'center'}}>{data.quantity_from}-{data.quantity_to}</td>

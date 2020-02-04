@@ -823,7 +823,6 @@ class Cart extends Component{
   handleSubmit(productDetail){
     const { product_id, quantity, user_id, status } = this.state;
     const userdata = { product_id:productDetail.product_id, quantity:productDetail.quantity,user_id:getLoginData().user_id, status:'exist' };
-    console.log(userdata);
   
 
 
@@ -863,7 +862,6 @@ class Cart extends Component{
     const { user_id } = this.state;
     const processdata = { user_id:getLoginData().user_id};
 
-    console.log(processdata);
   
     // convert json to form data with '&' seprater
     const data1 = Object.keys(processdata)
@@ -897,7 +895,6 @@ class Cart extends Component{
   
     refreshPage(){
       window.location.reload();
-      console.log('refresh done')
   } 
 
 
