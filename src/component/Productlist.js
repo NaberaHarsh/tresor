@@ -147,16 +147,16 @@ this.setState({product_id:product_id})
       dataGet
     } = this.state;
 
-    if (retrievePage) {
-      return (
-        <Redirect
-          to={{
-            pathname: `/Details/${retrieveId}`,
-            data: { retrieveId }
-          }}
-        />
-      );
-    }
+    // if (retrievePage) {
+    //   return (
+    //     <Redirect
+    //       to={{
+    //         pathname: `/Details/${retrieveId}`,
+    //         data: { retrieveId }
+    //       }}
+    //     />
+    //   );
+    // }
     return (
       <div>
         <Container maxWidth="lg">
@@ -184,7 +184,9 @@ this.setState({product_id:product_id})
                     lg={4}
                     key={index}
                   >
-                    <Paper key={`product-list-${index}`} className="marginB">
+                    <Link
+                    href={`/Details/${retrieveId}`}>
+                     <Paper key={`product-list-${index}`} className="marginB">
                       <img 
                         className="img1"
                         src={`https://admin.tresorjewelryinc.com/tresor-admin/${data.url}`}
@@ -245,6 +247,7 @@ onClick={()=>{ this.handleSubmit(data); this.props.addToCart({detail :data});}}
                         </Grid>  
                         </Grid>
                     </Paper>
+                    </Link>
                   </Grid>
                 ))}{" "}
               </>

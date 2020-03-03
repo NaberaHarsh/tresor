@@ -8,11 +8,10 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
 import axios from "axios";
-import { getLoginData } from '../utils/session';
-import InfoIcon from '@material-ui/icons/Info';
-import CustomizedSnackbars from './SnackBars';
-import Menu from '@material-ui/core/Menu';
-
+import { getLoginData } from "../utils/session";
+import InfoIcon from "@material-ui/icons/Info";
+import CustomizedSnackbars from "./SnackBars";
+import Menu from "@material-ui/core/Menu";
 
 class Details extends Component {
   constructor(props) {
@@ -23,31 +22,32 @@ class Details extends Component {
       bigImage: "",
       Detail: {},
       img: [],
-      product_id:"",
-      quantity:'',
-      user_id:"  ",
-      status:'',
-      open:false,
-      range:[],
-      menu:null
-
+      product_id: "",
+      quantity: "",
+      user_id: "  ",
+      status: "",
+      open: false,
+      range: [],
+      menu: null
     };
   }
-   handleClick = event => {
-    this.setState({menu:event.currentTarget});
+  handleClick = event => {
+    this.setState({ menu: event.currentTarget });
   };
 
-   handleMenuClose = () => {
-    this.setState({menu:null});
+  handleMenuClose = () => {
+    this.setState({ menu: null });
   };
 
-
-
-  handleSubmit(productDetail){
+  handleSubmit(productDetail) {
     const { product_id, quantity, user_id, status } = this.state;
-    const userdata = { product_id:productDetail.detail.product_id,  quantity:[1], user_id:getLoginData().user_id, status:'addnew' };
-this.setState({product_id:product_id})
-
+    const userdata = {
+      product_id: productDetail.detail.product_id,
+      quantity: [1],
+      user_id: getLoginData().user_id,
+      status: "addnew"
+    };
+    this.setState({ product_id: product_id });
 
     // convert json to form data with '&' seprater
     const data = Object.keys(userdata)
@@ -58,31 +58,37 @@ this.setState({product_id:product_id})
       })
       .join("&");
     const requestOptions = {
-      method: 'POST',
+      method: "POST",
       url: APIUrl.url.AddToCart,
-      data:data,
-
+      data: data
     };
 
     axios(requestOptions)
       .then(response => {
-        this.setState({isToastOpen:true,message:response.data.msg,type:"success"});
-
+        this.setState({
+          isToastOpen: true,
+          message: response.data.msg,
+          type: "success"
+        });
       })
-      .catch(err => { 
-        this.setState({isToastOpen:true,message:"Something went wrong",type:"error"});
-
+      .catch(err => {
+        this.setState({
+          isToastOpen: true,
+          message: "Something went wrong",
+          type: "error"
+        });
       });
-  };
-
+  }
 
   componentDidMount() {
-    const range= localStorage.getItem("range")
-    if ( range && !navigator.onLine) {
-      this.setState({
-        lat_range:JSON.parse(range)
-      }, () => {
-      });
+    const range = localStorage.getItem("range");
+    if (range && !navigator.onLine) {
+      this.setState(
+        {
+          lat_range: JSON.parse(range)
+        },
+        () => {}
+      );
       return;
     } else if (!navigator.onLine) {
       alert("you are offline");
@@ -98,18 +104,18 @@ this.setState({product_id:product_id})
       if (err) {
         return;
       }
-      localStorage.setItem("range", JSON.stringify(response.data.detail.discount_range));
+      localStorage.setItem(
+        "range",
+        JSON.stringify(response.data.detail.discount_range)
+      );
       this.setState({
-        range:JSON.parse(response.data.detail.discount_range),
+        range: JSON.parse(response.data.detail.discount_range),
         ProductDetails: response.data,
         Detail: response.data.detail,
         img: response.data.img,
         bigImage: `https://admin.tresorjewelryinc.com/tresor-admin/${response.data.img[0].url}`
       });
-
     });
-
-
   }
 
   ChangeImage = e => {
@@ -125,12 +131,10 @@ this.setState({product_id:product_id})
   }
 
   render() {
-
     const { classes } = this.props;
     const { email } = this.state;
-   
 
-    const { bigImage, img, Detail,range } = this.state;
+    const { bigImage, img, Detail, range } = this.state;
     return (
       <div>
         <Container maxWidth="lg" className="productCard1">
@@ -180,58 +184,96 @@ this.setState({product_id:product_id})
                 </div>
 
                 <Grid container spacing={2}>
-                  <Grid md={6} lg={6} sm={6} xs={6} >
-                    
-                {Detail.price &&( 
-                  <div className="section-heading">
-
-<p> <span 
-style={{ color: "#515151",
-    fontWeight: "600",
-    fontSize: "24px"
-
-    }}>
-       Price:</span><span style={{fontSize:'18px', font:'helvetica'}}> ${Detail.price} / {Detail.unit_name} </span></p>
-</div>)}
+                  <Grid md={6} lg={6} sm={6} xs={6}>
+                    {Detail.price && (
+                      <div className="section-heading">
+                        <p>
+                          {" "}
+                          <span
+                            style={{
+                              color: "#515151",
+                              fontWeight: "600",
+                              fontSize: "24px"
+                            }}
+                          >
+                            Price:
+                          </span>
+                          <span style={{ fontSize: "18px", font: "helvetica" }}>
+                            {" "}
+                            ${Detail.price} / {Detail.unit_name}{" "}
+                          </span>
+                        </p>
+                      </div>
+                    )}
                   </Grid>
-                  <Grid md={6} lg={6} sm={6} xs={6} >
-                    {Detail.discount_range && (
-                  <div className="section-heading">
-
-<p> <span 
-style={{ color: "#515151",
-    fontWeight: "600",
-    fontSize: "24px"
-    }}>
-      Discount:</span><InfoIcon style={{color:'#135BD2', maxHeight:'22px'}} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick} /> 
-      <Menu
-        id="simple-menu"
-       anchorEl={this.state.menu}
-        keepMounted
-        open={Boolean(this.state.menu)}
-        onClose={this.handleMenuClose}
-      >
-        <table> 
-          <tr>
-          <th style={{width:'60px', textAlign:'center'}}>Qty </th>
-          <th style={{width:'60px', textAlign:'center'}}>Disount</th> 
-          </tr>
-                {this.state.range.map(data=>(
-          <tr>
-            <td style={{width:'60px', textAlign:'center'}}>{data.quantity_from}-{data.quantity_to}</td>
-                <td style={{width:'70px', textAlign:'center'}}>{data.quantity_discount}%</td>
-          </tr>
-    ))}
-    
-     </table>
-     </Menu>
-        </p>
-     
-</div>)}
+                  <Grid md={6} lg={6} sm={6} xs={6}>
+                    {Detail.discount_range && this.state.range && (
+                      <div className="section-heading">
+                        <p>
+                          {" "}
+                          <span
+                            style={{
+                              color: "#515151",
+                              fontWeight: "600",
+                              fontSize: "24px"
+                            }}
+                          >
+                            Discount:
+                          </span>
+                          <InfoIcon
+                            style={{ color: "#135BD2", maxHeight: "22px" }}
+                            aria-controls="simple-menu"
+                            aria-haspopup="true"
+                            onClick={this.handleClick}
+                          />
+                          <Menu
+                            id="simple-menu"
+                            anchorEl={this.state.menu}
+                            keepMounted
+                            open={Boolean(this.state.menu)}
+                            onClose={this.handleMenuClose}
+                          >
+                            <table>
+                              <tr>
+                                <th
+                                  style={{ width: "60px", textAlign: "center" }}
+                                >
+                                  Qty{" "}
+                                </th>
+                                <th
+                                  style={{ width: "60px", textAlign: "center" }}
+                                >
+                                  Disount
+                                </th>
+                              </tr>
+                              {this.state.range && this.state.range.map(data => (
+                                <tr>
+                                  <td
+                                    style={{
+                                      width: "60px",
+                                      textAlign: "center"
+                                    }}
+                                  >
+                                    {data.quantity_from}-{data.quantity_to}
+                                  </td>
+                                  <td
+                                    style={{
+                                      width: "70px",
+                                      textAlign: "center"
+                                    }}
+                                  >
+                                    {data.quantity_discount}%
+                                  </td>
+                                </tr>
+                              ))}
+                            </table>
+                          </Menu>
+                        </p>
+                      </div>
+                    )}
                   </Grid>
-
                 </Grid>
-              
+
                 {Detail.description && (
                   <div style={{ marginTop: "12px", marginBottom: "10px" }}>
                     <h5
@@ -276,30 +318,31 @@ style={{ color: "#515151",
                     </p>
 
                     <br />
-                    
-                        
-                                         </div>
+                  </div>
                 )}
                 <Button
-                          variant="contained"
-                          style={{
-                            textAlign: "center",
-                            backgroundColor: "black",
-                            color: "white"
-                          }}
-                          onClick={()=>{ this.handleSubmit(this.state.ProductDetails); this.props.addToCart(this.state.ProductDetails); }}
-                        >  
-                          Add to Cart
-                        </Button>
+                  variant="contained"
+                  style={{
+                    textAlign: "center",
+                    backgroundColor: "black",
+                    color: "white"
+                  }}
+                  onClick={() => {
+                    this.handleSubmit(this.state.ProductDetails);
+                    this.props.addToCart(this.state.ProductDetails);
+                  }}
+                >
+                  Add to Cart
+                </Button>
               </Grid>
             </Grid>
           </Grid>
           <CustomizedSnackbars
-                isOpen ={this.state.isToastOpen}
-                message = {this.state.message}
-                type = {this.state.type}
-                handleClose={() => this.setState({isToastOpen : false})}
-                />
+            isOpen={this.state.isToastOpen}
+            message={this.state.message}
+            type={this.state.type}
+            handleClose={() => this.setState({ isToastOpen: false })}
+          />
         </Container>
       </div>
     );
